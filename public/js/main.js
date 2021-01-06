@@ -76,6 +76,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 function init() {
     socket = io()
 
+    alert(room);
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)
@@ -91,17 +92,6 @@ function init() {
     socket.on('removePeer', socket_id => {
         console.log('removing peer ' + socket_id)
         removePeer(socket_id)
-    })
-
-
-
-    socket.on('created', function(room, clientId) {
-        isInitiator = true;
-        console.log("on created :" + clientId)
-    })
-
-    socket.on('ipaddr', function(ipaddr) {
-        console.log('Message from client: Server IP address is ' + ipaddr);
     })
 
     socket.on('disconnect', () => {
