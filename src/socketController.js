@@ -47,11 +47,16 @@ module.exports = (io) => {
             console.log('INIT SEND by ' + socket.id + ' for ' + init_socket_id)
             peers[init_socket_id].emit('initSend', socket.id)
         })
-    });
 
-    io.on('created', (socket) => {
-        console.log('a client is created')
 
-    });
-    
+        socket.on('created', function(room, clientId) {
+            isInitiator = true;
+            console.log("on created :" + clientId)
+          });
+
+        socket.on('ipaddr', function(ipaddr) {
+            console.log('Message from client: Server IP address is ' + ipaddr);
+        })
+
+    });    
 }
