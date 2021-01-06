@@ -255,7 +255,7 @@ function removeLocalStream() {
 function toggleMute() {
     for (let index in localStream.getAudioTracks()) {
         localStream.getAudioTracks()[index].enabled = !localStream.getAudioTracks()[index].enabled
-        muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "Unmuted" : "Muted"
+        muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "오됴켜짐" : "오됴꺼짐"
     }
 }
 /**
@@ -264,7 +264,7 @@ function toggleMute() {
 function toggleVid() {
     for (let index in localStream.getVideoTracks()) {
         localStream.getVideoTracks()[index].enabled = !localStream.getVideoTracks()[index].enabled
-        vidButton.innerText = localStream.getVideoTracks()[index].enabled ? "Video Enabled" : "Video Disabled"
+        vidButton.innerText = localStream.getVideoTracks()[index].enabled ? "비됴켜짐" : "비됴꺼짐"
     }
 }
 
@@ -273,9 +273,9 @@ function toggleVid() {
  */
 function updateButtons() {
     for (let index in localStream.getVideoTracks()) {
-        vidButton.innerText = localStream.getVideoTracks()[index].enabled ? "Video Enabled" : "Video Disabled"
+        vidButton.innerText = localStream.getVideoTracks()[index].enabled ? "비됴켜짐" : "비됴꺼짐"
     }
     for (let index in localStream.getAudioTracks()) {
-        muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "Unmuted" : "Muted"
+        muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "오됴켜짐" : "오됴꺼짐"
     }
 }
