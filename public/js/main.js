@@ -93,6 +93,17 @@ function init() {
         removePeer(socket_id)
     })
 
+
+
+    socket.on('created', function(room, clientId) {
+        isInitiator = true;
+        console.log("on created :" + clientId)
+    })
+
+    socket.on('ipaddr', function(ipaddr) {
+        console.log('Message from client: Server IP address is ' + ipaddr);
+    })
+
     socket.on('disconnect', () => {
         console.log('GOT DISCONNECTED')
         for (let socket_id in peers) {
