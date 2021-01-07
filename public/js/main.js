@@ -80,10 +80,10 @@ function init() {
     socket = io()
 
     console.log(roomId);
+    socket.join(roomId);
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id);
-        socket.join(roomId);
-
+       
         addPeer(roomId, socket_id, false)
         console.log(1);
         socket.emit('initSend', socket_id)
@@ -157,7 +157,7 @@ function addPeer(roomId, socket_id, am_initiator) {
         console.log("on signal");
         console.log("roomname : " + roomId);
 
-        socket.emit('signal', {
+        socket.to(roomId).emit('signal', {
             signal: data,
             socket_id: socket_id
         })
