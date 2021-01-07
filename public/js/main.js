@@ -74,17 +74,9 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
  * initialize the socket connections
  */
 function init() {
-    
-
-    /*
-    if(myroom==undefined || myroom == ''){
-        alert("방없음");
-        return;
-    } */
 
     socket = io();   
- 
-        
+  
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)
@@ -244,6 +236,20 @@ function setScreen() {
     updateButtons()
 }
 
+
+
+/**
+ * updating text of buttons
+ */
+function updateButtons() {
+    for (let index in localStream.getVideoTracks()) {
+        vidButton.innerText = localStream.getVideoTracks()[index].enabled ? "비됴켜짐" : "비됴꺼짐"
+    }
+    for (let index in localStream.getAudioTracks()) {
+        muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "오됴켜짐" : "오됴꺼짐"
+    }
+}
+
 /**
  * Disables and removes the local stream and all the connections to other peers.
  */
@@ -282,17 +288,6 @@ function toggleVid() {
     }
 }
 
-/**
- * updating text of buttons
- */
-function updateButtons() {
-    for (let index in localStream.getVideoTracks()) {
-        vidButton.innerText = localStream.getVideoTracks()[index].enabled ? "비됴켜짐" : "비됴꺼짐"
-    }
-    for (let index in localStream.getAudioTracks()) {
-        muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "오됴켜짐" : "오됴꺼짐"
-    }
-}
 
 function getParam(sname) {
     let params = location.search.substr(location.search.indexOf("?") + 1);
