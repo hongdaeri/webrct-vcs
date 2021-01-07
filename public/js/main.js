@@ -143,7 +143,7 @@ function addPeer(socket_id, am_initiator) {
     peers[socket_id] = new SimplePeer({
         initiator: am_initiator,
         stream: localStream,
-        config: configuration
+        config: configuration,
     })
 
     peers[socket_id].on('signal', data => {
@@ -165,6 +165,8 @@ function addPeer(socket_id, am_initiator) {
         newVid.ontouchstart = (e) => openPictureMode(newVid)
         videos.appendChild(newVid)
     })
+
+    peers[socket_id].room = getParam("room");
 }
 
 /**
