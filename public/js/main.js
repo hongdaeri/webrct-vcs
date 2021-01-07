@@ -12,7 +12,7 @@ let localStream = null;
 let peers = {}
 
 
-let roomId = prompt("너의 방이름은 ?:");
+let room = prompt("너의 방이름은 ?:");
 
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') 
@@ -69,22 +69,18 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     console.log("getUserMedia");
     init()
 
-}).catch(e => 
-    console.log(`getusermedia error ${e}`)
-    )
+}).catch(e => alert(`getusermedia error ${e.name}`))
 
 /**
  * initialize the socket connections
  */
 function init() {
-    socket = io()
+    socket = io(room)
 
-    console.log(roomId);
-    socket.join(roomId);
+    console.log(room);
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id);
-       
-        addPeer(roomId, socket_id, false)
+        addPeer(socket_id, false)
         console.log(1);
         socket.emit('initSend', socket_id)
     })
@@ -92,7 +88,7 @@ function init() {
     socket.on('initSend', socket_id => {
         console.log(2);
         console.log('INIT SEND ' + socket_id)
-        addPeer(roomId, socket_id, true)
+        addPeer(socket_id, true)
     })
 
     socket.on('removePeer', socket_id => {
@@ -145,7 +141,7 @@ function removePeer(socket_id) {
  *                  Set to true if the peer initiates the connection process.
  *                  Set to false if the peer receives the connection. 
  */
-function addPeer(roomId, socket_id, am_initiator) {
+function addPeer(room, socket_id, am_initiator) {
     console.log("add peer");
     peers[socket_id] = new SimplePeer({
         initiator: am_initiator,
@@ -155,9 +151,8 @@ function addPeer(roomId, socket_id, am_initiator) {
 
     peers[socket_id].on('signal', data => {
         console.log("on signal");
-        console.log("roomname : " + roomId);
-
-        socket.to(roomId).emit('signal', {
+        console.log("roomname : " + room);
+        socket.emit('signal', {
             signal: data,
             socket_id: socket_id
         })
