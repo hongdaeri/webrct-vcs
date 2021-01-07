@@ -10,6 +10,7 @@ let localStream = null;
  * All peer connections
  */
 let peers = {}
+let userRooms = {}
 
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') {
@@ -75,8 +76,6 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 function init() {
     
 
-    let myroom = getParam("r");
-
     /*
     if(myroom==undefined || myroom == ''){
         alert("방없음");
@@ -85,6 +84,7 @@ function init() {
 
     socket = io();   
  
+    console.log()
     
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
@@ -96,6 +96,8 @@ function init() {
     socket.on('initSend', socket_id => {
         console.log(2);
         console.log('INIT SEND ' + socket_id)
+        userRooms[socket_id] = getParam("r");
+        console.log(userRooms)
         addPeer(socket_id, true)
     })
 
@@ -153,8 +155,7 @@ function addPeer(socket_id, am_initiator) {
     peers[socket_id] = new SimplePeer({
         initiator: am_initiator,
         stream: localStream,
-        config: configuration,
-        myroom: getParam("r")
+        config: configuration
     })
 
     peers[socket_id].on('signal', data => {
