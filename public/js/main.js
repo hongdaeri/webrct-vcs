@@ -104,9 +104,11 @@ function init() {
     })
 
     socket.on('signal', data => {
-        console.log(4);
+       
         peers[data.socket_id].signal(data.signal)
         rooms[data.socket_id] = room;
+
+        console.log("4 : " + rooms[data.socket_id]); 
     })
 }
 
@@ -173,6 +175,7 @@ function addPeer(room, socket_id, am_initiator) {
     })
 
     rooms[socket_id] = room;
+    console.log("5 : " + rooms[socket_id]); 
 }
 
 /**
