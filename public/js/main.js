@@ -73,16 +73,17 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
  * initialize the socket connections
  */
 function init() {
-   
+    
+
     let myroom = getParam("room");
     if(myroom==undefined || myroom == ''){
         alert("방없음");
         return;
     } 
-    
-    socket = io()
 
-    socket.join(myroom);
+    socket = io('/' + myroom);   
+
+   
     
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
