@@ -299,3 +299,7 @@ function getParam(sname) {
     }
     return sval;
 }
+
+function test(){
+    alert("yo");
+}
