@@ -83,7 +83,7 @@ function init() {
         return;
     } */
 
-    socket = io(myroom);   
+    socket = io();   
  
     
     socket.on('initReceive', socket_id => {

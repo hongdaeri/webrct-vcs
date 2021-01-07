@@ -1,7 +1,7 @@
 peers = {}
 
 
-module.exports = (io, myroom) => {
+module.exports = (io) => {
 
    
     io.on('connect', (socket) => {
@@ -12,8 +12,7 @@ module.exports = (io, myroom) => {
         // Initiate the connection process as soon as the client connects
 
         peers[socket.id] = socket
-        comsole.log("myroom: " + myroom);
-        comsole.log("myroom2: " + peers[socket.id]);
+        comsole.log(peers[socket.id]);
       
         // Asking all other clients to setup the peer connection receiver
         for(let id in peers) {
@@ -43,7 +42,6 @@ module.exports = (io, myroom) => {
             delete peers[socket.id]
         })
 
-        
         /**
          * Send message to client to initiate a connection
          * The sender has already setup a peer connection receiver
