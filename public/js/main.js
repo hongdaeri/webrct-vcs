@@ -10,8 +10,6 @@ let localStream = null;
  * All peer connections
  */
 let peers = {}
-
-
 let room = prompt("너의 방이름은 ?:");
 
 // redirect if not https
@@ -75,11 +73,11 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
  * initialize the socket connections
  */
 function init() {
-    socket = io(room)
+    socket = io()
 
     console.log(room);
     socket.on('initReceive', socket_id => {
-        console.log('INIT RECEIVE ' + socket_id);
+        console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)
         console.log(1);
         socket.emit('initSend', socket_id)

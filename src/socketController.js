@@ -6,7 +6,7 @@ module.exports = (io) => {
         console.log('a client is connected')
 
        
-        console.log("room:" + window.room);
+        console.log("room:" + room);
         // Initiate the connection process as soon as the client connects
 
         peers[socket.id] = socket
