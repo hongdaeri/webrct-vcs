@@ -65,7 +65,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     localStream = stream;
 
     console.log("getUserMedia");
-    //init()
+    init()
 
 }).catch(e => alert(`getusermedia error ${e.name}`))
 
@@ -75,8 +75,14 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 function init() {
     socket = io()
 
-    console.log("main-init-roomname : " + getParam("room"));
-
+    let myroom = getParam("room");
+    if(myroom==undefined || myroom == ''){
+        alert("방없음");
+        return;
+    } 
+    
+    socket.join(myroom);
+    
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)
