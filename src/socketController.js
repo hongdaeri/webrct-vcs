@@ -1,17 +1,17 @@
 peers = {}
 
 
-module.exports = (io, a) => {
+module.exports = (io, userRoom) => {
 
    
     io.on('connect', (socket) => {
         console.log('a client is connected')
 
-        console.log(a);
         //console.log("io-connect-roomname : " + getParam("room"));
 
         // Initiate the connection process as soon as the client connects
 
+        console.log(userRoom);
         peers[socket.id] = socket
 
       

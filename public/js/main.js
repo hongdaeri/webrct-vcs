@@ -83,7 +83,7 @@ function init() {
         return;
     } */
 
-    socket = io();   
+    socket = io(myroom);   
     a = myroom;
     
 
