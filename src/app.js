@@ -28,6 +28,15 @@ httpsServer.listen(port, () => {
     console.log(`listening on port ${port}`)
 })
 
+app.get('/test', function(req, res) {
+    var user_id = req.param('id');
+    var user_name = req.param('name'); 
+   
+    res.send(user_id + ' ' + user_name);
+});
+  
+  
+
 
 
 
