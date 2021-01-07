@@ -5,13 +5,12 @@ rooms = {}
 module.exports = (io) => {
     io.on('connect', (socket) => {
         console.log('a client is connected')
-
-       
-        console.log("rooms:" + rooms);
+    
         // Initiate the connection process as soon as the client connects
 
         peers[socket.id] = socket
-
+        console.log("room:" + rooms[socket.id]);
+        
         // Asking all other clients to setup the peer connection receiver
         for(let id in peers) {
             if(id === socket.id) continue
