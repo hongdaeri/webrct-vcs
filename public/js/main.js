@@ -76,7 +76,8 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 function init() {
     socket = io()
 
-    console.log(roomName);
+    console.log("main-init-roomname : " + getParam("room"));
+
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)
@@ -287,4 +288,15 @@ function updateButtons() {
     for (let index in localStream.getAudioTracks()) {
         muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "오됴켜짐" : "오됴꺼짐"
     }
+}
+
+function getParam(sname) {
+    let params = location.search.substr(location.search.indexOf("?") + 1);
+    let sval = "";
+    params = params.split("&");
+    for (let i = 0; i < params.length; i++) {
+        temp = params[i].split("=");
+        if ([temp[0]] == sname) { sval = temp[1]; }
+    }
+    return sval;
 }

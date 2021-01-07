@@ -6,6 +6,7 @@ module.exports = (io) => {
     io.on('connect', (socket) => {
         console.log('a client is connected')
 
+        console.log("io-connect-roomname : " + getParam("room"));
 
         // Initiate the connection process as soon as the client connects
 
@@ -49,3 +50,4 @@ module.exports = (io) => {
         })
     })
 }
+
