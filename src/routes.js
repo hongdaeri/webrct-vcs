@@ -15,8 +15,7 @@ module.exports = (app) => {
 
   
     app.get('/room/:number', function(req, res) {
-        var user_id = req.param('id');
-        var user_name = req.param('name'); 
+   
         app.use(express.static(path.join(__dirname, '..','public')))
         app.use(express.static(path.join(__dirname, '..','node_modules')))
     });
