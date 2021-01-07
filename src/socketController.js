@@ -12,7 +12,7 @@ module.exports = (io) => {
         // Initiate the connection process as soon as the client connects
 
         peers[socket.id] = socket
-        comsole.log(peers[socket.id]);
+        console.log(peers[socket.id]);
       
         // Asking all other clients to setup the peer connection receiver
         for(let id in peers) {
