@@ -1,14 +1,4 @@
 
-function getParam(sname) {
-    let params = location.search.substr(location.search.indexOf("?") + 1);
-    let sval = "";
-    params = params.split("&");
-    for (let i = 0; i < params.length; i++) {
-        temp = params[i].split("=");
-        if ([temp[0]] == sname) { sval = temp[1]; }
-    }
-    return sval;
-}
 
 peers = {}
 
@@ -17,7 +7,7 @@ module.exports = (io) => {
     io.on('connect', (socket) => {
         console.log('a client is connected')
 
-        console.log("io-connect-roomname : " + getParam("room"));
+        //console.log("io-connect-roomname : " + getParam("room"));
 
         // Initiate the connection process as soon as the client connects
 
