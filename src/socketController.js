@@ -13,8 +13,7 @@ module.exports = (io) => {
 
         peers[socket.id] = socket
 
-        console.log(peers[socket.id]);
-
+      
         // Asking all other clients to setup the peer connection receiver
         for(let id in peers) {
             if(id === socket.id) continue
