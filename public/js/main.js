@@ -69,7 +69,9 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     console.log("getUserMedia");
     init()
 
-}).catch(e => alert(`getusermedia error ${e.name}`))
+}).catch(e => 
+    console.log(`getusermedia error ${e}`)
+    )
 
 /**
  * initialize the socket connections
