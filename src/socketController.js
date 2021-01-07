@@ -1,23 +1,20 @@
 
 peers = {}
-rooms = {}
+
 
 module.exports = (io) => {
     io.on('connect', (socket) => {
         console.log('a client is connected')
-    
+
+
         // Initiate the connection process as soon as the client connects
 
         peers[socket.id] = socket
-     
 
-        console.log("room", rooms[peers[socket.id]]);
-        
         // Asking all other clients to setup the peer connection receiver
         for(let id in peers) {
             if(id === socket.id) continue
             console.log('sending init receive to ' + socket.id)
-            
             peers[id].emit('initReceive', socket.id)
         }
 
@@ -32,8 +29,7 @@ module.exports = (io) => {
                 signal: data.signal
             })
         })
-   
-        
+
         /**
          * remove the disconnected peer connection from all other connected clients
          */

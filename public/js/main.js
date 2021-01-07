@@ -10,7 +10,7 @@ let localStream = null;
  * All peer connections
  */
 let peers = {}
-let rooms= {}
+
 let roomName = prompt("너의 방이름은 ?:");
 
 // redirect if not https
@@ -104,11 +104,7 @@ function init() {
     })
 
     socket.on('signal', data => {
-       
         peers[data.socket_id].signal(data.signal)
-        rooms[data.socket_id] = roomName;
-
-        console.log("4 : " + rooms[data.socket_id]); 
     })
 }
 
@@ -133,8 +129,6 @@ function removePeer(socket_id) {
     }
     if (peers[socket_id]) peers[socket_id].destroy()
     delete peers[socket_id]
-
-    rooms[socket_id] = '';
 }
 
 /**
@@ -155,7 +149,6 @@ function addPeer(socket_id, am_initiator) {
 
     peers[socket_id].on('signal', data => {
         console.log("on signal");
-        console.log("roomname : " + room);
         socket.emit('signal', {
             signal: data,
             socket_id: socket_id
@@ -173,9 +166,6 @@ function addPeer(socket_id, am_initiator) {
         newVid.ontouchstart = (e) => openPictureMode(newVid)
         videos.appendChild(newVid)
     })
-
-    rooms[socket_id] = roomName;
-    console.log("5 : " + rooms[socket_id]); 
 }
 
 /**
