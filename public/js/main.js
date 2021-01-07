@@ -150,7 +150,8 @@ function addPeer(socket_id, am_initiator) {
     })
 
     peers[socket_id].on('signal', data => {
-        console.log("signal");
+        console.log("on signal");
+        console.log("roomname : " + room);
         socket.emit('signal', {
             signal: data,
             socket_id: socket_id
