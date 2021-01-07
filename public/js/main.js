@@ -73,14 +73,15 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
  * initialize the socket connections
  */
 function init() {
-    socket = io()
-
+   
     let myroom = getParam("room");
     if(myroom==undefined || myroom == ''){
         alert("방없음");
         return;
     } 
     
+    socket = io()
+
     socket.join(myroom);
     
     socket.on('initReceive', socket_id => {
@@ -172,8 +173,6 @@ function addPeer(socket_id, am_initiator) {
         newVid.ontouchstart = (e) => openPictureMode(newVid)
         videos.appendChild(newVid)
     })
-
-    peers[socket_id].room = getParam("room");
 }
 
 /**
