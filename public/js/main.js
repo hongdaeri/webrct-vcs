@@ -66,6 +66,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     localVideo.srcObject = stream;
     localStream = stream;
 
+    console.log("getUserMedia");
     init()
 
 }).catch(e => alert(`getusermedia error ${e.name}`))
@@ -141,6 +142,7 @@ function removePeer(socket_id) {
  *                  Set to false if the peer receives the connection. 
  */
 function addPeer(socket_id, am_initiator) {
+    console.log("add peer");
     peers[socket_id] = new SimplePeer({
         initiator: am_initiator,
         stream: localStream,
@@ -148,6 +150,7 @@ function addPeer(socket_id, am_initiator) {
     })
 
     peers[socket_id].on('signal', data => {
+        console.log("signal");
         socket.emit('signal', {
             signal: data,
             socket_id: socket_id
@@ -217,7 +220,7 @@ function switchMedia() {
  * Enable screen share
  */
 function setScreen() {
-    console.log("a");
+    console.log("set screen");
     navigator.mediaDevices.getDisplayMedia().then(stream => {
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {
