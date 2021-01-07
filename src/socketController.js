@@ -43,6 +43,7 @@ module.exports = (io, myroom) => {
             delete peers[socket.id]
         })
 
+        
         /**
          * Send message to client to initiate a connection
          * The sender has already setup a peer connection receiver
