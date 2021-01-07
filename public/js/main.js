@@ -75,7 +75,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 function init() {
     
 
-    let myroom = getParam("room");
+    let myroom = getParam("r");
 
     /*
     if(myroom==undefined || myroom == ''){
@@ -84,10 +84,7 @@ function init() {
     } */
 
     socket = io(myroom);   
-    a = myroom;
-    
-
-   
+ 
     
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
@@ -157,6 +154,7 @@ function addPeer(socket_id, am_initiator) {
         initiator: am_initiator,
         stream: localStream,
         config: configuration,
+        myroom: getParam("r")
     })
 
     peers[socket_id].on('signal', data => {

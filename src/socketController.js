@@ -1,7 +1,7 @@
 peers = {}
 
 
-module.exports = (io, userRoom) => {
+module.exports = (io, myroom) => {
 
    
     io.on('connect', (socket) => {
@@ -11,9 +11,9 @@ module.exports = (io, userRoom) => {
 
         // Initiate the connection process as soon as the client connects
 
-        console.log(userRoom);
         peers[socket.id] = socket
-
+        comsole.log("myroom: " + myroom);
+        comsole.log("myroom2: " + peers[socket.id]);
       
         // Asking all other clients to setup the peer connection receiver
         for(let id in peers) {
