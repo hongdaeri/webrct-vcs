@@ -4,6 +4,9 @@
     <script lang="text/javascript" src="/socket.io/socket.io.js"></script>
     <script src="/simple-peer/simplepeer.min.js"></script>
     <style>
+        body {
+            background-color:#333;
+        }
         .containers {
             display: grid;
             grid-gap: 5px;
@@ -39,8 +42,9 @@
             position: fixed;
             bottom: 0;
             height: 70px;
-            background-color: #444;
+            background-color: #222;
             width: 100vw;
+            border-top: 1px solid #444;
         }
     </style>
 </head>
@@ -49,7 +53,7 @@
     <div id="videos" class="container">
         <video id="localVideo" class="vid" autoplay muted></video>
     </div>
-    <br />
+
   
     <div id="webrtc_navs">
         <button id="switchButton" class="setting-btn" onclick="switchMedia()">카메라전환</button>
