@@ -13,11 +13,12 @@ module.exports = (app) => {
         }
     })*/
 
-    app.use(express.static(path.join(__dirname, '..','public')))
-    app.use(express.static(path.join(__dirname, '..','node_modules')))
+   // app.use(express.static(path.join(__dirname, '..','public')))
+   // app.use(express.static(path.join(__dirname, '..','node_modules')))
 
     app.get('/room/:id', function(req, res) {
         //res.sendFile(path.join(__dirname, '/public/test.html'));
-        res.sendFile(path.join(__dirname, '/public/index.html'));
-    });
+        res.sendFile(express.static(path.join(__dirname, '..','public/index.htm')));
+        res.sendFile(express.static(path.join(__dirname, '..','node_modules')));
+    })
 }
