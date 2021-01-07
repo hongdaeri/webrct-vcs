@@ -21,16 +21,25 @@
         }
 
         .settings {
-            background-color: #4CAF50;
+           
             border: none;
             color: white;
-            padding: 5px 10px;
+            padding: 10px 20px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
             font-size: 14px;
             margin: 2px 2px;
             cursor: pointer;
+            font-weight:bold;
+        }
+
+        #webrtc_navs {
+            position: fixed;
+            bottom: 0;
+            height: 70px;
+            background-color: #444;
+            width: 100vw;
         }
     </style>
 </head>
@@ -41,7 +50,8 @@
         <video id="localVideo" class="vid" autoplay muted></video>
     </div>
     <br />
-    <div style="display:block">
+  
+    <div id="webrtc_navs">
         <button id="switchButton" class="settings" onclick="switchMedia()">카메라전환</button>
         <button id="muteButton" class="settings" onclick="toggleMute()">오됴켜짐</button>
         <button id="vidButton" class="settings" onclick="toggleVid()">비됴켜짐</button>
@@ -49,8 +59,6 @@
 </body>
 <footer>
     <script src='/js/main.js' lang="text/javascript"></script>
-
-
 </footer>
 
 </html>
