@@ -20,8 +20,8 @@
             height: 400px;
         }
 
-        .settings {
-           
+        .setting-btn {
+            background-color: inherit;
             border: none;
             color: white;
             padding: 10px 20px;
@@ -32,6 +32,7 @@
             margin: 2px 2px;
             cursor: pointer;
             font-weight:bold;
+            margin: 15px 5px;
         }
 
         #webrtc_navs {
@@ -45,16 +46,15 @@
 </head>
 
 <body>
-    <h1>환영함돠</h1>
     <div id="videos" class="container">
         <video id="localVideo" class="vid" autoplay muted></video>
     </div>
     <br />
   
     <div id="webrtc_navs">
-        <button id="switchButton" class="settings" onclick="switchMedia()">카메라전환</button>
-        <button id="muteButton" class="settings" onclick="toggleMute()">오됴켜짐</button>
-        <button id="vidButton" class="settings" onclick="toggleVid()">비됴켜짐</button>
+        <button id="switchButton" class="setting-btn" onclick="switchMedia()">카메라전환</button>
+        <button id="muteButton" class="setting-btn" onclick="toggleMute()">오됴켜짐</button>
+        <button id="vidButton" class="setting-btn" onclick="toggleVid()">비됴켜짐</button>
     </div>
 </body>
 <footer>
