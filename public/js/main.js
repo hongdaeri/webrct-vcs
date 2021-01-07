@@ -76,12 +76,16 @@ function init() {
     
 
     let myroom = getParam("room");
+
+    /*
     if(myroom==undefined || myroom == ''){
         alert("방없음");
         return;
-    } 
+    } */
 
-    socket = io('/' + myroom);   
+    socket = io();   
+    a = myroom;
+    
 
    
     
