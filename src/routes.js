@@ -13,14 +13,11 @@ module.exports = (app) => {
         }
     })*/
 
-    app.use(express.static(path.join(__dirname, '..','public')))
-    app.use(express.static(path.join(__dirname, '..','node_modules')))
-
-
-app.get('/test', function(req, res) {
-    var user_id = req.param('id');
-    var user_name = req.param('name'); 
-   
-    res.send(user_id + ' ' + user_name);
-});
+  
+    app.get('/room/:number', function(req, res) {
+        var user_id = req.param('id');
+        var user_name = req.param('name'); 
+        app.use(express.static(path.join(__dirname, '..','public')))
+        app.use(express.static(path.join(__dirname, '..','node_modules')))
+    });
 }
