@@ -76,20 +76,22 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 function init() {
     socket = io()
 
-    alert(room);
+    console.log(room);
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)
-
+        console.log(1);
         socket.emit('initSend', socket_id)
     })
 
     socket.on('initSend', socket_id => {
+        console.log(2);
         console.log('INIT SEND ' + socket_id)
         addPeer(socket_id, true)
     })
 
     socket.on('removePeer', socket_id => {
+        console.log(3);
         console.log('removing peer ' + socket_id)
         removePeer(socket_id)
     })
@@ -102,6 +104,7 @@ function init() {
     })
 
     socket.on('signal', data => {
+        console.log(4);
         peers[data.socket_id].signal(data.signal)
     })
 }
@@ -214,6 +217,7 @@ function switchMedia() {
  * Enable screen share
  */
 function setScreen() {
+    console.log("a");
     navigator.mediaDevices.getDisplayMedia().then(stream => {
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {
