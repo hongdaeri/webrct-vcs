@@ -11,8 +11,6 @@ let localStream = null;
  */
 let peers = {}
 
-let roomName = prompt("너의 방이름은 ?:");
-
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') 
     location.href = 'https' + location.href.substr(4, location.href.length - 4)
