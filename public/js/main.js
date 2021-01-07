@@ -12,7 +12,7 @@ let localStream = null;
 let peers = {}
 
 
-window.room = prompt("너의 방이름은 ?:");
+let roomId = prompt("너의 방이름은 ?:");
 
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') 
@@ -79,8 +79,10 @@ function init() {
 
     console.log(room);
     socket.on('initReceive', socket_id => {
-        console.log('INIT RECEIVE ' + socket_id)
-        addPeer(socket_id, false)
+        console.log('INIT RECEIVE ' + socket_id);
+        socket.join(room);
+
+        addPeer(room, socket_id, false)
         console.log(1);
         socket.emit('initSend', socket_id)
     })
@@ -88,7 +90,7 @@ function init() {
     socket.on('initSend', socket_id => {
         console.log(2);
         console.log('INIT SEND ' + socket_id)
-        addPeer(socket_id, true)
+        addPeer(room, socket_id, true)
     })
 
     socket.on('removePeer', socket_id => {
@@ -141,7 +143,7 @@ function removePeer(socket_id) {
  *                  Set to true if the peer initiates the connection process.
  *                  Set to false if the peer receives the connection. 
  */
-function addPeer(socket_id, am_initiator) {
+function addPeer(room, socket_id, am_initiator) {
     console.log("add peer");
     peers[socket_id] = new SimplePeer({
         initiator: am_initiator,
@@ -152,7 +154,7 @@ function addPeer(socket_id, am_initiator) {
     peers[socket_id].on('signal', data => {
         console.log("on signal");
         console.log("roomname : " + room);
-        socket.emit('signal', {
+        socket.to(room).emit('signal', {
             signal: data,
             socket_id: socket_id
         })
