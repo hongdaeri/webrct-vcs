@@ -10,7 +10,6 @@ let localStream = null;
  * All peer connections
  */
 let peers = {}
-let userRooms = {}
 
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') {
@@ -66,6 +65,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     localStream = stream;
 
     console.log("getUserMedia");
+
     init()
 
 }).catch(e => alert(`getusermedia error ${e.name}`))
@@ -84,25 +84,19 @@ function init() {
 
     socket = io();   
  
-    console.log()
-    
+        
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)
-        console.log(1);
         socket.emit('initSend', socket_id)
     })
 
     socket.on('initSend', socket_id => {
-        console.log(2);
         console.log('INIT SEND ' + socket_id)
-        userRooms[socket_id] = getParam("r");
-        console.log(userRooms)
         addPeer(socket_id, true)
     })
 
     socket.on('removePeer', socket_id => {
-        console.log(3);
         console.log('removing peer ' + socket_id)
         removePeer(socket_id)
     })

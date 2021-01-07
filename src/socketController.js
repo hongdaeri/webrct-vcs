@@ -1,5 +1,5 @@
 peers = {}
-userRooms = {} 
+
 
 module.exports = (io) => {
 
@@ -7,19 +7,14 @@ module.exports = (io) => {
     io.on('connect', (socket) => {
         console.log('a client is connected')
 
-        //console.log("io-connect-roomname : " + getParam("room"));
-
         // Initiate the connection process as soon as the client connects
-
         peers[socket.id] = socket
-        console.log(userRooms);
-      
+            
         // Asking all other clients to setup the peer connection receiver
         for(let id in peers) {
             if(id === socket.id) continue
             console.log('sending init receive to ' + socket.id)
             peers[id].emit('initReceive', socket.id)
-            console.log(userRooms);
         }
 
         /**
@@ -32,7 +27,6 @@ module.exports = (io) => {
                 socket_id: socket.id,
                 signal: data.signal
             })
-            console.log(userRooms);
         })
 
         /**
@@ -52,7 +46,6 @@ module.exports = (io) => {
             console.log('INIT SEND by ' + socket.id + ' for ' + init_socket_id)
             peers[init_socket_id].emit('initSend', socket.id)
         })
-        console.log(userRooms);
     })
 }
 
