@@ -153,15 +153,20 @@ function addPeer(socket_id, am_initiator) {
     })
 
     peers[socket_id].on('stream', stream => {
+        let newPerson = document.createElement('div')
+        newPerson.className = "col-3 person";
+        newPerson.id = "person-" + socket_id;
+        videos.appendChild(newPerson);
+
         let newVid = document.createElement('video')
         newVid.srcObject = stream
         newVid.id = socket_id
         newVid.playsinline = false
         newVid.autoplay = true
-        newVid.className = "vid col-3"
+        newVid.className = "vid"
         newVid.onclick = () => openPictureMode(newVid)
         newVid.ontouchstart = (e) => openPictureMode(newVid)
-        videos.appendChild(newVid)
+        newPerson.appendChild(newPerson);
     })
 }
 

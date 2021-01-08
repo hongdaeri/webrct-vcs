@@ -31,7 +31,16 @@
 
         .vid {
             flex: 0 1 auto;
-            height: 400px;
+            background-color:red;
+            width:100%;
+            height:100%;
+        }
+
+        #videos .person {
+            background-color:yellow;
+            margin:0 !important;
+            padding:0 !important;
+            border:1px solid #fff;
         }
     </style>
 </head>
@@ -448,12 +457,22 @@
                         <div class="col-12 m-0 p-0 d-flex">
                             <!-- VCS AREA-->
                             <div class="flex-grow-1 bg-info" style="height:93vh;" ;>
-                                <div class="d-flex">
-                                    <div id="videos" class="container">
+                                <div id="videos" class="row p-0 m-0">
+                                    <div class="col-3 person">
                                         <video id="localVideo" class="vid" autoplay muted></video>
-                                    </div>  
-                                </div>
-                                                         
+                                    </div>
+                                    <div class="col-3 person">
+                                        <video id="localVideo" class="vid" autoplay muted></video>
+                                    </div>
+                                    <div class="col-3 person">
+                                        <video id="localVideo" class="vid" autoplay muted></video>
+                                    </div>
+                                    <div class="col-3 person">
+                                        <video id="localVideo" class="vid" autoplay muted></video>
+                                    </div>
+                                   
+                                </div>                            
+                                                     
                             </div>
                             
                             <!-- CHAT AREA-->
