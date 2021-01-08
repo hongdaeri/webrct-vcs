@@ -173,6 +173,11 @@ function addPeer(socket_id, am_initiator) {
         newVid.onclick = () => openPictureMode(newVid)
         newVid.ontouchstart = (e) => openPictureMode(newVid)
         newPerson.appendChild(newVid);
+
+        let newPersonName = document.createElement("div");
+        newPersonName.className = "person-name";
+        newPersonName.innerHTML = socket_id;
+        newPerson.appendChild(newPersonName);
     })
 }
 
