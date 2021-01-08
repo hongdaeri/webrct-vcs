@@ -101,6 +101,7 @@ function init() {
     })
 
     socket.on('signal', data => {
+        console.log('o?')
         peers[data.socket_id].signal(data.signal)
     })
 }
