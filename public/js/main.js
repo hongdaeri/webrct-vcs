@@ -166,7 +166,7 @@ function addPeer(socket_id, am_initiator) {
         newVid.className = "vid"
         newVid.onclick = () => openPictureMode(newVid)
         newVid.ontouchstart = (e) => openPictureMode(newVid)
-        newPerson.appendChild(newPerson);
+        newPerson.appendChild(newVid);
     })
 }
 
