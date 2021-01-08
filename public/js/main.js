@@ -65,8 +65,6 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     localStream = stream;
 
     console.log("getUserMedia");
-    console.log(stream);
-
     init()
 
 }).catch(e => alert(`getusermedia error ${e.name}`))
@@ -78,6 +76,12 @@ function init() {
 
     socket = io();   
   
+    socket.on('initReceive', socket_id => {
+        console.log('INIT RECEIVE ' + socket_id)
+        addPeer(socket_id, false)
+        socket.emit('initSend', socket_id)
+    })
+    
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)

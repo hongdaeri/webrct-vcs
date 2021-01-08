@@ -13,8 +13,17 @@ module.exports = (app) => {
         }
     })*/
 
+
+    app.get('/', (req, res) => {
+        res.sendFile(__dirname + '../public/index.html');
+        res.sendFile(__dirname + '../node_modules');
+    });
+
+    /*
     app.use(express.static(path.join(__dirname, '..','public')))
     app.use(express.static(path.join(__dirname, '..','node_modules')))
+
+    */
 
    
 }
