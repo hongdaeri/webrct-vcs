@@ -254,10 +254,18 @@ function setScreen() {
  */
 function updateButtons() {
     for (let index in localStream.getVideoTracks()) {
-        vidButton.innerText = localStream.getVideoTracks()[index].enabled ? "비됴켜짐" : "비됴꺼짐"
+        if(localStream.getVideoTracks()[index].enabled){
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon'></i>";
+        } else {
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off noti-icon'></i>";
+        }
     }
     for (let index in localStream.getAudioTracks()) {
-        muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "오됴켜짐" : "오됴꺼짐"
+        if(localStream.getAudioTracks()[index].enabled){
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon'></i>";
+        } else {
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off noti-icon'></i>";
+        }
     }
 }
 
@@ -286,7 +294,12 @@ function removeLocalStream() {
 function toggleMute() {
     for (let index in localStream.getAudioTracks()) {
         localStream.getAudioTracks()[index].enabled = !localStream.getAudioTracks()[index].enabled
-        muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "오됴켜짐" : "오됴꺼짐"
+
+        if(localStream.getAudioTracks()[index].enabled){
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon'></i>";
+        } else {
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off noti-icon'></i>";
+        }
     }
 }
 /**
@@ -295,7 +308,11 @@ function toggleMute() {
 function toggleVid() {
     for (let index in localStream.getVideoTracks()) {
         localStream.getVideoTracks()[index].enabled = !localStream.getVideoTracks()[index].enabled
-        vidButton.innerText = localStream.getVideoTracks()[index].enabled ? "비됴켜짐" : "비됴꺼짐"
+        if(localStream.getVideoTracks()[index].enabled){
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon'></i>";
+        } else {
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off noti-icon'></i>";
+        }
     }
 }
 
