@@ -49,7 +49,7 @@
 </head>
 
 <body class="loading" data-layout-mode="detached"
-    data-layout='{"mode": "dark", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": true}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
+    data-layout='{"mode": "dark", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": true}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": false}'>
 
     <!-- Pre-loader -->
     <div id="preloader">
@@ -292,58 +292,6 @@
                                 </div>
                             </li>
 
-                            <li class="dropdown notification-list topbar-dropdown">
-                                <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light"
-                                    data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
-                                    aria-expanded="false">
-                                    <img src="./images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-                                    <span class="pro-user-name ml-1">
-                                        Nik Patel <i class="mdi mdi-chevron-down"></i>
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                    <!-- item-->
-                                    <div class="dropdown-header noti-title">
-                                        <h6 class="text-overflow m-0">Welcome !</h6>
-                                    </div>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="ri-account-circle-line"></i>
-                                        <span>My Account</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="ri-settings-3-line"></i>
-                                        <span>Settings</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="ri-wallet-line"></i>
-                                        <span>My Wallet <span class="badge badge-success float-right">3</span> </span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="ri-lock-line"></i>
-                                        <span>Lock Screen</span>
-                                    </a>
-
-                                    <div class="dropdown-divider"></div>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="ri-logout-box-line"></i>
-                                        <span>Logout</span>
-                                    </a>
-
-                                </div>
-                            </li>
-
-
-
                             <!-- FULLSCREEN -->
                             <li class="dropdown d-none d-lg-inline-block">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light"
@@ -463,15 +411,14 @@
                                 <div id="videos" class="row p-0 m-0">
                                     <div class="col-lg-3 col-md-4 col-sm-6 person">
                                         <video id="localVideo" class="vid" autoplay muted></video>
-                                    </div>
-                                </div>               
+                                    </div>                                    
+                                </div>                                            
                             </div>
                             
                             <!-- CHAT AREA-->
-                            <div class="d-sm-none d-md-block bg-danger" style="min-width:400px; height:93vh;" ;>
+                            <div class="d-sm-none d-md-block" style="min-width:400px; height:93vh;" ;>
                                 <div class="w-100">
                                     <div class="card">
-
                                         <div class="card-body p-0 m-0 pr-2" style="height:100%;">
                                             <ul class="conversation-list chat-app-conversation m-0 px-2" data-simplebar="init"
                                                 style="max-height:87vh;">
@@ -483,190 +430,34 @@
                                                         <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
                                                             <div class="simplebar-content-wrapper"
                                                                 style="height: auto; overflow: hidden scroll;">
-                                                                <div class="simplebar-content"
-                                                                    style="padding: 0px 15px;">
-                                                                    <li class="clearfix">
-                                                                        <div class="chat-avatar">
-                                                                            <img src="./images/users/avatar-5.jpg"
-                                                                                class="rounded" alt="James Z">
-                                                                            <i>10:00</i>
-                                                                        </div>
+                                                                <!-- BEGIN CHAT MESSAGE LIST -->
+                                                                <div id="chat-message-list" class="simplebar-content" style="padding: 0px 15px;">
+                                                                    <li class="clearfix">                                                                                                                                            
                                                                         <div class="conversation-text">
                                                                             <div class="ctext-wrap">
-                                                                                <i>James Zavel</i>
-                                                                                <p>
-                                                                                    Hello!
-                                                                                </p>
+                                                                                <i>홍바울</i>
+                                                                                <p>안녕하세요~ /p>
                                                                             </div>
                                                                         </div>
                                                                     </li>
-                                                                    <li class="clearfix odd">
-                                                                        <div class="chat-avatar">
-                                                                            <img src="./images/users/avatar-1.jpg"
-                                                                                class="rounded" alt="Nik Patel">
-                                                                            <i>10:01</i>
-                                                                        </div>
+                                                                    <li class="clearfix odd">                                                                
                                                                         <div class="conversation-text">
-                                                                            <div class="ctext-wrap">
-                                                                                <i>Nik Patel</i>
-                                                                                <p>
-                                                                                    Hi, How are you? What about our next
-                                                                                    meeting?
-                                                                                </p>
+                                                                            <div class="ctext-wrap">                                                                
+                                                                                <p>안녕하세요/p>
                                                                             </div>
                                                                         </div>
 
                                                                     </li>
                                                                     <li class="clearfix">
-                                                                        <div class="chat-avatar">
-                                                                            <img src="./images/users/avatar-5.jpg"
-                                                                                class="rounded" alt="James Z">
-                                                                            <i>10:01</i>
-                                                                        </div>
                                                                         <div class="conversation-text">
                                                                             <div class="ctext-wrap">
-                                                                                <i>James Zavel</i>
-                                                                                <p>
-                                                                                    Yeah everything is fine
-                                                                                </p>
+                                                                                <i>홍바울</i>
+                                                                                <p>날씨가 너무 춥네요</p>
                                                                             </div>
                                                                         </div>
-
-                                                                    </li>
-                                                                    <li class="clearfix odd">
-                                                                        <div class="chat-avatar">
-                                                                            <img src="./images/users/avatar-1.jpg"
-                                                                                class="rounded" alt="Nik Patel">
-                                                                            <i>10:02</i>
-                                                                        </div>
-                                                                        <div class="conversation-text">
-                                                                            <div class="ctext-wrap">
-                                                                                <i>Nik Patel</i>
-                                                                                <p>
-                                                                                    Wow that's great
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <li class="clearfix">
-                                                                        <div class="chat-avatar">
-                                                                            <img src="./images/users/avatar-5.jpg"
-                                                                                alt="James Z" class="rounded">
-                                                                            <i>10:02</i>
-                                                                        </div>
-                                                                        <div class="conversation-text">
-                                                                            <div class="ctext-wrap">
-                                                                                <i>James Zavel</i>
-                                                                                <p>
-                                                                                    Let's have it today if you are free
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <li class="clearfix odd">
-                                                                        <div class="chat-avatar">
-                                                                            <img src="./images/users/avatar-1.jpg"
-                                                                                alt="Nik Patel" class="rounded">
-                                                                            <i>10:03</i>
-                                                                        </div>
-                                                                        <div class="conversation-text">
-                                                                            <div class="ctext-wrap">
-                                                                                <i>Nik Patel</i>
-                                                                                <p>
-                                                                                    Sure thing! let me know if 2pm works
-                                                                                    for you
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <li class="clearfix">
-                                                                        <div class="chat-avatar">
-                                                                            <img src="./images/users/avatar-5.jpg"
-                                                                                alt="James Z" class="rounded">
-                                                                            <i>10:04</i>
-                                                                        </div>
-                                                                        <div class="conversation-text">
-                                                                            <div class="ctext-wrap">
-                                                                                <i>James Zavel</i>
-                                                                                <p>
-                                                                                    Sorry, I have another meeting
-                                                                                    scheduled at 2pm. Can we have it
-                                                                                    at 3pm instead?
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <li class="clearfix">
-                                                                        <div class="chat-avatar">
-                                                                            <img src="./images/users/avatar-5.jpg"
-                                                                                alt="James Z" class="rounded">
-                                                                            <i>10:04</i>
-                                                                        </div>
-                                                                        <div class="conversation-text">
-                                                                            <div class="ctext-wrap">
-                                                                                <i>James Zavel</i>
-                                                                                <p>
-                                                                                    We can also discuss about the
-                                                                                    presentation talk format if you have
-                                                                                    some extra mins
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </li>
-                                                                    <li class="clearfix odd">
-                                                                        <div class="chat-avatar">
-                                                                            <img src="./images/users/avatar-1.jpg"
-                                                                                alt="Nik Patel" class="rounded">
-                                                                            <i>10:05</i>
-                                                                        </div>
-                                                                        <div class=" conversation-text">
-                                                                            <div class="ctext-wrap">
-                                                                                <i>Nik Patel</i>
-                                                                                <p>
-                                                                                    3pm it is. Sure, let's discuss about
-                                                                                    presentation format, it would be
-                                                                                    great to finalize today.
-                                                                                    I am attaching the last year format
-                                                                                    and assets here...
-                                                                                </p>
-                                                                            </div>
-                                                                            <div
-                                                                                class="card mt-2 mb-1 shadow-none border text-left">
-                                                                                <div class="p-2">
-                                                                                    <div class="row align-items-center">
-                                                                                        <div class="col-auto">
-                                                                                            <div class="avatar-sm">
-                                                                                                <span
-                                                                                                    class="avatar-title bg-primary rounded">
-                                                                                                    PDF
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col pl-0">
-                                                                                            <a href="javascript:void(0);"
-                                                                                                class="text-muted font-weight-medium">minton-presentation.pdf</a>
-                                                                                            <p class="mb-0">2.3 MB</p>
-                                                                                        </div>
-                                                                                        <div class="col-auto">
-                                                                                            <!-- Button -->
-                                                                                            <a href="javascript:void(0);"
-                                                                                                class="btn btn-link btn-lg text-muted">
-                                                                                                <i
-                                                                                                    class="dripicons-download"></i>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </li>
+                                                                    </li>                                                                    
                                                                 </div>
+                                                                 <!-- END CHAT MESSAGE LIST -->
                                                             </div>
                                                         </div>
                                                     </div>

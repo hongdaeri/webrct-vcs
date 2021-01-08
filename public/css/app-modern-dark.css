@@ -1500,6 +1500,7 @@ body[data-layout-mode="two-column"][data-layout-width="boxed"]:not([data-sidebar
       position: relative; }
     .conversation-list .ctext-wrap p {
       margin: 0;
+      color:#ddd;
       padding-top: 3px; }
     .conversation-list .ctext-wrap:after {
       left: -10px;
@@ -1527,11 +1528,13 @@ body[data-layout-mode="two-column"][data-layout-width="boxed"]:not([data-sidebar
     text-align: right;
     width: 70% !important; }
   .conversation-list .odd .ctext-wrap {
-    background-color: #404c58; }
+    background-color: #f1f5f7; }
+    .conversation-list .odd .ctext-wrap p{
+      color:#333 !important; }
     .conversation-list .odd .ctext-wrap:after {
       border-color: transparent;
-      border-left-color: #404c58;
-      border-top-color: #404c58;
+      border-left-color: #f1f5f7;
+      border-top-color: #f1f5f7;
       right: -10px !important;
       left: auto; }
   .conversation-list .odd .conversation-actions {
