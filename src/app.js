@@ -4,6 +4,8 @@ const express = require('express')
 const app = express()
 const httpolyglot = require('httpolyglot')
 const https = require('https')
+const http = require('http').Server(app);
+
 
 //////// CONFIGURATION ///////////
 
@@ -17,7 +19,13 @@ const port = process.env.PORT || 3012
 
 ////////////////////////////
 
-require('./routes')(app)
+
+app.use(express.static(path.join(__dirname, '..','public')))
+app.use(express.static(path.join(__dirname, '..','node_modules')))
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
 const httpsServer = httpolyglot.createServer(options, app)
 const io = require('socket.io')(httpsServer)
