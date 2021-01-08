@@ -158,7 +158,7 @@ function addPeer(socket_id, am_initiator) {
         newVid.id = socket_id
         newVid.playsinline = false
         newVid.autoplay = true
-        newVid.className = "vid"
+        newVid.className = "vid col-3"
         newVid.onclick = () => openPictureMode(newVid)
         newVid.ontouchstart = (e) => openPictureMode(newVid)
         videos.appendChild(newVid)
