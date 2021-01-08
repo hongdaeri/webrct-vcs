@@ -257,14 +257,14 @@ function updateButtons() {
         if(localStream.getVideoTracks()[index].enabled){
             btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon'></i>";
         } else {
-            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off noti-icon'></i>";
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off text-danger noti-icon'></i>";
         }
     }
     for (let index in localStream.getAudioTracks()) {
         if(localStream.getAudioTracks()[index].enabled){
             btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon'></i>";
         } else {
-            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off noti-icon'></i>";
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off text-danger noti-icon'></i>";
         }
     }
 }
@@ -298,7 +298,7 @@ function toggleMute() {
         if(localStream.getAudioTracks()[index].enabled){
             btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon'></i>";
         } else {
-            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off noti-icon'></i>";
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off text-danger noti-icon'></i>";
         }
     }
 }
@@ -311,7 +311,7 @@ function toggleVid() {
         if(localStream.getVideoTracks()[index].enabled){
             btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon'></i>";
         } else {
-            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off noti-icon'></i>";
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off text-danger  noti-icon'></i>";
         }
     }
 }
