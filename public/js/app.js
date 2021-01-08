@@ -880,29 +880,29 @@ function ($) {
         $('[data-toggle="fullscreen"]').on("click", function (e) {
             e.preventDefault();
             $('body').toggleClass('fullscreen-enable');
-            if (!document.fullscreenElement && /* alternative standard method */ !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen();
-                } else if (document.documentElement.mozRequestFullScreen) {
-                    document.documentElement.mozRequestFullScreen();
-                } else if (document.documentElement.webkitRequestFullscreen) {
-                    document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            if (!parent.document.fullscreenElement && /* alternative standard method */ !parent.document.mozFullScreenElement && !parent.document.webkitFullscreenElement) {  // current working methods
+                if (parent.document.documentElement.requestFullscreen) {
+                    parent.document.documentElement.requestFullscreen();
+                } else if (parent.document.documentElement.mozRequestFullScreen) {
+                    parent.document.documentElement.mozRequestFullScreen();
+                } else if (parent.document.documentElement.webkitRequestFullscreen) {
+                    parent.document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
                 }
             } else {
-                if (document.cancelFullScreen) {
-                    document.cancelFullScreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitCancelFullScreen) {
-                    document.webkitCancelFullScreen();
+                if (dparent.ocument.cancelFullScreen) {
+                    parent.document.cancelFullScreen();
+                } else if (parent.document.mozCancelFullScreen) {
+                    parent.document.mozCancelFullScreen();
+                } else if (parent.document.webkitCancelFullScreen) {
+                    parent.document.webkitCancelFullScreen();
                 }
             }
         });
-        document.addEventListener('fullscreenchange', exitHandler );
-        document.addEventListener("webkitfullscreenchange", exitHandler);
-        document.addEventListener("mozfullscreenchange", exitHandler);
+        parent.document.addEventListener('fullscreenchange', exitHandler );
+        parent.document.addEventListener("webkitfullscreenchange", exitHandler);
+        parent.document.addEventListener("mozfullscreenchange", exitHandler);
         function exitHandler() {
-            if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+            if (!parent.document.webkitIsFullScreen && !parent.document.mozFullScreen && !parent.document.msFullscreenElement) {
                 console.log('pressed');
                 $('body').removeClass('fullscreen-enable');
             }
