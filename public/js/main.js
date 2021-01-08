@@ -65,6 +65,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     localStream = stream;
 
     console.log("getUserMedia");
+    console.log(stream);
 
     init()
 
