@@ -157,7 +157,7 @@
                             </li>
 
                             <!-- FULLSCREEN -->
-                            <li class="dropdown d-none d-lg-inline-block" style="visibility: hidden;">
+                            <li class="dropdown" style="visibility: hidden;">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light"
                                     data-toggle="fullscreen" href="#">
                                     <i class="fe-maximize noti-icon"></i>
@@ -232,35 +232,27 @@
                                 <div class="dropdown-menu">
                                     <!-- item-->
                                      <!-- item-->
-                                     <a href="javascript:void(0);" class="dropdown-item">
+                                     <a href="javascript:setLayoutPersonRow(2);" class="dropdown-item">
                                         <i class="fe-briefcase mr-1"></i>
-                                        <span>하위메뉴1</span>
+                                        <span>X축 6칸</span>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">
+                                    <a href="javascript:setLayoutPersonRow(3);" class="dropdown-item">
                                         <i class="fe-user mr-1"></i>
-                                        <span>하위메뉴2</span>
+                                        <span>X축 4칸</span>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">
+                                    <a href="javascript:setLayoutPersonRow(4);" class="dropdown-item">
                                         <i class="fe-bar-chart-line- mr-1"></i>
-                                        <span>하위메뉴3</span>
+                                        <span>X축 3칸</span>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">
+                                    <a href="javascript:setLayoutPersonRow(6);" class="dropdown-item">
                                         <i class="fe-settings mr-1"></i>
-                                        <span>하위메뉴4</span>
-                                    </a>
-
-                                    <div class="dropdown-divider"></div>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="fe-headphones mr-1"></i>
-                                        <span>하위메뉴5</span>
+                                        <span>X축 2칸</span>
                                     </a>
 
                                 </div>
@@ -365,7 +357,7 @@
                             <!-- VCS AREA-->
                             <div class="flex-grow-1" style="height:93vh;" ;>
                                 <div id="videos" class="row p-0 m-0">
-                                    <div class="col-lg-3 col-md-4 col-sm-6 person">
+                                    <div class="col-3 person">
                                         <video id="localVideo" class="vid" autoplay muted></video>
                                         <div class="person-name">나</div>
                                     </div>                                    
@@ -523,6 +515,21 @@
                
             });
         });
+
+        function setLayoutPersonRow(row){
+
+            $(".person").removeClass("col-1");
+            $(".person").removeClass("col-2");
+            $(".person").removeClass("col-3");
+            $(".person").removeClass("col-4");
+            $(".person").removeClass("col-5");
+            $(".person").removeClass("col-6");
+            $(".person").removeClass("col-7");
+            $(".person").removeClass("col-8");
+
+            $(".person").addClass("col-" + row);
+
+        }
 
     </script>
 </body>
