@@ -166,7 +166,8 @@ function addPeer(socket_id, am_initiator) {
 
     peers[socket_id].on('stream', stream => {
         let newPerson = document.createElement('div')
-        newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
+        //newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
+        newPerson.className = "col-3 person";
         newPerson.id = "person-" + socket_id;
         videos.appendChild(newPerson);
 
