@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>회의실1</title>
+    <title>회의실</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -232,27 +232,35 @@
                                 <div class="dropdown-menu">
                                     <!-- item-->
                                      <!-- item-->
-                                     <a href="javascript:setLayoutPersonRow(2);" class="dropdown-item">
+                                     <a href="javascript:void(0);" class="dropdown-item">
                                         <i class="fe-briefcase mr-1"></i>
-                                        <span>X축 6칸</span>
+                                        <span>1칸</span>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:setLayoutPersonRow(3);" class="dropdown-item">
+                                    <a href="javascript:void(0);" class="dropdown-item">
                                         <i class="fe-user mr-1"></i>
-                                        <span>X축 4칸</span>
+                                        <span>2칸</span>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:setLayoutPersonRow(4);" class="dropdown-item">
+                                    <a href="javascript:void(0);" class="dropdown-item">
                                         <i class="fe-bar-chart-line- mr-1"></i>
-                                        <span>X축 3칸</span>
+                                        <span>3칸 </span>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:setLayoutPersonRow(6);" class="dropdown-item">
+                                    <a href="javascript:void(0);" class="dropdown-item">
                                         <i class="fe-settings mr-1"></i>
-                                        <span>X축 2칸</span>
+                                        <span>하위메뉴4</span>
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="fe-headphones mr-1"></i>
+                                        <span>하위메뉴5</span>
                                     </a>
 
                                 </div>
@@ -515,21 +523,6 @@
                
             });
         });
-
-        function setLayoutPersonRow(row){
-
-            $(".person").removeClass("col-1");
-            $(".person").removeClass("col-2");
-            $(".person").removeClass("col-3");
-            $(".person").removeClass("col-4");
-            $(".person").removeClass("col-5");
-            $(".person").removeClass("col-6");
-            $(".person").removeClass("col-7");
-            $(".person").removeClass("col-8");
-
-            $(".person").addClass("col-" + row);
-
-        }
 
     </script>
 </body>
