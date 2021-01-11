@@ -65,6 +65,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     localStream = stream;
 
     console.log("getUserMedia");
+
     init()
 
 }).catch(e => alert(`getusermedia error ${e.name}`))
@@ -76,12 +77,6 @@ function init() {
 
     socket = io();   
   
-    socket.on('initReceive', socket_id => {
-        console.log('INIT RECEIVE ' + socket_id)
-        addPeer(socket_id, false)
-        socket.emit('initSend', socket_id)
-    })
-    
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)
@@ -106,7 +101,6 @@ function init() {
     })
 
     socket.on('signal', data => {
-        console.log('o?')
         peers[data.socket_id].signal(data.signal)
     })
 }
@@ -133,7 +127,7 @@ function removePeer(socket_id) {
 
     let personEl = document.getElementById("person-" + socket_id);
     if (personEl) {
-       // personEl.parentNode.removeChild(personEl)
+        personEl.parentNode.removeChild(personEl)
     }
     
     if (peers[socket_id]) peers[socket_id].destroy()
@@ -180,10 +174,10 @@ function addPeer(socket_id, am_initiator) {
         newVid.ontouchstart = (e) => openPictureMode(newVid)
         newPerson.appendChild(newVid);
 
-        //let newPersonName = document.createElement("div");
-        //newPersonName.className = "person-name";
-        //newPersonName.innerHTML = socket_id;
-        //newPerson.appendChild(newPersonName);
+        let newPersonName = document.createElement("div");
+        newPersonName.className = "person-name";
+        newPersonName.innerHTML = socket_id;
+        newPerson.appendChild(newPersonName);
     })
 }
 
@@ -237,6 +231,7 @@ function switchMedia() {
  * Enable screen share
  */
 function setScreen() {
+    console.log("set screen");
     navigator.mediaDevices.getDisplayMedia().then(stream => {
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {

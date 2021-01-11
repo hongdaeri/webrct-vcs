@@ -5,7 +5,6 @@ const app = express()
 const httpolyglot = require('httpolyglot')
 const https = require('https')
 
-
 //////// CONFIGURATION ///////////
 
 // insert your own ssl certificate and keys
@@ -17,7 +16,6 @@ const options = {
 const port = process.env.PORT || 3012
 
 ////////////////////////////
-
 
 require('./routes')(app)
 
