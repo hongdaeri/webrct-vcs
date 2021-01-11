@@ -133,7 +133,7 @@ function removePeer(socket_id) {
 
     let personEl = document.getElementById("person-" + socket_id);
     if (personEl) {
-        personEl.parentNode.removeChild(personEl)
+       // personEl.parentNode.removeChild(personEl)
     }
     
     if (peers[socket_id]) peers[socket_id].destroy()
@@ -237,7 +237,6 @@ function switchMedia() {
  * Enable screen share
  */
 function setScreen() {
-    console.log("set screen");
     navigator.mediaDevices.getDisplayMedia().then(stream => {
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {
