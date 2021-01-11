@@ -339,3 +339,11 @@ function getParam(sname) {
     return sval;
 }
 
+function test(args){
+    alert("yo");
+}
+
+window.test = function(args){
+    test(args);
+
+}
