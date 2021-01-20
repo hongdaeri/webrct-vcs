@@ -488,8 +488,6 @@
     <!-- App js -->
     <script src="./js/app.min.js"></script>
 
-    <script src="./libs/jquery-cookie/jquery.cookie-1.4.1.min.js"></script>
-
     <!-- Main js -->
     <script src='/js/main.js' lang="text/javascript"></script>
 
@@ -545,21 +543,25 @@
         }
 
         function getMyInfo(){
-            myUserId = $.cookie('myUserId');
-            myUserName = $.cookie('myUserName');
-            myUserAuth = $.cookie('myUserAuth');
-            myCompanyId = $.cookie('myCompanyId');
-            myCompanyName = $.cookie('myCompanyName');  
-
-            console.log(myUserId);
-            console.log(myUserName);
-            console.log(myUserAuth);
-            console.log(myCompanyId);
-            console.log(myCompanyName);
-            
+            myUserId = $.trim(getParam("userId"));
+            myUserName = $.trim(getParam("userName"));
+            myUserAuth = $.trim(getParam("userAuth"));
+            myCompanyId = $.trim(getParam("companyId"));
+            myCompanyName = $.trim(getParam("companyName"));
             alert(myUserId);
-        };
+        }
 
+        
+        function getParam(sname) {
+            let params = location.search.substr(location.search.indexOf("?") + 1);
+            let sval = "";
+            params = params.split("&");
+            for (let i = 0; i < params.length; i++) {
+                temp = params[i].split("=");
+                if ([temp[0]] == sname) { sval = temp[1]; }
+            }
+            return sval;
+        }
     </script>
 </body>
 
