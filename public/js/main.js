@@ -83,8 +83,10 @@ function init() {
     chatForm.addEventListener('submit', function(e) {
         e.preventDefault();
         if (chatInput.value) {
-        socket.emit('chat message', chatInput.value);
-        chatInput.value = '';
+            //peers[data.socket_id].signal(data.signal)
+            //socket.emit('chat message', chatInput.value);
+            chatInput.value = '';
+            console.log(socket_id);
         }
     });
     
@@ -122,7 +124,7 @@ function init() {
     })
 
     socket.on('signal', data => {
-        console.log("SIGNAL");
+        console.log("SIGNAL : " + data.socket_id);
         peers[data.socket_id].signal(data.signal)
     })
 
