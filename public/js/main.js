@@ -114,8 +114,8 @@ function init() {
         chatItem += "  </div>";
         chatItem += "</li>"
 
-        chatList.appendChild(item);
-        console.log(item);
+        chatList.appendChild(chatItem);
+        console.log(chatItem);
 
         window.scrollTo(0, document.body.scrollHeight);
     });
