@@ -47,10 +47,10 @@ module.exports = (io) => {
             peers[init_socket_id].emit('initSend', socket.id)
         })
 
-        socket.on('chat message', data => {
-            peers[data.socket_id].emit('chat message', {
+        socket.on('chatMessage', message => {
+            peers[data.socket_id].emit('chatMessage', {
                 socket_id: socket.id,
-                msg: data.msg
+                message: message
             });
         });
     })

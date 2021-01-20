@@ -86,7 +86,7 @@ function init() {
         e.preventDefault();
         if (chatInput.value) {
             //peers[data.socket_id].signal(data.signal)
-            socket.emit('chat message', chatInput.value);
+            socket.emit('chatMessage', chatInput.value);
             chatInput.value = '';
             console.log(mySocketId);
             //console.log(peers[socket_id]);
@@ -131,7 +131,7 @@ function init() {
         peers[data.socket_id].signal(data.signal)
     })
 
-    socket.on('chat message', data => {
+    socket.on('chatMessage', data => {
         console.log("chat message : " + data);
        // peers[data.socket_id].signal(data.signal)
     })
@@ -185,10 +185,10 @@ function addPeer(socket_id, am_initiator) {
     })
 
  
-    peers[socket_id].on('chat message', data => {
+    peers[socket_id].on('chatMessage', message => {
         console.log("on chat");
-        socket.emit('chat message', {
-            msg: data,
+        socket.emit('chatMessage', {
+            message: message,
             socket_id: socket_id
         })
     })
