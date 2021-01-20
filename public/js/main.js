@@ -81,12 +81,6 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 function init() {
 
     socket = io();   
-  
-    myUserId = 
-    myUserName = $.trim(getParam("userName"));
-    myUserAuth = $.trim(getParam("userAuth"));
-    myCompanyId = $.trim(getParam("companyId"));
-    myCompanyName = $.trim(getParam("companyName"));
 
     chatForm.addEventListener('submit', function(e) {
         let mySocketId = 
@@ -99,7 +93,6 @@ function init() {
                 "userName" : $.trim(getParam("userName")),
                 "message" : chatInput.value
             }
-            console.log("sendData : " + chatData)
             socket.emit('chat message', chatData);
             chatInput.value = '';
           
@@ -121,8 +114,6 @@ function init() {
         chatItem += "</li>"
 
         chatList.append(chatItem);
-        console.log(chatItem);
-
         chatScroll();
     });
 
