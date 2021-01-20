@@ -83,7 +83,6 @@ function init() {
     socket = io();   
 
     chatForm.addEventListener('submit', function(e) {
-        let mySocketId = 
         e.preventDefault();
         if (chatInput.value) {
             //peers[data.socket_id].signal(data.signal)
