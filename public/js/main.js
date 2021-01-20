@@ -84,14 +84,24 @@ function init() {
     socket.on('chat message', function(chatData) {
         console.log(chatData);
         var chatItem = "";
-        chatItem += "<li class='clearfix'>";
-        chatItem += " <div class='conversation-text'>";
-        chatItem += "    <div class='ctext-wrap'>";
-        chatItem += "      <i>" + chatData.userName + "</i>";
-        chatItem += "      <p>" + chatData.message + "</p>";
-        chatItem += "    </div>";
-        chatItem += "  </div>";
-        chatItem += "</li>"
+        if(chatItem.userId == myuserId){
+            chatItem += "<li class='clearfix odd'>";
+            chatItem += " <div class='conversation-text'>";
+            chatItem += "    <div class='ctext-wrap'>";
+            chatItem += "      <p>" + chatData.message + "</p>";
+            chatItem += "    </div>";
+            chatItem += "  </div>";
+            chatItem += "</li>"
+        } else {
+            chatItem += "<li class='clearfix'>";
+            chatItem += " <div class='conversation-text'>";
+            chatItem += "    <div class='ctext-wrap'>";
+            chatItem += "      <i>" + chatData.userName + "</i>";
+            chatItem += "      <p>" + chatData.message + "</p>";
+            chatItem += "    </div>";
+            chatItem += "  </div>";
+            chatItem += "</li>"
+        }      
 
         chatList.append(chatItem);
         chatScroll();
