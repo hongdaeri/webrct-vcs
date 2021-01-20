@@ -82,6 +82,12 @@ function init() {
 
     socket = io();   
   
+    myUserId = 
+    myUserName = $.trim(getParam("userName"));
+    myUserAuth = $.trim(getParam("userAuth"));
+    myCompanyId = $.trim(getParam("companyId"));
+    myCompanyName = $.trim(getParam("companyName"));
+
     chatForm.addEventListener('submit', function(e) {
         let mySocketId = 
         e.preventDefault();
@@ -89,8 +95,8 @@ function init() {
             //peers[data.socket_id].signal(data.signal)
             //socket.emit('chatMessage', chatInput.value);
             let chatData = {
-                "userid" : myUserId,
-                "userName" : myUserName,
+                "userid" : $.trim(getParam("userId")),
+                "userName" : $.trim(getParam("userName")),
                 "message" : chatInput.value
             }
             console.log("sendData : " + chatData)
@@ -387,5 +393,6 @@ function toggleVid() {
         }
     }
 }
+
 
 
