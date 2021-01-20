@@ -85,6 +85,7 @@ function init() {
     chatForm.addEventListener('submit', function(e) {
         e.preventDefault();
         e.stopPropagation();
+
         if (chatInput.value) {
             //peers[data.socket_id].signal(data.signal)
             //socket.emit('chatMessage', chatInput.value);
@@ -98,6 +99,8 @@ function init() {
           
             saveChatLog(chatData);
         }
+
+        return false;
     });
     
   
