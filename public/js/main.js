@@ -84,12 +84,13 @@ function init() {
 
     chatForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         if (chatInput.value) {
             //peers[data.socket_id].signal(data.signal)
             //socket.emit('chatMessage', chatInput.value);
             let chatData = {
-                "userid" : $.trim(getParam("userId")),
-                "userName" : $.trim(getParam("userName")),
+                "userid" : myUserId,
+                "userName" : myUserName,
                 "message" : chatInput.value
             }
             socket.emit('chat message', chatData);
