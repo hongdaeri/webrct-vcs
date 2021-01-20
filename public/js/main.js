@@ -14,6 +14,7 @@ let peers = {}
 
 let chatForm = document.getElementById("chat-form");
 let chatInput = document.getElementById("inputChatMessage");
+let chatList = document.getElementById("chat-message-list");
 
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') {
@@ -98,7 +99,7 @@ function init() {
     socket.on('chat message', function(msg) {
         var item = document.createElement('li');
         item.textContent = msg;
-        messages.appendChild(item);
+        chatList.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
     });
 
