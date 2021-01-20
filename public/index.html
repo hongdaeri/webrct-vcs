@@ -434,18 +434,17 @@
                                                     <div class="row m-0 p-0">
                                                         <div class="col">
                                                             <input type="text" id="inputChatMessage" class="form-control border-0"
-                                                                placeholder="메세지 입력" required="">
+                                                                placeholder="메세지 입력" required="" onkeyup="inputEnterKey()">
                                                             <div class="invalid-feedback mt-2">
                                                                 
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-auto m-0 p-0">
                                                             <div class="btn-group">
-                                                                <a href="#" class="btn btn-light"><i
-                                                                        class="fe-paperclip"></i></a>
-                                                                <button type="submit"
-                                                                    class="btn btn-success chat-send btn-block"><i
-                                                                        class="fe-send"></i></button>
+                                                                <a href="javascript:void(0);" class="btn btn-light"><i class="fe-paperclip"></i></a>
+                                                                <button id="btnSendChat" type="button" class="btn btn-success chat-send btn-block">
+                                                                    <i class="fe-send"></i>
+                                                                </button>
                                                             </div>
                                                         </div> <!-- end col -->
                                                     </div> <!-- end row-->
@@ -499,6 +498,7 @@
         let myCompanyId;
         let myCompanyName;
       
+        let mySocket;
 
 
         let scroll_bottom_position = 100000;
@@ -513,6 +513,7 @@
 
             const btnStartMetting = $("#btnStartMetting");
             const btnFinishMetting = $("#btnFinishMetting"); 
+            const btnSendChat = $("#btnSendChat");
             
             $(btnStartMetting).on("click", function(){
                 $(this).hide();
@@ -525,6 +526,11 @@
                 btnStartMetting.show();                
             });
 
+           
+            $(btnSendChat).on("click", function(){
+                sendChat();              
+            });
+
             $("#chat_scroll").scroll(function () {
                 currentViewScroll = $(this).scrollTop();
                 console.log(currentViewScroll);
@@ -532,7 +538,15 @@
                     chatScrollMaxVal = currentViewScroll;
                 }
             });
+            
+            
         });
+
+        function inputEnterKey() {
+            if (window.event.keyCode == 13) {
+                sendChat();
+            }       
+        }
 
         function chatScroll(){
             // chat scroll config

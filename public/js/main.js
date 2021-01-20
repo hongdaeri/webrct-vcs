@@ -82,28 +82,6 @@ function init() {
 
     socket = io();   
 
-    chatForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        if (chatInput.value) {
-            //peers[data.socket_id].signal(data.signal)
-            //socket.emit('chatMessage', chatInput.value);
-            let chatData = {
-                "userid" : myUserId,
-                "userName" : myUserName,
-                "message" : chatInput.value
-            }
-            socket.emit('chat message', chatData);
-            chatInput.value = '';
-          
-            saveChatLog(chatData);
-        }
-
-        return false;
-    });
-    
-  
     socket.on('chat message', function(chatData) {
         console.log(chatData);
         var chatItem = "";
@@ -319,6 +297,23 @@ function setScreen() {
     updateButtons()
 }
 
+/**
+ * send chat message
+ */
+function sendChat(){
+    if (chatInput.value) {
+        //peers[data.socket_id].signal(data.signal)
+        //socket.emit('chatMessage', chatInput.value);
+        let chatData = {
+            "userid" : myUserId,
+            "userName" : myUserName,
+            "message" : chatInput.value
+        }
+        socket.emit('chat message', chatData);
+        chatInput.value = '';
+        saveChatLog(chatData);
+    }
+};
 
 
 /**
