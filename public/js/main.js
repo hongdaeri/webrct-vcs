@@ -14,7 +14,7 @@ let peers = {}
 
 let chatForm = document.getElementById("chat-form");
 let chatInput = document.getElementById("inputChatMessage");
-let chatList = document.getElementById("chat-message-list");
+let chatList = $("#chat-message-list");
 
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') {
