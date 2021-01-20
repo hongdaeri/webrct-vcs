@@ -185,6 +185,7 @@ function addPeer(socket_id, am_initiator) {
     })
 
  
+    /*
     peers[socket_id].on('chatMessage', message => {
         console.log("on chat");
         socket.emit('chatMessage', {
@@ -192,6 +193,7 @@ function addPeer(socket_id, am_initiator) {
             socket_id: socket_id
         })
     })
+    */
    
 
     peers[socket_id].on('signal', data => {
