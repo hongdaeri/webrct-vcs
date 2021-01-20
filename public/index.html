@@ -496,6 +496,7 @@
         let myUserAuth;
         let myCompanyId;
         let myCompanyName;
+        let myMeetingId;
       
         let mySocket;
 
@@ -512,7 +513,7 @@
 
             const btnStartMetting = $("#btnStartMetting");
             const btnFinishMetting = $("#btnFinishMetting"); 
-            const btnSendChat = $("#btnSendChat");
+            const btn    = $("#btnSendChat");
             
             $(btnStartMetting).on("click", function(){
                 $(this).hide();
@@ -561,6 +562,7 @@
             myUserAuth = $.trim(getParam("userAuth"));
             myCompanyId = $.trim(getParam("companyId"));
             myCompanyName = $.trim(getParam("companyName"));
+            myMeetingId = $.trim(getParam("meetingId"));
         }
 
         
@@ -576,37 +578,31 @@
         }
 
         function saveChatLog(chatData){
-            let item = new Object();
-            item.userId = chatData.userId;
-            item.userName = chatData.userName;
-            item.message = chatData.message;
+            
+            let chatLog = "{";
+            chatLog += "'userId':'" + chatData.userId + "',";
+            chatLog += "'userName':'" + chatData.userName + "',";
+            chatLog += "'message':'" + chatData.message + "'";
+            chatLog += "}";
 
-            let jsonData = JSON.stringify(item);
-            console.log(jsonData);
-            return;
-            /*
+            let sendData = {
+                "meetingId" : myMeetingId,
+                "chatLog" : chatLog
+            }
+            console.log(sendData);
+
+            
+        
             $.ajax({
-                url : "/meeting/addMeetingMember.json",
+                url : "/meeting/appendChatLog.json",
                 type: 'POST',
                 dataType: "json",
                 data: $.param( sendData ),
                 success : function(data) {
+                    console.log(data);
+                    
                     if(data.result =="success"){
-                        let appendMember = "";
-                        appendMember += "<div id='invited-member-" + userId +"' class='text-reset notification-item pl-3 mb-2 d-block'>";
-                        appendMember += "  <i class='mdi mdi-checkbox-blank-circle-outline mr-1 text-success'></i>";
-                        appendMember += "  <span class=''mb-0 mt-1'>" + userName + "</span>";
-                        appendMember += "</div>";
-	                    meetingInvitedMemberList.append(appendMember);
-
-                        $.toast({
-                            heading: "<h5 class='text-white'>회의초대완료</h5>",
-	                        text : userName + "님을 회의에 초대하였습니다.",
-	                        position: "top-center",
-	                        loaderBg: "#2941b3",
-				            sticky: true
-				        });
-
+                       
                     } else {
                         alert2(data.resultMsg);
                         return;
@@ -615,8 +611,7 @@
                 error : function(e) {
                     alert2('일시적인 네트워크 오류입니다.<br>문제가 지속 될 시 관리자에게 문의하세요.');
                 }
-            });
-            */
+            });          
         }
     </script>
 </body>
