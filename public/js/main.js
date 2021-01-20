@@ -89,8 +89,8 @@ function init() {
             //peers[data.socket_id].signal(data.signal)
             //socket.emit('chatMessage', chatInput.value);
             let chatData = {
-                "userid" : 1,
-                "userName" : "홍바울",
+                "userid" : myUserId,
+                "userName" : myUserName,
                 "message" : chatInput.value
             }
             console.log("sendData : " + chatData)
