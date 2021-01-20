@@ -377,7 +377,7 @@
                                 <div class="w-100">
                                     <div class="card">
                                         <div class="card-body p-0 m-0 pr-2" style="height:100%;">
-                                            <ul class="conversation-list chat-app-conversation m-0 px-2" data-simplebar="init"
+                                            <ul id="chat_scroll" class="conversation-list chat-app-conversation m-0 px-2" data-simplebar="init"
                                                 style="max-height:87vh;">
                                                 <div class="simplebar-wrapper">
                                                     <div class="simplebar-height-auto-observer-wrapper">
@@ -494,10 +494,16 @@
     <script>
    
 
+        let scroll_bottom_position = 100000;
+        let currentViewScroll = 0;
+        let chatScrollMaxVal = 0;
+        
         $("document").ready(function(){
             const btnStartMetting = $("#btnStartMetting");
             const btnFinishMetting = $("#btnFinishMetting");
 
+           
+            
             $(btnStartMetting).on("click", function(){
                 $(this).hide();
                 btnFinishMetting.show();
@@ -509,7 +515,21 @@
                 btnStartMetting.show();                
             });
 
+            $("#chat_scroll").scroll(function () {
+                currentViewScroll = $(this).scrollTop();
+                if(chatScrollMaxVal < currentViewScroll){
+                    chatScrollMaxVal = currentViewScroll;
+                }
+            });
         });
+
+        function chatScroll(){
+            // chat scroll config
+            if((chatScrollMaxVal) <= currentViewScroll + 40){
+                scroll_bottom_position += 1000;
+                $("#chat_scroll").scrollTop(scroll_bottom_position);
+            }
+        }
 
     </script>
 </body>
