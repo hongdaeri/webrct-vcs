@@ -594,13 +594,13 @@
             
         
             $.ajax({
-                url : "/meeting/appendChatLog.json",
+                url : "http://vcs.secuware.co.kr/meeting/appendChatLog.json",
                 type: 'POST',
                 dataType: "json",
                 data: $.param( sendData ),
                 success : function(data) {
                     console.log(data);
-                    
+
                     if(data.result =="success"){
                        
                     } else {
