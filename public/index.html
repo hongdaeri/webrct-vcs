@@ -488,21 +488,33 @@
     <!-- App js -->
     <script src="./js/app.min.js"></script>
 
+    <script src="./libs/jquery-cookie/jquery.cookie-1.4.1.min.js"></script>
+
     <!-- Main js -->
     <script src='/js/main.js' lang="text/javascript"></script>
 
     <script>
    
+        let myUserId;
+        let myUserName;
+        let myUserAuth;
+        let myCompanyId;
+        let myCompanyName;
+      
+
 
         let scroll_bottom_position = 100000;
         let currentViewScroll = 0;
         let chatScrollMaxVal = 0;
+
+
         
         $("document").ready(function(){
-            const btnStartMetting = $("#btnStartMetting");
-            const btnFinishMetting = $("#btnFinishMetting");
 
-           
+            getMyInfo();
+
+            const btnStartMetting = $("#btnStartMetting");
+            const btnFinishMetting = $("#btnFinishMetting"); 
             
             $(btnStartMetting).on("click", function(){
                 $(this).hide();
@@ -531,6 +543,21 @@
                 $("#chat_scroll").scrollTop(scroll_bottom_position);
             }
         }
+
+        function getMyInfo(){
+            myUserId = $.cookie('myUserId');
+            myUserName = $.cookie('myUserName');
+            myUserAuth = $.cookie('myUserAuth');
+            myCompanyId = $.cookie('myCompanyId');
+            myCompanyName = $.cookie('myCompanyName');  
+
+            console.log(myUserId);
+            console.log(myUserName);
+            console.log(myUserAuth);
+            console.log(myCompanyId);
+            console.log(myCompanyName);
+            
+        };
 
     </script>
 </body>
