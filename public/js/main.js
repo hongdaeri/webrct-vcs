@@ -104,8 +104,16 @@ function init() {
   
     socket.on('chat message', function(chatData) {
         console.log(chatData);
-        var item = document.createElement('li');
-        item.textContent = chatData.message;
+        var chatItem = "";
+        chatItem += "<li class='clearfix'>";
+        chatItem += " <div class='conversation-text'>";
+        chatItem += "    <div class='ctext-wrap'>";
+        chatItem += "      <i>" + chatData.userName + "</i>";
+        chatItem += "      <p>" + chatData.message + "</p>";
+        chatItem += "    </div>";
+        chatItem += "  </div>";
+        chatItem += "</li>"
+
         chatList.appendChild(item);
         console.log(item);
 
