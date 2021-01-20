@@ -117,7 +117,7 @@ function init() {
         chatList.append(chatItem);
         console.log(chatItem);
 
-        window.scrollTo(0, chatList.scrollHeight);
+        $(".conversation-list").scrollTo(0, $(".conversation-list").scrollHeight);
     });
 
     
