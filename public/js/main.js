@@ -88,6 +88,7 @@ function init() {
             //socket.emit('chat message', chatInput.value);
             chatInput.value = '';
             console.log(mySocketId);
+            console.log(peers);
         }
     });
     
