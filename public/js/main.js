@@ -103,6 +103,10 @@ function init() {
     socket.on('signal', data => {
         peers[data.socket_id].signal(data.signal)
     })
+
+    socket.on('chat message', (msg) => {
+        console.log('message: ' + msg);
+    });
 }
 
 /**
