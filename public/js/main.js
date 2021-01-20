@@ -86,7 +86,8 @@ function init() {
         e.preventDefault();
         if (chatInput.value) {
             //peers[data.socket_id].signal(data.signal)
-            socket.emit('chatMessage', chatInput.value);
+            //socket.emit('chatMessage', chatInput.value);
+            socket.emit('chat message', chatInput.value);
             chatInput.value = '';
             console.log(mySocketId);
             //console.log(peers[socket_id]);
@@ -135,6 +136,8 @@ function init() {
         console.log("chat message : " + data);
        // peers[data.socket_id].signal(data.signal)
     })
+
+  
 
    
 }

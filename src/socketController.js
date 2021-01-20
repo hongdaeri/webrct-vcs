@@ -47,6 +47,11 @@ module.exports = (io) => {
             peers[init_socket_id].emit('initSend', socket.id)
         })
 
+
+        socket.on('chat message', msg => {
+            io.emit('chat message', msg);
+        });
+
         socket.on('chatMessage', message => {
             peers[data.socket_id].emit('chatMessage', {
                 socket_id: socket.id,
