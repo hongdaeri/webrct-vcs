@@ -314,7 +314,7 @@ function sendChat(){
         //peers[data.socket_id].signal(data.signal)
         //socket.emit('chatMessage', chatInput.value);
         let chatData = {
-            "userid" : myUserId,
+            "userId" : myUserId,
             "userName" : myUserName,
             "message" : chatInput.value
         }
