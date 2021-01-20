@@ -11,6 +11,7 @@ let localStream = null;
  */
 let peers = {}
 
+let mySocketId;
 let chatForm = document.getElementById("chat-form");
 let chatInput = document.getElementById("inputChatMessage");
 
@@ -86,7 +87,7 @@ function init() {
             //peers[data.socket_id].signal(data.signal)
             //socket.emit('chat message', chatInput.value);
             chatInput.value = '';
-            console.log(socket_id);
+            console.log(mySocketId);
         }
     });
     
@@ -250,6 +251,7 @@ function switchMedia() {
                 for (let index2 in stream.getTracks()) {
                     if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
                         peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
+                        mySocketId = socket_id;
                         break;
                     }
                 }
