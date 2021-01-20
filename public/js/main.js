@@ -93,6 +93,7 @@ function init() {
                 "userName" : "홍바울",
                 "message" : chatInput.value
             }
+            console.log("sendData : " + chatData)
             socket.emit('chat message', chatData);
             chatInput.value = '';
             console.log(mySocketId);
