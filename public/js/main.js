@@ -91,7 +91,7 @@ function init() {
         }
     });
     
-    /*
+  
     socket.on('chat message', function(msg) {
         var item = document.createElement('li');
         item.textContent = msg;
@@ -99,7 +99,7 @@ function init() {
         window.scrollTo(0, document.body.scrollHeight);
     });
 
-    */
+    
 
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
@@ -127,6 +127,11 @@ function init() {
     socket.on('signal', data => {
         console.log("SIGNAL : " + data.socket_id);
         peers[data.socket_id].signal(data.signal)
+    })
+
+    socket.on('chat message', data => {
+        console.log("chat message : " + data);
+       // peers[data.socket_id].signal(data.signal)
     })
 
    
@@ -177,15 +182,15 @@ function addPeer(socket_id, am_initiator) {
         config: configuration
     })
 
-    /*
+ 
     peers[socket_id].on('chat message', data => {
         console.log("on chat");
-        socket.emit('signal', {
-            signal: data,
+        socket.emit('chat message', {
+            msg: data,
             socket_id: socket_id
         })
     })
-    */
+   
 
     peers[socket_id].on('signal', data => {
         console.log("on signal");
@@ -250,8 +255,7 @@ function switchMedia() {
             for (let index in peers[socket_id].streams[0].getTracks()) {
                 for (let index2 in stream.getTracks()) {
                     if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
-                        peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
-                        mySocketId = socket_id;
+                        peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])                    
                         break;
                     }
                 }
