@@ -12,7 +12,6 @@ let localStream = null;
 let peers = {}
 
 
-let chatForm = document.getElementById("chat-form");
 let chatInput = document.getElementById("inputChatMessage");
 let chatList = $("#chat-message-list");
 
