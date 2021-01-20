@@ -96,8 +96,8 @@ function init() {
             console.log("sendData : " + chatData)
             socket.emit('chat message', chatData);
             chatInput.value = '';
-            console.log(mySocketId);
-            //console.log(peers[socket_id]);
+          
+            saveChatLog(chatData);
         }
     });
     

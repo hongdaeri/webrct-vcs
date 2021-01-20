@@ -548,7 +548,6 @@
             myUserAuth = $.trim(getParam("userAuth"));
             myCompanyId = $.trim(getParam("companyId"));
             myCompanyName = $.trim(getParam("companyName"));
-            alert(myUserId);
         }
 
         
@@ -561,6 +560,47 @@
                 if ([temp[0]] == sname) { sval = temp[1]; }
             }
             return sval;
+        }
+
+        function saveChatLog(chatData){
+            let item = new Object();
+            item.userId = chatData.userId;
+            item.userName = chatData.userName;
+            item.message = chatData.message;
+
+            let jsonData = JSON.stringify(item);
+
+            $.ajax({
+                url : "/meeting/addMeetingMember.json",
+                type: 'POST',
+                dataType: "json",
+                data: $.param( sendData ),
+                success : function(data) {
+                    if(data.result =="success"){
+                        let appendMember = "";
+                        appendMember += "<div id='invited-member-" + userId +"' class='text-reset notification-item pl-3 mb-2 d-block'>";
+                        appendMember += "  <i class='mdi mdi-checkbox-blank-circle-outline mr-1 text-success'></i>";
+                        appendMember += "  <span class=''mb-0 mt-1'>" + userName + "</span>";
+                        appendMember += "</div>";
+	                    meetingInvitedMemberList.append(appendMember);
+
+                        $.toast({
+                            heading: "<h5 class='text-white'>회의초대완료</h5>",
+	                        text : userName + "님을 회의에 초대하였습니다.",
+	                        position: "top-center",
+	                        loaderBg: "#2941b3",
+				            sticky: true
+				        });
+
+                    } else {
+                        alert2(data.resultMsg);
+                        return;
+                    }
+                },
+                error : function(e) {
+                    alert2('일시적인 네트워크 오류입니다.<br>문제가 지속 될 시 관리자에게 문의하세요.');
+                }
+            });
         }
     </script>
 </body>
