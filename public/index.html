@@ -569,7 +569,8 @@
             item.message = chatData.message;
 
             let jsonData = JSON.stringify(item);
-
+            console.log(jsonData);
+            return;
             $.ajax({
                 url : "/meeting/addMeetingMember.json",
                 type: 'POST',
