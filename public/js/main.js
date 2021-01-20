@@ -11,6 +11,9 @@ let localStream = null;
  */
 let peers = {}
 
+let chatForm = document.getElementById("chat-form");
+let chatInput = document.getElementById("inputChatMessage");
+
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') {
       location.href = 'https' + location.href.substr(4, location.href.length - 4)
@@ -77,6 +80,24 @@ function init() {
 
     socket = io();   
   
+    chatForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (chatInput.value) {
+        socket.emit('chat message', chatInput.value);
+        chatInput.value = '';
+        }
+    });
+    
+    /*
+    socket.on('chat message', function(msg) {
+        var item = document.createElement('li');
+        item.textContent = msg;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    */
+
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
         addPeer(socket_id, false)
@@ -101,12 +122,11 @@ function init() {
     })
 
     socket.on('signal', data => {
+        console.log("SIGNAL");
         peers[data.socket_id].signal(data.signal)
     })
 
-    socket.on('chat message', (msg) => {
-        console.log('message: ' + msg);
-    });
+   
 }
 
 /**
@@ -153,6 +173,16 @@ function addPeer(socket_id, am_initiator) {
         stream: localStream,
         config: configuration
     })
+
+    /*
+    peers[socket_id].on('chat message', data => {
+        console.log("on chat");
+        socket.emit('signal', {
+            signal: data,
+            socket_id: socket_id
+        })
+    })
+    */
 
     peers[socket_id].on('signal', data => {
         console.log("on signal");

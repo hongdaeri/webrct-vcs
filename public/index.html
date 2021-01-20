@@ -492,16 +492,7 @@
     <script src='/js/main.js' lang="text/javascript"></script>
 
     <script>
-        const chatForm = document.getElementById("chat-form");
-        const chatInput = document.getElementById("inputChatMessage");
-
-        chatForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (chatInput.value) {
-            socket.emit('chat message', chatInput.value);
-            chatInput.value = '';
-            }
-        });
+   
 
         $("document").ready(function(){
             const btnStartMetting = $("#btnStartMetting");
