@@ -11,7 +11,7 @@ let localStream = null;
  */
 let peers = {}
 
-let mySocketId;
+
 let chatForm = document.getElementById("chat-form");
 let chatInput = document.getElementById("inputChatMessage");
 
@@ -82,13 +82,14 @@ function init() {
     socket = io();   
   
     chatForm.addEventListener('submit', function(e) {
+        let mySocketId = 
         e.preventDefault();
         if (chatInput.value) {
             //peers[data.socket_id].signal(data.signal)
-            //socket.emit('chat message', chatInput.value);
+            socket.emit('chat message', chatInput.value);
             chatInput.value = '';
             console.log(mySocketId);
-            console.log(peers);
+            //console.log(peers[socket_id]);
         }
     });
     
