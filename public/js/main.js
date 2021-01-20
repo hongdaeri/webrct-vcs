@@ -84,7 +84,7 @@ function init() {
     socket.on('chat message', function(chatData) {
         console.log(chatData);
         var chatItem = "";
-        if(chatItem.userId == myuserId){
+        if(chatItem.userId == myUserId){
             chatItem += "<li class='clearfix odd'>";
             chatItem += " <div class='conversation-text'>";
             chatItem += "    <div class='ctext-wrap'>";
