@@ -48,8 +48,8 @@ module.exports = (io) => {
         })
 
 
-        socket.on('chat message', msg => {
-            io.emit('chat message', msg);
+        socket.on('chat message', chatData => {
+            io.emit('chat message', chatData);
         });
 
         socket.on('chatMessage', message => {

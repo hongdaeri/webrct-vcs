@@ -88,7 +88,12 @@ function init() {
         if (chatInput.value) {
             //peers[data.socket_id].signal(data.signal)
             //socket.emit('chatMessage', chatInput.value);
-            socket.emit('chat message', chatInput.value);
+            let chatData = {
+                "userid" : 1,
+                "userName" : "홍바울",
+                "message" : chatInput.value
+            }
+            socket.emit('chat message', chatData);
             chatInput.value = '';
             console.log(mySocketId);
             //console.log(peers[socket_id]);
@@ -96,10 +101,13 @@ function init() {
     });
     
   
-    socket.on('chat message', function(msg) {
+    socket.on('chat message', function(chatData) {
+        console.log(chatData);
         var item = document.createElement('li');
-        item.textContent = msg;
+        item.textContent = chatData.message;
         chatList.appendChild(item);
+        console.log(item);
+
         window.scrollTo(0, document.body.scrollHeight);
     });
 
