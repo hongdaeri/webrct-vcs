@@ -110,16 +110,16 @@ function init() {
         chatScroll();
     });
 
-    socket.on('initReceive', socket_id => {
-        console.log('INIT RECEIVE ' + socket_id)
-        addPeer(socket_id, false)
-        socket.emit('initSend', socket_id)
+    socket.on('initReceive', data => {
+        console.log('INIT RECEIVE')
+        addPeer(data, false)
+        socket.emit('initSend', data)
     })
 
     socket.on('initSend', data => {
         console.log('INIT SEND ');
         console.log(data);
-        addPeer(data.id, true)
+        addPeer(data, true)
     })
 
     socket.on('removePeer', socket_id => {
