@@ -81,6 +81,8 @@ function init() {
 
     socket = io();   
 
+    socket.userId = myUserId;
+    socket.userName = myUserName;
     console.log(socket);
     
     socket.on('chat message', function(chatData) {
