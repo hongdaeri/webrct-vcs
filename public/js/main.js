@@ -67,6 +67,10 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 
     localVideo.srcObject = stream;
     localStream = stream;
+    
+    if(myUserId == meetingHostId){
+        localVideoName.innerHTML = "나 (방장)";
+    }
 
     console.log("getUserMedia");
 
@@ -263,9 +267,8 @@ function switchMedia() {
         localStream = stream
         localVideo.srcObject = stream
 
-        if(myUserId == meetingHostId){
-            localVideoName.innerHTML = "나 (방장)";
-        }
+        console.log("ON SWITCH MEDIA");
+      
 
         updateButtons()
     })
