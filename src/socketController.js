@@ -53,11 +53,8 @@ module.exports = (io) => {
             io.emit('chat message', chatData);
         });
 
-        socket.on('chatMessage', message => {
-            peers[data.socket_id].emit('chatMessage', {
-                socket_id: socket.id,
-                message: message
-            });
+        socket.on('init user', data => {
+            console.log("init user : " + data);
         });
     })
 }

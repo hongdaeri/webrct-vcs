@@ -79,12 +79,11 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
  */
 function init() {
 
-    socket = io();   
-
-    socket.userId = myUserId;
-    socket.userName = myUserName;
-    console.log(socket);
+    console.log("on init");
     
+    socket = io();     
+    initUserSocket(socket.id);
+
     socket.on('chat message', function(chatData) {
         console.log(chatData);
         var chatItem = "";                         
@@ -110,8 +109,6 @@ function init() {
         chatList.append(chatItem);
         chatScroll();
     });
-
-    
 
     socket.on('initReceive', socket_id => {
         console.log('INIT RECEIVE ' + socket_id)
@@ -141,11 +138,14 @@ function init() {
         peers[data.socket_id].signal(data.signal)
     })
 
+    /*
+
     socket.on('chatMessage', data => {
         console.log("chat message : " + data);
        // peers[data.socket_id].signal(data.signal)
     })
 
+    */
   
 
    
@@ -328,6 +328,16 @@ function sendChat(){
         chatInput.value = '';
         saveChatLog(chatData);
     }
+};
+
+function initUserSocket(socket_id){
+    console.log("init user socket");
+    let userData = {
+        "userId" : myUserId,
+        "userName" : myUserName,
+        socket_id : socket_id
+    }
+    socket.emit('init user', userData);
 };
 
 
