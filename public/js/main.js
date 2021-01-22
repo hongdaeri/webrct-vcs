@@ -14,6 +14,7 @@ let peers = {}
 
 let chatInput = document.getElementById("inputChatMessage");
 let chatList = $("#chat-message-list");
+const screenHandler = new ScreenHandler();
 
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') {
@@ -424,15 +425,15 @@ function setVideoFilter(filter) {
    localVideo.className = filter;
 }
 
-const screenHandler = new ScreenHandler();
 
   /**
    * 비디오 엘리먼트에 재생을 위해 stream 바인딩
    * @param data
    */
   function setVideoStream(data) {
-    const video = data.el;
-    video.srcObject = data.stream;
+    localVideo.srcObject = data.stream;
+    localStream = data.stream;
+
   }
 
 
