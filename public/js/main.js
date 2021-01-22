@@ -157,7 +157,7 @@ function init() {
  * @param {String} socket_id 
  */
 function removePeer(socket_id) {
-
+    console.log("removePeer");
     let videoEl = document.getElementById(socket_id)
     if (videoEl) {
 
@@ -218,6 +218,7 @@ function addPeer(socket_id, am_initiator) {
     })
 
     peers[socket_id].on('stream', stream => {
+        console.log("on stream");
         let newPerson = document.createElement('div')
         newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
         newPerson.id = "person-" + socket_id;
