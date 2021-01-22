@@ -72,6 +72,9 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
         localVideoName.innerHTML = "나 (방장)";
     }
 
+    // TODO: 내가 방장일때만 나오고
+    // 방장 아니면 일반 청중처럼 표기 
+
     console.log("getUserMedia");
 
     init()
@@ -413,5 +416,11 @@ function toggleVid() {
     }
 }
 
+/**
+ * SET FILTER
+ */
+function setVideoFilter(filter) {
+    localVideo.classList.add(filter);
+}
 
 
