@@ -191,13 +191,13 @@ function removePeer(socket_id) {
  */
 function addPeer(peer, am_initiator) {
     console.log("add peer");
-    peers[data.id] = new SimplePeer({
+    peers[peer.id] = new SimplePeer({
         initiator: am_initiator,
         stream: localStream,
         config: configuration
     })
 
-    peers[data.id].on('signal', data => {
+    peers[peer.id].on('signal', data => {
         console.log("on signal");
         socket.emit('signal', {
             signal: data,
@@ -205,7 +205,7 @@ function addPeer(peer, am_initiator) {
         })
     })
 
-    peers[data.id].on('stream', stream => {
+    peers[peer.id].on('stream', stream => {
         console.log("on stream");
         let newPerson = document.createElement('div')
         newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
