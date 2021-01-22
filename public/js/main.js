@@ -226,6 +226,9 @@ function addPeer(peer, am_initiator) {
         let newPersonName = document.createElement("div");
         newPersonName.className = "person-name";
         newPersonName.innerHTML = peer.userName;
+        if(peer.hostYn){
+            newPersonName.innerHTML = peer.userName + "(방장)";
+        }
         newPerson.appendChild(newPersonName);
     })
 }
@@ -321,9 +324,16 @@ function sendChat(){
 
 function initUserSocket(socket_id){
     console.log("init user socket");
+
+    let hostYn = false;
+    if(meetingHostId == myUserId){
+        hostYn = true;
+    }
+
     let userData = {
         "userId" : myUserId,
         "userName" : myUserName,
+        hostYn : hostYn,
         socket_id : socket_id
     }
     socket.emit('init user', userData);

@@ -11,7 +11,6 @@ module.exports = (io) => {
         // Initiate the connection process as soon as the client connects
         peers[socket.id] = socket
             
-       
         /**
          * Send message to client to initiate a connection
          * The sender has already setup a peer connection receiver
@@ -22,7 +21,8 @@ module.exports = (io) => {
             let data = {
                 "id" : socket.id,
                 "userId" : socket.userId,
-                "userName" : socket.userName
+                "userName" : socket.userName,
+                "hostYn" : socket.hostYn
             };
 
             peers[init_socket_data.id].emit('initSend', data)
@@ -66,9 +66,11 @@ module.exports = (io) => {
             console.log("init user");
             peers[socket.id].userId = data.userId;
             peers[socket.id].userName = data.userName;
-
+            peers[socket.id].hostYn = data.hostYn;
+            
             console.log("userid : " + peers[socket.id].userId);
             console.log("userName : " + peers[socket.id].userName);
+            console.log("hostYn : " + peers[socket.id].hostYn);
 
             // Asking all other clients to setup the peer connection receiver
             for(let id in peers) {
@@ -78,7 +80,8 @@ module.exports = (io) => {
                 let data = {
                     "id" : socket.id,
                     "userId" : socket.userId,
-                    "userName" : socket.userName
+                    "userName" : socket.userName,
+                    "hostYn" : socket.hostYn
                 };
                 peers[id].emit('initReceive', data)
             }
