@@ -420,7 +420,8 @@ function toggleVid() {
  * SET FILTER
  */
 function setVideoFilter(filter) {
-    localVideo.classList.add(filter);
+   //localVideo.classList.add(filter);
+   localVideo.className(filter);
 }
 
 
