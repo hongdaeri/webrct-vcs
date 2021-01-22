@@ -138,19 +138,7 @@ function init() {
     socket.on('signal', data => {
         console.log("SIGNAL");
         peers[data.socket_id].signal(data.signal)
-    })
-
-    /*
-
-    socket.on('chatMessage', data => {
-        console.log("chat message : " + data);
-       // peers[data.socket_id].signal(data.signal)
-    })
-
-    */
-  
-
-   
+    })   
 }
 
 /**
@@ -274,6 +262,10 @@ function switchMedia() {
 
         localStream = stream
         localVideo.srcObject = stream
+
+        if(myUserId == meetingHostId){
+            localVideoName.innerHTML = "나 (방장)";
+        }
 
         updateButtons()
     })
