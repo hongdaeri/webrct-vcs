@@ -30,12 +30,14 @@ module.exports = (io) => {
          * The sender has already setup a peer connection receiver
          */
         socket.on('initSend', init_socket_id => {
-            console.log('INIT SEND by ' + socket.id + ' for ' + init_socket_id)
+            console.log('INIT SEND by ' + socket.id + ' for ' + init_socket_id);
+
             let data = {
                 "id" : socket.id,
                 "userId" : socket.userId,
                 "userName" : socket.userName
-            }
+            };
+
             peers[init_socket_id].emit('initSend', data)
         })
 
@@ -69,7 +71,6 @@ module.exports = (io) => {
         socket.on('chat message', chatData => {
             io.emit('chat message', chatData);
         });
-
 
         /**
          * INIT USER INFO 

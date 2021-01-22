@@ -190,9 +190,6 @@ function removePeer(socket_id) {
  *                  Set to false if the peer receives the connection. 
  */
 function addPeer(data, am_initiator) {
-
-    
-
     console.log("add peer");
     peers[data.id] = new SimplePeer({
         initiator: am_initiator,
