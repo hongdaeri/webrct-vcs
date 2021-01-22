@@ -6,8 +6,8 @@ module.exports = (io) => {
    
     io.on('connect', (socket) => {
         console.log('a client is connected');
-        console.log(socket.userId);
-        console.log(socket.userName);
+        console.log(myUserId);
+        console.log(myUserName);
         
         // Initiate the connection process as soon as the client connects
         peers[socket.id] = socket
