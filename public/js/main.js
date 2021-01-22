@@ -112,7 +112,8 @@ function init() {
 
     socket.on('initReceive', data => {
         console.log('INIT RECEIVE')
-        addPeer(data, false)
+        addPeer(data, false);
+        console.log(data);
         socket.emit('initSend', data)
     })
 
