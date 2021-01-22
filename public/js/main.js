@@ -133,7 +133,7 @@ function init() {
     })
 
     socket.on('signal', data => {
-        console.log("SIGNAL : " + data.socket_id);
+        console.log("SIGNAL : " + data);
         peers[data.socket_id].signal(data.signal)
     })
 
@@ -208,6 +208,7 @@ function addPeer(socket_id, am_initiator) {
         console.log("on signal");
         socket.emit('signal', {
             signal: data,
+            userName: myUserName,
             socket_id: socket_id
         })
     })
