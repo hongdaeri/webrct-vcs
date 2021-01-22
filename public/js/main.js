@@ -81,6 +81,8 @@ function init() {
 
     socket = io();   
 
+    console.log(socket);
+    
     socket.on('chat message', function(chatData) {
         console.log(chatData);
         var chatItem = "";                         
