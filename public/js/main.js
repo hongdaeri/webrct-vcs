@@ -80,7 +80,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 function init() {
 
     console.log("on init");
-    
+
     socket = io();     
     initUserSocket(socket.id);
 
@@ -219,6 +219,7 @@ function addPeer(socket_id, am_initiator) {
 
     peers[socket_id].on('stream', stream => {
         console.log("on stream");
+        console.log(peers[socket_id]);
         let newPerson = document.createElement('div')
         newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
         newPerson.id = "person-" + socket_id;
@@ -234,10 +235,10 @@ function addPeer(socket_id, am_initiator) {
         newVid.ontouchstart = (e) => openPictureMode(newVid)
         newPerson.appendChild(newVid);
 
-        //let newPersonName = document.createElement("div");
-        //newPersonName.className = "person-name";
-        //newPersonName.innerHTML = socket_id;
-        //newPerson.appendChild(newPersonName);
+        let newPersonName = document.createElement("div");
+        newPersonName.className = "person-name";
+        newPersonName.innerHTML = socket_id;
+        newPerson.appendChild(newPersonName);
     })
 }
 
