@@ -45,18 +45,31 @@ module.exports = (io) => {
          */
         socket.on('initSend', init_socket_id => {
             console.log('INIT SEND by ' + socket.id + ' for ' + init_socket_id)
-            peers[init_socket_id].emit('initSend', socket.id)
+            let data = {
+                "id" : socket.id,
+                "userId" : socket.userId,
+                "userName" : socket.userName
+            }
+            peers[init_socket_id].emit('initSend', data)
         })
 
 
+        /**
+         * CHAT MESSAGE
+         */
         socket.on('chat message', chatData => {
             io.emit('chat message', chatData);
         });
 
+
+        /**
+         * INIT USER INFO 
+         */
         socket.on('init user', data => {
             console.log("init user");
             peers[socket.id].userId = data.userId;
             peers[socket.id].userName = data.userName;
+
             console.log("userid : " + peers[socket.id].userId);
             console.log("userName : " + peers[socket.id].userName);
             

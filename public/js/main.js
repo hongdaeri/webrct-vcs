@@ -116,9 +116,10 @@ function init() {
         socket.emit('initSend', socket_id)
     })
 
-    socket.on('initSend', socket_id => {
+    socket.on('initSend', data => {
         console.log('INIT SEND ' + socket_id)
-        addPeer(socket_id, true)
+        console.log(data);
+        addPeer(data.id, true)
     })
 
     socket.on('removePeer', socket_id => {
@@ -219,7 +220,6 @@ function addPeer(socket_id, am_initiator) {
 
     peers[socket_id].on('stream', stream => {
         console.log("on stream");
-        console.log(peers[socket_id]);
         let newPerson = document.createElement('div')
         newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
         newPerson.id = "person-" + socket_id;
