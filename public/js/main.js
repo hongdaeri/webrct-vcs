@@ -189,7 +189,7 @@ function removePeer(socket_id) {
  *                  Set to true if the peer initiates the connection process.
  *                  Set to false if the peer receives the connection. 
  */
-function addPeer(data, am_initiator) {
+function addPeer(peer, am_initiator) {
     console.log("add peer");
     peers[data.id] = new SimplePeer({
         initiator: am_initiator,
@@ -201,7 +201,7 @@ function addPeer(data, am_initiator) {
         console.log("on signal");
         socket.emit('signal', {
             signal: data,
-            socket_id: socket_id
+            socket_id: peer.id
         })
     })
 
@@ -209,12 +209,12 @@ function addPeer(data, am_initiator) {
         console.log("on stream");
         let newPerson = document.createElement('div')
         newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
-        newPerson.id = "person-" + socket_id;
+        newPerson.id = "person-" + peer.id;
         videos.appendChild(newPerson);
 
         let newVid = document.createElement('video')
         newVid.srcObject = stream
-        newVid.id = socket_id
+        newVid.id = peer.id
         newVid.playsinline = false
         newVid.autoplay = true
         newVid.className = "vid"
@@ -224,7 +224,7 @@ function addPeer(data, am_initiator) {
 
         let newPersonName = document.createElement("div");
         newPersonName.className = "person-name";
-        newPersonName.innerHTML = data.userName;
+        newPersonName.innerHTML = peer.userName;
         newPerson.appendChild(newPersonName);
     })
 }
