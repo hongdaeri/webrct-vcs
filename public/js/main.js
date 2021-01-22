@@ -117,7 +117,7 @@ function init() {
     })
 
     socket.on('initSend', data => {
-        console.log('INIT SEND ' + socket_id)
+        console.log('INIT SEND ');
         console.log(data);
         addPeer(data.id, true)
     })
@@ -135,7 +135,7 @@ function init() {
     })
 
     socket.on('signal', data => {
-        console.log("SIGNAL : " + data);
+        console.log("SIGNAL");
         peers[data.socket_id].signal(data.signal)
     })
 
