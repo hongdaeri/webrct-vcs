@@ -198,12 +198,23 @@ function addPeer(peer, am_initiator) {
         })
     })
 
+
+
     peers[peer.id].on('stream', stream => {
         console.log("on stream");
-        let newPerson = document.createElement('div')
-        newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
+        let newPerson = document.createElement('div');
         newPerson.id = "person-" + peer.id;
-        videos.appendChild(newPerson);
+
+        if(meetingMode != null && meetingMode == 'class'){
+            newPerson.className = "person audience";
+            videos.appendChild(newPerson);
+        } else {
+            newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
+            videos.appendChild(newPerson);
+        }
+       
+  
+        
 
         let newVid = document.createElement('video')
         newVid.srcObject = stream

@@ -38,7 +38,7 @@
 
         }
 
-        #videos .person {
+        .videos .person {
             background-color:#2f3841;
             margin:0 !important;
             padding:0 !important;
@@ -46,13 +46,21 @@
             box-sizing: border-box !important;
         }
 
-        #videos .person .person-name {
+        .videos .person .person-name {
             position:absolute; 
             text-align:center; 
             width:100%; 
             bottom:0; 
             background-color: rgba(0,0,0,0.7);
             color: #fff;
+        }
+
+        .videos .audience {
+            width:150px;
+        }
+
+        .videos .audience .person-name {
+            width:150px;
         }
     </style>
 </head>
@@ -427,14 +435,34 @@
                     <div class="row">
                         <div class="col-12 m-0 p-0 d-flex">
                             <!-- VCS AREA-->
-                            <div class="flex-grow-1" style="height:93vh;" ;>
-                                <div id="videos" class="row p-0 m-0">
-                                    <div class="col-lg-3 col-md-4 col-sm-6 person">
-                                        <video id="localVideo" class="vid" autoplay muted></video>
-                                        <div id="localVideoName" class="person-name">나</div>
-                                    </div>                                    
-                                </div>                                            
+                            <div class="flex-grow-1" style="height:93vh;";> 
+                                  <!-- conference mode layout -->
+                                <div id="conferenceMode" style="display: none;">
+                                    <div id="videos" class="videos row p-0 m-0">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 person">
+                                            <video id="localVideo" class="vid" autoplay muted></video>
+                                            <div id="localVideoName" class="person-name">나</div>
+                                        </div>                                    
+                                    </div> 
+                                </div>                              
+                                                                       
+
+
+                                <!-- class mode layout -->
+                                <div id="classMode" style="display: none;">
+                                    <div class="videos row p-0 m-0" style="height:100%; overflow-y:auto;">
+                                        <div class="col-12 person" style="height:82vh">
+                                             <video id="localVideo" class="vid" autoplay muted></video>
+                                             <div id="localVideoName" class="person-name">나</div>
+                                        </div>        
+                                              
+                                        <div id="audiences" class="videos col-12 d-flex" style="height:auto; overflow-y:auto;">
+                                            
+                                         </div>                  
+                                     </div>
+                                </div> 
                             </div>
+                            
                             
                             <!-- CHAT AREA-->
                             <div class="d-sm-none d-md-block" style="min-width:400px; height:93vh;" ;>
@@ -558,6 +586,7 @@
         let myCompanyName;
         let myMeetingId;
         let meetingHostId;
+        let meetingMode;
 
         let mySocket;
 
@@ -571,6 +600,12 @@
         $("document").ready(function(){
 
             getMyInfo();
+
+            if(meetingMode != null && meetingMode == 'class'){
+                $("#classMode").show();
+            } else {
+                $("#conferenceMode").show();
+            }
 
             const btnStartMetting = $("#btnStartMetting");
             const btnFinishMetting = $("#btnFinishMetting"); 
@@ -598,9 +633,7 @@
                 if(chatScrollMaxVal < currentViewScroll){
                     chatScrollMaxVal = currentViewScroll;
                 }
-            });
-            
-            
+            });            
         });
 
         function inputEnterKey() {
@@ -624,6 +657,7 @@
             myCompanyName = $.trim(getParam("companyName"));
             myMeetingId = $.trim(getParam("meetingId"));
             meetingHostId = $.trim(getParam("meetingHostId"));
+            meetingMode = $.trim(getParam("meetingMode"));
         }
 
         
