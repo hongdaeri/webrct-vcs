@@ -189,36 +189,26 @@ function removePeer(socket_id) {
  *                  Set to true if the peer initiates the connection process.
  *                  Set to false if the peer receives the connection. 
  */
-function addPeer(socket_id, am_initiator) {
+function addPeer(data, am_initiator) {
+
+    
+
     console.log("add peer");
-    peers[socket_id] = new SimplePeer({
+    peers[data.id] = new SimplePeer({
         initiator: am_initiator,
         stream: localStream,
         config: configuration
     })
 
- 
-    /*
-    peers[socket_id].on('chatMessage', message => {
-        console.log("on chat");
-        socket.emit('chatMessage', {
-            message: message,
-            socket_id: socket_id
-        })
-    })
-    */
-   
-
-    peers[socket_id].on('signal', data => {
+    peers[data.id].on('signal', data => {
         console.log("on signal");
         socket.emit('signal', {
             signal: data,
-            userName: myUserName,
             socket_id: socket_id
         })
     })
 
-    peers[socket_id].on('stream', stream => {
+    peers[data.id].on('stream', stream => {
         console.log("on stream");
         let newPerson = document.createElement('div')
         newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
@@ -237,7 +227,7 @@ function addPeer(socket_id, am_initiator) {
 
         let newPersonName = document.createElement("div");
         newPersonName.className = "person-name";
-        newPersonName.innerHTML = socket_id;
+        newPersonName.innerHTML = data.userName;
         newPerson.appendChild(newPersonName);
     })
 }

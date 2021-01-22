@@ -15,9 +15,29 @@ module.exports = (io) => {
         for(let id in peers) {
             if(id === socket.id) continue
             console.log('sending init receive to ' + socket.id)
-            console.log(peers[id]);
-            peers[id].emit('initReceive', socket.id)
+           
+            let data = {
+                "id" : socket.id,
+                "userId" : socket.userId,
+                "userName" : socket.userName
+            };
+
+            peers[id].emit('initReceive', data)
         }
+
+        /**
+         * Send message to client to initiate a connection
+         * The sender has already setup a peer connection receiver
+         */
+        socket.on('initSend', init_socket_id => {
+            console.log('INIT SEND by ' + socket.id + ' for ' + init_socket_id)
+            let data = {
+                "id" : socket.id,
+                "userId" : socket.userId,
+                "userName" : socket.userName
+            }
+            peers[init_socket_id].emit('initSend', data)
+        })
 
         /**
          * relay a peerconnection signal to a specific socket
@@ -40,19 +60,7 @@ module.exports = (io) => {
             delete peers[socket.id]
         })
 
-        /**
-         * Send message to client to initiate a connection
-         * The sender has already setup a peer connection receiver
-         */
-        socket.on('initSend', init_socket_id => {
-            console.log('INIT SEND by ' + socket.id + ' for ' + init_socket_id)
-            let data = {
-                "id" : socket.id,
-                "userId" : socket.userId,
-                "userName" : socket.userName
-            }
-            peers[init_socket_id].emit('initSend', data)
-        })
+     
 
 
         /**
