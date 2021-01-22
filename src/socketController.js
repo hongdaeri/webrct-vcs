@@ -54,7 +54,12 @@ module.exports = (io) => {
         });
 
         socket.on('init user', data => {
-            console.log("init user : " + data);
+            console.log("init user");
+            peers[socket.id].userId = data.userId;
+            peers[socket.id].userName = data.userName;
+            console.log("userid : " + peers[socket.id].userId);
+            console.log("userName : " + peers[socket.id].userName);
+            
         });
     })
 }
