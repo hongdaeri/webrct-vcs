@@ -16,6 +16,7 @@ module.exports = (io) => {
             if(id === socket.id) continue
             console.log('sending init receive to ' + socket.id)
            
+            console.log(socket.userName);
             let data = {
                 "id" : socket.id,
                 "userId" : socket.userId,
