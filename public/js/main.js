@@ -202,7 +202,7 @@ function addPeer(peer, am_initiator) {
         console.log("on signal");
         socket.emit('signal', {
             signal: data,
-            socket_id: peer.id
+            socket_id: peer.id        
         })
     })
 
