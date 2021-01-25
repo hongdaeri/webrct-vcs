@@ -104,14 +104,14 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
                 hostVideoName.innerHTML = "나 (방장)";
             } 
     }
-    
 
     localStream = stream; 
-
-    init()
+   
 
 //}).catch(e => alert(`getusermedia error ${e.name}`))
 }).catch(e => alert("카메라가 없습니다"))
+
+init();
 
 /**
  * initialize the socket connections
