@@ -164,15 +164,30 @@
                         <ul class="list-unstyled topnav-menu float-right mb-0">
 
 
+
+                            <!-- PC VIDEO -->
+                            <li class="d-none d-lg-inline-block">
+                                <a id="btnPcStream" class="nav-link dropdown-toggle arrow-none waves-effect waves-light" href="javascript:toggleVid();">
+                                    <i class="fe-monitor noti-icon"></i>
+                                </a>
+                            </li>
+
+                            <!-- CAM VIDEO -->
+                            <li class="d-none d-lg-inline-block">
+                                <a id="btnCamStream" class="nav-link dropdown-toggle arrow-none waves-effect waves-light" href="javascript:toggleVid();">
+                                    <i class="mdi mdi-webcam noti-icon"></i>
+                                </a>
+                            </li>
+
                             <!-- CAMERA ON/OFF -->
-                            <li class="dropdown d-none d-lg-inline-block">
+                            <li class="d-none d-lg-inline-block">
                                 <a id="btnCameraOnOffSetting" class="nav-link dropdown-toggle arrow-none waves-effect waves-light" href="javascript:toggleVid();">
                                     <i class="fe-camera noti-icon"></i>
                                 </a>
                             </li>
                          
                             <!-- MIC ON/OFF -->
-                            <li class="dropdown d-none d-lg-inline-block">
+                            <li class="d-none d-lg-inline-block">
                                 <a id="btnMicOnOffSetting" class="nav-link dropdown-toggle arrow-none waves-effect waves-light"
                                     href="javascript:toggleMute();">
                                     <i class="fe-mic noti-icon"></i>
@@ -686,7 +701,9 @@
 
             const btnStartMetting = $("#btnStartMetting");
             const btnFinishMetting = $("#btnFinishMetting"); 
-            const btn    = $("#btnSendChat");
+            const btnSendChat    = $("#btnSendChat");
+            const btnPcStream = $("#btnPcStream");
+            const btnCamStream = $("#btnCamStream");
             
             $(btnStartMetting).on("click", function(){
                 $(this).hide();
@@ -703,6 +720,15 @@
             $(btnSendChat).on("click", function(){
                 sendChat();              
             });
+
+            $(btnPcStream).on("click", function(){
+                startScreenShare();              
+            });
+
+            $(btnCamStream).on("click", function(){
+                startScreenShare();              
+            });
+
 
             $("#chat_scroll").scroll(function () {
                 currentViewScroll = $(this).scrollTop();

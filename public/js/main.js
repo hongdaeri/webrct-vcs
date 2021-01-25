@@ -460,4 +460,16 @@ function setVideoFilter(filter) {
   }
 
 
+/**
+   * cam 송출
+   */
+  function startScreenShare() {
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {  
+        localVideo.srcObject = stream;
+        localStream = stream;    
+        console.log("getUserMedia");    
+    }).catch(e => alert(`getusermedia error ${e.name}`))    
+  }
+
+  
  
