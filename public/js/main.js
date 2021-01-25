@@ -110,7 +110,8 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 
     init()
 
-}).catch(e => alert(`getusermedia error ${e.name}`))
+//}).catch(e => alert(`getusermedia error ${e.name}`))
+}).catch(e => alert("카메라가 없습니다"))
 
 /**
  * initialize the socket connections
@@ -339,7 +340,6 @@ function switchMedia() {
 
         console.log("ON SWITCH MEDIA");
       
-
         updateButtons()
     })
 }
@@ -575,7 +575,9 @@ function setVideoFilter(filter) {
         localStream = stream;   
        
         
-    }).catch(e => alert(`getusermedia error ${e.name}`))    
+  
+//}).catch(e => alert(`getusermedia error ${e.name}`))
+}).catch(e => alert("카메라가 없습니다"))
   }
 
   
