@@ -163,25 +163,27 @@
 
                         <ul class="list-unstyled topnav-menu float-right mb-0">
 
-
-
+    
                             <!-- PC VIDEO -->
                             <li class="d-none d-lg-inline-block">
-                                <a id="btnPcStream" class="nav-link dropdown-toggle arrow-none waves-effect waves-light" href="javascript:toggleVid();">
+                                <a  id="btnPcStream" 
+                                    data-toggle="tooltip" data-placement="bottom" title="" data-original-title="PC화면공유"
+                                    class="nav-link dropdown-toggle arrow-none waves-effect waves-light" 
+                                    href="javascript:void(0);">
                                     <i class="fe-monitor noti-icon"></i>
                                 </a>
                             </li>
 
                             <!-- CAM VIDEO -->
                             <li class="d-none d-lg-inline-block">
-                                <a id="btnCamStream" class="nav-link dropdown-toggle arrow-none waves-effect waves-light" href="javascript:toggleVid();">
+                                <a id="btnCamStream" class="nav-link dropdown-toggle arrow-none waves-effect waves-light" href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="카메라화면공유">
                                     <i class="mdi mdi-webcam noti-icon"></i>
                                 </a>
                             </li>
 
                             <!-- CAMERA ON/OFF -->
                             <li class="d-none d-lg-inline-block">
-                                <a id="btnCameraOnOffSetting" class="nav-link dropdown-toggle arrow-none waves-effect waves-light" href="javascript:toggleVid();">
+                                <a id="btnCameraOnOffSetting" class="nav-link dropdown-toggle arrow-none waves-effect waves-light" href="javascript:toggleVid();" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="화면송출">
                                     <i class="fe-camera noti-icon"></i>
                                 </a>
                             </li>
@@ -189,7 +191,7 @@
                             <!-- MIC ON/OFF -->
                             <li class="d-none d-lg-inline-block">
                                 <a id="btnMicOnOffSetting" class="nav-link dropdown-toggle arrow-none waves-effect waves-light"
-                                    href="javascript:toggleMute();">
+                                    href="javascript:toggleMute();" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="음소거">
                                     <i class="fe-mic noti-icon"></i>
                                 </a>
                             </li>
@@ -255,7 +257,7 @@
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light"
                                     data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                     aria-expanded="false">
-                                    <i class="fe-film noti-icon"></i>
+                                    <i class="fe-film noti-icon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="필터"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-lg dropdown-menu-right p-0">
 
@@ -308,8 +310,9 @@
 
                             <!-- MEETINGLOG -->
 							<li class="dropdown notification-list" style="visibility: hidden;">
-								<a id="btnOpenMeetingLog" href="javascript:void(0);"
-								   class="nav-link waves-effect waves-light">
+                                <a  id="btnOpenMeetingLog" href="javascript:void(0);"
+                                    data-toggle="tooltip" data-placement="bottom" title="" data-original-title="회의록"
+								    class="nav-link waves-effect waves-light">
 									<i class="mdi mdi-file-document-edit-outline noti-icon"></i>
 								</a>
                             </li>
@@ -317,14 +320,15 @@
                             <!-- FULLSCREEN -->
                             <li class="dropdown" style="visibility: hidden;">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light"
-                                    data-toggle="fullscreen" href="#">
-                                    <i class="fe-maximize noti-icon"></i>
+                                    data-toggle="fullscreen" href="#"
+                                    >
+                                    <i class="fe-maximize noti-icon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="전체화면"></i>
                                 </a>
                             </li>
 
                             <!-- SETTINGS -->
                             <li class="dropdown notification-list" style="visibility: hidden;">
-                                <a href="javascript:void(0);"
+                                <a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="환경설정"
                                     class="nav-link right-bar-toggle waves-effect waves-light">
                                     <i class="fe-settings noti-icon"></i>
                                 </a>
