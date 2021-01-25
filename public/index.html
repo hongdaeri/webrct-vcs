@@ -38,6 +38,11 @@
 
         }
 
+        video{
+            background: transparent url("./images/novideo3.png") 50% 50% / cover no-repeat ;
+        }
+
+
         .videos .person {
             background-color:#2f3841;
             margin:0 !important;
@@ -55,11 +60,6 @@
             color: #fff;
         }
 
-        video[poster]{ 
-            height:100%;
-            width:100%;
-            object-fit: cover;
-        }
         .videos .audience {
             width:150px;
             max-height:120px;
@@ -539,7 +539,7 @@
                                 <div id="conferenceMode" style="display: none;">                                    
                                     <div id="members" class="videos row p-0 m-0">
                                         <div class="col-lg-3 col-md-4 col-sm-6 person">
-                                            <video id="hostVideo" class="vid" autoplay muted poster="./images/novideo3.png"></video>
+                                            <video id="hostVideo" class="vid" autoplay muted></video>
                                             <div id="hostVideoName" class="person-name">나</div>
                                         </div> 
                                     </div>                                  
@@ -551,7 +551,7 @@
                                 <div id="classMode" style="display: none;">
                                     <div class="videos row p-0 m-0" style="height:100%; overflow-y:auto;">
                                         <div class="col-12 person" style="max-height:80vh">
-                                             <video id="hostVideo" class="vid" autoplay muted poster="./images/novideo3.png"></video>
+                                             <video id="hostVideo" class="vid" autoplay muted></video>
                                              <div id="hostVideoName" class="person-name">나</div>
                                         </div>        
                                               
