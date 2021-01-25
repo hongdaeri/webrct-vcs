@@ -11,8 +11,6 @@ let localStream = null;
  */
 let peers = {}
 
-let my_socket_id;
-
 let chatInput = document.getElementById("inputChatMessage");
 let chatList = $("#chat-message-list");
 const screenHandler = new ScreenHandler();
@@ -67,17 +65,33 @@ constraints.video.facingMode = {
 navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     console.log('Received local stream');
 
-    localVideo.srcObject = stream;
-    localStream = stream;
-    
     if(myUserId == meetingHostId){
-        localVideoName.innerHTML = "나 (방장)";
+        hostVideo.srcObject = stream;
+        hostVideoName.innerHTML = "나 (방장)";
+    } else {
+        let newPerson = document.createElement('div');
+        newPerson.id = "person-iam";
+
+        newPerson.className = "person audience";
+        audiences.appendChild(newPerson);
+            
+        let newVid = document.createElement('video')
+        newVid.srcObject = stream
+        newVid.id = "localVideo"
+        newVid.playsinline = false
+        newVid.autoplay = true
+        newVid.className = "vid"
+        newVid.onclick = () => openPictureMode(newVid)
+        newVid.ontouchstart = (e) => openPictureMode(newVid)
+        newPerson.appendChild(newVid);
+
+        let newPersonName = document.createElement("div");
+        newPersonName.className = "person-name";
+        newPersonName.innerHTML = "나";
+        newPerson.appendChild(newPersonName);
     }
 
-    // TODO: 내가 방장일때만 나오고
-    // 방장 아니면 일반 청중처럼 표기 
-
-    console.log("getUserMedia");
+    localStream = stream; 
 
     init()
 
@@ -90,12 +104,9 @@ function init() {
 
     console.log("on init");
 
-    socket = io();     
+    socket = io();   
+
     initUserSocket(socket.id);
-
-   
-    console.log("my my_socket_id = " + my_socket_id);
-
 
     socket.on('chat message', function(chatData) {
         console.log(chatData);
@@ -207,8 +218,6 @@ function addPeer(peer, am_initiator) {
         })
     })
 
-
-
     peers[peer.id].on('stream', stream => {
         console.log("on stream");
         let newPerson = document.createElement('div');
@@ -224,9 +233,7 @@ function addPeer(peer, am_initiator) {
            // newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
            // videos.appendChild(newPerson);
         }
-       
-  
-        
+               
 
         let newVid = document.createElement('video')
         newVid.srcObject = stream
@@ -341,9 +348,7 @@ function sendChat(){
 };
 
 function initUserSocket(socket_id){
-    console.log("init user socket : " + socket_id);
-    
-    my_socket_id = socket_id;
+    console.log("init user socket : ");
 
     let hostYn = false;
     if(meetingHostId == myUserId){
