@@ -82,6 +82,8 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
                 newVid.id = "localVideo"
                 newVid.playsinline = false
                 newVid.autoplay = true
+                newVid.muted = true
+                newVid.controls = true
                 newVid.className = "vid"
                 newVid.onclick = () => openPictureMode(newVid)
                 newVid.ontouchstart = (e) => openPictureMode(newVid)
@@ -249,6 +251,8 @@ function addPeer(peer, am_initiator) {
                     newVid.id = peer.id
                     newVid.playsinline = false
                     newVid.autoplay = true
+                    newVid.muted = true
+                    newVid.controls = true
                     newVid.className = "vid"
                     newVid.onclick = () => openPictureMode(newVid)
                     newVid.ontouchstart = (e) => openPictureMode(newVid)
@@ -272,6 +276,8 @@ function addPeer(peer, am_initiator) {
                 newVid.id = peer.id
                 newVid.playsinline = false
                 newVid.autoplay = true
+                newVid.muted = true
+                newVid.controls = true
                 newVid.className = "vid"
                 newVid.onclick = () => openPictureMode(newVid)
                 newVid.ontouchstart = (e) => openPictureMode(newVid)
