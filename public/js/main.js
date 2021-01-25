@@ -220,38 +220,42 @@ function addPeer(peer, am_initiator) {
 
     peers[peer.id].on('stream', stream => {
         console.log("on stream");
-        let newPerson = document.createElement('div');
-        newPerson.id = "person-" + peer.id;
 
-        if(meetingMode != null && meetingMode == 'class'){
-            newPerson.className = "person audience";
-            audiences.appendChild(newPerson);
-        } else {
-            newPerson.className = "person audience";
-            audiences.appendChild(newPerson);
-
-           // newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
-           // videos.appendChild(newPerson);
-        }
-               
-
-        let newVid = document.createElement('video')
-        newVid.srcObject = stream
-        newVid.id = peer.id
-        newVid.playsinline = false
-        newVid.autoplay = true
-        newVid.className = "vid"
-        newVid.onclick = () => openPictureMode(newVid)
-        newVid.ontouchstart = (e) => openPictureMode(newVid)
-        newPerson.appendChild(newVid);
-
-        let newPersonName = document.createElement("div");
-        newPersonName.className = "person-name";
-        newPersonName.innerHTML = peer.userName;
         if(peer.hostYn){
-            newPersonName.innerHTML = peer.userName + "(방장)";
+            hostVideo.srcObject = stream
+            hostVideoName = peer.userName +"(방장)";
+        } else {
+            let newPerson = document.createElement('div');
+            newPerson.id = "person-" + peer.id;
+
+            if(meetingMode != null && meetingMode == 'class'){
+                newPerson.className = "person audience";
+                audiences.appendChild(newPerson);
+            } else {
+                newPerson.className = "person audience";
+                audiences.appendChild(newPerson);
+
+            // newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
+            // videos.appendChild(newPerson);
+            }
+
+            let newVid = document.createElement('video')
+            newVid.srcObject = stream
+            newVid.id = peer.id
+            newVid.playsinline = false
+            newVid.autoplay = true
+            newVid.className = "vid"
+            newVid.onclick = () => openPictureMode(newVid)
+            newVid.ontouchstart = (e) => openPictureMode(newVid)
+            newPerson.appendChild(newVid);
+
+            let newPersonName = document.createElement("div");
+            newPersonName.className = "person-name";
+            newPersonName.innerHTML = peer.userName;        
+            newPerson.appendChild(newPersonName);
         }
-        newPerson.appendChild(newPersonName);
+
+        
     })
 }
 
