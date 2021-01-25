@@ -528,15 +528,13 @@
                             <!-- VCS AREA-->
                             <div class="flex-grow-1" style="height:93vh;";> 
                                   <!-- conference mode layout -->
-                                <div id="conferenceMode" style="display: none;">
-                                    <!--
-                                    <div id="videos" class="videos row p-0 m-0">
+                                <div id="conferenceMode" style="display: none;">                                    
+                                    <div id="members" class="videos row p-0 m-0">
                                         <div class="col-lg-3 col-md-4 col-sm-6 person">
                                             <video id="localVideo" class="vid" autoplay muted></video>
                                             <div id="localVideoName" class="person-name">나</div>
-                                        </div>                                    
-                                    </div> 
-                                    -->
+                                        </div> 
+                                    </div>                                  
                                 </div>                              
                                                                        
 
@@ -699,8 +697,10 @@
             getMyInfo();
 
             if(meetingMode != null && meetingMode == 'class'){
+                alert("yo");
                 $("#classMode").show();
             } else {
+                alert("yo");
                 $("#conferenceMode").show();
             }
 
