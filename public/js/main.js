@@ -92,7 +92,8 @@ function init() {
 
     socket = io();     
     initUserSocket(socket.id);
-    my_socket_id = socket.id;
+
+   
     console.log("my my_socket_id = " + my_socket_id);
 
 
@@ -340,7 +341,9 @@ function sendChat(){
 };
 
 function initUserSocket(socket_id){
-    console.log("init user socket");
+    console.log("init user socket : " + socket_id);
+    
+    my_socket_id = socket_id;
 
     let hostYn = false;
     if(meetingHostId == myUserId){
