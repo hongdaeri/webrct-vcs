@@ -438,7 +438,7 @@ function setVideoFilter(filter) {
   function setVideoStream(data) {
     localVideo.srcObject = data.stream;
     localStream = data.stream;
-    peers[mySocketId].stream(data.stream);
+    peers[mySocketId].trigger("stream");
 
   }
 
@@ -473,7 +473,7 @@ function setVideoFilter(filter) {
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {  
         localVideo.srcObject = stream;
         localStream = stream;    
-        peers[mySocketId].stream(stream);
+        peers[mySocketId].trigger("stream");
         console.log("getUserMedia");    
     }).catch(e => alert(`getusermedia error ${e.name}`))    
   }
