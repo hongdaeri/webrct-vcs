@@ -463,7 +463,7 @@ function setVideoFilter(filter) {
 /**
    * cam 송출
    */
-  function startScreenShare() {
+  function startCamShare() {
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {  
         localVideo.srcObject = stream;
         localStream = stream;    
