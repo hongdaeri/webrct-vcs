@@ -273,6 +273,7 @@ function switchMedia() {
     } else {
         constraints.video.facingMode.ideal = 'user'
     }
+    
 
     const tracks = localStream.getTracks();
 
@@ -280,7 +281,8 @@ function switchMedia() {
         track.stop()
     })
 
-    localVideo.srcObject = null
+    
+    getMyVideo().srcObject = null
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 
         for (let socket_id in peers) {
@@ -295,7 +297,7 @@ function switchMedia() {
         }
 
         localStream = stream
-        localVideo.srcObject = stream
+        getMyVideo().srcObject = stream
 
         console.log("ON SWITCH MEDIA");
       
@@ -322,13 +324,23 @@ function setScreen() {
 
         }
         localStream = stream
-
-        localVideo.srcObject = localStream
+        getMyVideo().srcObject = localStream
         socket.emit('removeUpdatePeer', '')
     })
     updateButtons()
 }
 
+
+function getMyVideo(){
+    let myVideo;
+    if(myUserId == meetingHostId){
+        myVideo = document.getElementById("hostVideo");
+    } else {
+        myVideo = document.getElementById("localVideo");
+    }
+
+    return myVideo;
+}
 /**
  * send chat message
  */
@@ -396,7 +408,7 @@ function removeLocalStream() {
             track.stop()
         })
 
-        localVideo.srcObject = null
+        getMyVideo().srcObject = null
     }
 
     for (let socket_id in peers) {
@@ -436,8 +448,7 @@ function toggleVid() {
  * SET FILTER
  */
 function setVideoFilter(filter) {
-   //localVideo.classList.add(filter);
-   localVideo.className = filter;
+   getMyVideo().className = filter;
 }
 
 
@@ -465,7 +476,7 @@ function setVideoFilter(filter) {
 
     }
 
-    localVideo.srcObject = data.stream;
+    getMyVideo().srcObject = data.stream;
     localStream = data.stream;
   }
 
@@ -475,8 +486,9 @@ function setVideoFilter(filter) {
    * @param stream
    */
   function onLocalStream(stream) {
+      //el: document.querySelector('#localVideo')
     setVideoStream({
-      el: document.querySelector('#localVideo'),
+      el: getMyVideo(),
       stream: stream,
     });
   }
@@ -514,7 +526,7 @@ function setVideoFilter(filter) {
 
         }
 
-        localVideo.srcObject = stream;
+        getMyVideo().srcObject = stream;
         localStream = stream;   
        
         
