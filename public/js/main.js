@@ -85,6 +85,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
                 newVid.muted = true
                 newVid.controls = true
                 newVid.className = "vid"
+                newVid.poster = "./images/novideo3.png"
                 newVid.onclick = () => openPictureMode(newVid)
                 newVid.ontouchstart = (e) => openPictureMode(newVid)
                 newPerson.appendChild(newVid);
@@ -251,7 +252,8 @@ function addPeer(peer, am_initiator) {
                     newVid.playsinline = false
                     newVid.autoplay = true
                     newVid.muted = false
-                    newVid.className = "vid"                
+                    newVid.className = "vid"
+                    newVid.poster = "./images/novideo3.png"
                     newVid.onclick = () => openPictureMode(newVid)
                     newVid.ontouchstart = (e) => openPictureMode(newVid)
                     newPerson.appendChild(newVid);
@@ -276,6 +278,7 @@ function addPeer(peer, am_initiator) {
                 newVid.autoplay = true
                 newVid.muted = false
                 newVid.className = "vid"
+                newVid.poster = "./images/novideo3.png"
                 newVid.onclick = () => openPictureMode(newVid)
                 newVid.ontouchstart = (e) => openPictureMode(newVid)
                 newPerson.appendChild(newVid);
