@@ -11,6 +11,7 @@ let localStream = null;
  */
 let peers = {}
 
+let mySocketId;
 
 let chatInput = document.getElementById("inputChatMessage");
 let chatList = $("#chat-message-list");
@@ -91,6 +92,7 @@ function init() {
 
     socket = io();     
     initUserSocket(socket.id);
+    mySocketId = socket.id;
 
     socket.on('chat message', function(chatData) {
         console.log(chatData);
@@ -436,6 +438,7 @@ function setVideoFilter(filter) {
   function setVideoStream(data) {
     localVideo.srcObject = data.stream;
     localStream = data.stream;
+    peers[mySocketId].stream(data.stream);
 
   }
 
@@ -470,6 +473,7 @@ function setVideoFilter(filter) {
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {  
         localVideo.srcObject = stream;
         localStream = stream;    
+        peers[mySocketId].stream(stream);
         console.log("getUserMedia");    
     }).catch(e => alert(`getusermedia error ${e.name}`))    
   }
