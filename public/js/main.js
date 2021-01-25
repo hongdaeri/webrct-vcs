@@ -213,8 +213,11 @@ function addPeer(peer, am_initiator) {
             newPerson.className = "person audience";
             audiences.appendChild(newPerson);
         } else {
-            newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
-            videos.appendChild(newPerson);
+            newPerson.className = "person audience";
+            audiences.appendChild(newPerson);
+
+           // newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
+           // videos.appendChild(newPerson);
         }
        
   
