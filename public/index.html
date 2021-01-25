@@ -696,12 +696,14 @@
 
             getMyInfo();
 
-            if(meetingMode != null && meetingMode == 'class'){
-                alert("yo");
+            if(meetingMode != null && meetingMode == 'class'){                
                 $("#classMode").show();
-            } else {
-                alert("yo");
+                $("#conferenceMode").remove();
+            } else if(meetingMode != null && meetingMode == 'normal'){            
+                $("#classMode").remove(); 
                 $("#conferenceMode").show();
+            } else {
+                alert("잘못된 접속입니다.");
             }
 
             const btnStartMetting = $("#btnStartMetting");
