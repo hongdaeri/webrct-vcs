@@ -441,11 +441,27 @@ function setVideoFilter(filter) {
    * @param data
    */
   function setVideoStream(data) {
+
+    const tracks = localStream.getTracks();
+
+    tracks.forEach(function (track) {
+        track.stop()
+    })
+
+    for (let socket_id in peers) {
+        for (let index in peers[socket_id].streams[0].getTracks()) {
+            for (let index2 in data.stream.getTracks()) {
+                if (peers[socket_id].streams[0].getTracks()[index].kind === data.stream.getTracks()[index2].kind) {
+                    peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], data.stream.getTracks()[index2], peers[socket_id].streams[0])
+                    break;
+                }
+            }
+        }
+
+    }
+
     localVideo.srcObject = data.stream;
     localStream = data.stream;
-    console.log(peers[my_socket_id]);
-    peers[my_socket_id].trigger("stream");
-
   }
 
 
@@ -492,7 +508,7 @@ function setVideoFilter(filter) {
             }
 
         }
-        
+
         localVideo.srcObject = stream;
         localStream = stream;   
        
