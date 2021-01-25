@@ -474,12 +474,29 @@ function setVideoFilter(filter) {
    * cam 송출
    */
   function startCamShare() {
+    const tracks = localStream.getTracks();
+
+    tracks.forEach(function (track) {
+        track.stop()
+    })
+
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {  
+        for (let socket_id in peers) {
+            for (let index in peers[socket_id].streams[0].getTracks()) {
+                for (let index2 in stream.getTracks()) {
+                    if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
+                        peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
+                        break;
+                    }
+                }
+            }
+
+        }
+        
         localVideo.srcObject = stream;
         localStream = stream;   
-        console.log(peers[my_socket_id]); 
-        peers[my_socket_id].trigger("stream");
-        console.log("getUserMedia");    
+       
+        
     }).catch(e => alert(`getusermedia error ${e.name}`))    
   }
 
