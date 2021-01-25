@@ -223,7 +223,7 @@ function addPeer(peer, am_initiator) {
 
         if(peer.hostYn){
             hostVideo.srcObject = stream
-            hostVideoName = peer.userName +"(방장)";
+            hostVideoName.innerHTML = peer.userName +"(방장)";
         } else {
             let newPerson = document.createElement('div');
             newPerson.id = "person-" + peer.id;
