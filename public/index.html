@@ -37,6 +37,8 @@
             object-fit: contain;
 
         }
+        
+
         .videos .person {
             background-color:#2f3841;
             margin:0 !important;
@@ -196,63 +198,7 @@
                                     href="javascript:toggleMute();">
                                     <i class="fe-mic noti-icon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="음소거"></i>
                                 </a>
-                            </li>
-
-                            <!-- LAYOUT -->
-                            <li class="dropdown topbar-dropdown">
-                                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light"
-                                    data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
-                                    aria-expanded="false">
-                                    <i class="mdi mdi-view-dashboard-outline noti-icon"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-lg dropdown-menu-right p-0">
-
-                                    <div class="p-2">
-                                        <div class="row no-gutters">
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="javascript:startScreenShare();">
-                                                    <img src="./images/brands/github.png" alt="Github">
-                                                    <span>화면제어</span>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="./images/brands/dribbble.png" alt="dribbble">
-                                                    <span>Dribbble</span>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="./images/brands/slack.png" alt="slack">
-                                                    <span>Slack</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row no-gutters">
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="./images/brands/g-suite.png" alt="G Suite">
-                                                    <span>G Suite</span>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="./images/brands/bitbucket.png" alt="bitbucket">
-                                                    <span>Bitbucket</span>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="./images/brands/dropbox.png" alt="dropbox">
-                                                    <span>Dropbox</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
+                            </li>        
 
                             <!-- VIDEO FILTER -->
                             <li class="dropdown topbar-dropdown">
@@ -315,6 +261,13 @@
                                     data-toggle="tooltip" data-placement="bottom" title="" data-original-title="회의록"
 								    class="nav-link waves-effect waves-light">
 									<i class="mdi mdi-file-document-edit-outline noti-icon"></i>
+								</a>
+                            </li>
+                            
+                            <!-- INVITED -->
+							<li class="notification-list" style="visibility: hidden;">
+								<a href="javascript:void(0);" class="nav-link waves-effect waves-light">
+									<i class="fe-user noti-icon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="참석자"></i>
 								</a>
                             </li>
                             
@@ -533,7 +486,7 @@
                                 <div id="conferenceMode" style="display: none;">                                    
                                     <div id="members" class="videos row p-0 m-0">
                                         <div class="col-lg-3 col-md-4 col-sm-6 person">
-                                            <video id="hostVideo" class="vid" autoplay muted></video>
+                                            <video id="hostVideo" class="vid" autoplay muted poster="./images/novideo3.png"></video>
                                             <div id="hostVideoName" class="person-name">나</div>
                                         </div> 
                                     </div>                                  
@@ -545,7 +498,7 @@
                                 <div id="classMode" style="display: none;">
                                     <div class="videos row p-0 m-0" style="height:100%; overflow-y:auto;">
                                         <div class="col-12 person" style="max-height:80vh">
-                                             <video id="hostVideo" class="vid" autoplay muted></video>
+                                             <video id="hostVideo" class="vid" autoplay muted poster="./images/novideo3.png"></video>
                                              <div id="hostVideoName" class="person-name">나</div>
                                         </div>        
                                               
