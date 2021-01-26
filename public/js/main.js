@@ -30,7 +30,9 @@ if(location.href.substr(0,5) !== 'https') {
 }
   
 
-//////////// CONFIGURATION //////////////////
+/*******************************************************
+ * CONFIGURATION : RTCPeerConnection 
+ *******************************************************/ 
 
 /**
  * RTCPeerConnection configuration 
@@ -63,8 +65,6 @@ let constraints = {
         }
     }
 }
-
-/////////////////////////////////////////////////////////
 
 constraints.video.facingMode = {
     ideal: "user"
@@ -400,6 +400,26 @@ function setScreen() {
 }
 
 /**
+ * Disables and removes the local stream and all the connections to other peers.
+ */
+function removeLocalStream() {
+    if (localStream) {
+        const tracks = localStream.getTracks();
+
+        tracks.forEach(function (track) {
+            track.stop()
+        })
+
+        getMyVideo().srcObject = null
+    }
+
+    for (let socket_id in peers) {
+        removePeer(socket_id)
+    }
+}
+
+
+/**
  * Get my video element
  */
 function getMyVideo(){
@@ -438,73 +458,78 @@ function sendChat(){
 };
 
 
-/**
- * updating text of buttons
- */
+
+
+/*******************************************************
+ * CONFIGURATION : VIDEO, MIC ON/OFF 
+ *******************************************************/ 
+const micOnOffSetting = $("#micOnOffSetting");
+const micOnOffSettingLabel = $("#micOnOffSettingLabel");
+const cameraOnOffSetting = $("#cameraOnOffSetting");
+const cameraOnOffSettingLabel = $("#cameraOnOffSettingLabel");
+
+
+// updating Device on/off buttons
 function updateDeviceButtons() {
     for (let index in localStream.getVideoTracks()) {
         if(localStream.getVideoTracks()[index].enabled){
             btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon'></i>";
+            cameraOnOffSetting.attr("checked", true);
+            cameraOnOffSettingLabel.html("비디오 켜짐");
         } else {
             btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off text-danger noti-icon'></i>";
+            cameraOnOffSetting.attr("checked", false);
+            cameraOnOffSettingLabel.html("비디오 꺼짐");
         }
     }
     for (let index in localStream.getAudioTracks()) {
         if(localStream.getAudioTracks()[index].enabled){
             btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon'></i>";
+            micOnOffSetting.attr("checked", true);
+            micOnOffSettingLabel.html("마이크 켜짐");
         } else {
             btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off text-danger noti-icon'></i>";
+            micOnOffSetting.attr("checked", false);
+            micOnOffSettingLabel.html("마이크 꺼짐");
         }
     }
 }
 
-/**
- * Disables and removes the local stream and all the connections to other peers.
- */
-function removeLocalStream() {
-    if (localStream) {
-        const tracks = localStream.getTracks();
-
-        tracks.forEach(function (track) {
-            track.stop()
-        })
-
-        getMyVideo().srcObject = null
-    }
-
-    for (let socket_id in peers) {
-        removePeer(socket_id)
+// Enable/disable video
+function toggleVid() {
+    for (let index in localStream.getVideoTracks()) {
+        localStream.getVideoTracks()[index].enabled = !localStream.getVideoTracks()[index].enabled
+        if(localStream.getVideoTracks()[index].enabled){
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon'></i>";
+            cameraOnOffSetting.attr("checked", true);
+            cameraOnOffSettingLabel.html("비디오 켜짐");
+        } else {
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off text-danger  noti-icon'></i>";
+            cameraOnOffSetting.attr("checked", false);
+            cameraOnOffSettingLabel.html("비디오 꺼짐");
+        }
     }
 }
 
-/**
- * Enable/disable microphone
- */
+//Enable/disable microphone
 function toggleMute() {
     for (let index in localStream.getAudioTracks()) {
         localStream.getAudioTracks()[index].enabled = !localStream.getAudioTracks()[index].enabled
 
         if(localStream.getAudioTracks()[index].enabled){
             btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon'></i>";
+            micOnOffSetting.attr("checked", true);
+            micOnOffSettingLabel.html("마이크 켜짐");
+            
         } else {
             btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off text-danger noti-icon'></i>";
+            micOnOffSetting.attr("checked", false);
+            micOnOffSettingLabel.html("마이크 꺼짐");
         }
     }
 }
 
-/**
- * Enable/disable video
- */
-function toggleVid() {
-    for (let index in localStream.getVideoTracks()) {
-        localStream.getVideoTracks()[index].enabled = !localStream.getVideoTracks()[index].enabled
-        if(localStream.getVideoTracks()[index].enabled){
-            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon'></i>";
-        } else {
-            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off text-danger  noti-icon'></i>";
-        }
-    }
-}
+
 
 /**
  * Set Video Filter
@@ -513,6 +538,10 @@ function setVideoFilter(filter) {
    getMyVideo().className = filter;
 }
 
+
+/*******************************************************
+ * CONFIGURATION : VIDEO STREAM ON CAM / PC 
+ *******************************************************/ 
 
 /**
  * 비디오 엘리먼트에 재생을 위해 stream 바인딩

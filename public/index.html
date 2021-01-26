@@ -617,17 +617,16 @@
 
     <!-- 환경설정 모달  -->
     <div id="modal-configs" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-meeting-invited-label" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">환경설정</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body ">
-                 
-            
 
                     <div class="px-3 pb-3 pt-0">
+                   
                         <h6 class="font-weight-medium font-14 mb-1 pb-1">오디오 입력 장치 선택</h6>
                         <select id="audioSource" class="custom-select mb-2"></select>
 
@@ -637,69 +636,20 @@
                         <h6 class="font-weight-medium font-14 mb-1  pb-1">비디오 출력 장치 선택</h6>
                         <select id="videoSource" class="custom-select mb-2"></select>
                         
+                       
 
-                        <h6 class="font-weight-medium font-14 mb-2 pb-1">레이아웃</h6>
-                        <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-1" checked="">
-                            <label class="custom-control-label" for="config-option-1">옵션 1</label>
+                        <h6 class="font-weight-medium font-14 mt-4 mb-1 pb-1">내 스트림</h6>
+                        <div class="custom-control custom-switch mb-2">
+                            <input type="radio" class="custom-control-input" id="cameraOnOffSetting" onchange="toggleVid();">
+                            <label class="custom-control-label" id="cameraOnOffSettingLabel" for="cameraOnOffSetting">비디오 켜짐</label>
                         </div>
 
                         <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-2" checked="">
-                            <label class="custom-control-label" for="config-option-2">옵션 2</label>
+                            <input type="radio" class="custom-control-input" id="micOnOffSetting" onchange="toggleMute();">
+                            <label class="custom-control-label" id="micOnOffSettingLabel"  for="micOnOffSetting">마이크 켜짐</label>
                         </div>
 
-                        <!-- Topbar -->
-                        <h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">비디오</h6>
-
-                        <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-3" checked="">
-                            <label class="custom-control-label" for="config-option-3">옵션 3</label>
-                        </div>
-
-                        <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-4" checked="">
-                            <label class="custom-control-label" for="config-option-4">옵션 4</label>
-                        </div>
-
-                        <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-5" checked="">
-                            <label class="custom-control-label" for="config-option-5">옵션 5</label>
-                        </div>
-
-
-
-                        <h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">뭔설정</h6>
-                        <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-6" checked="">
-                            <label class="custom-control-label" for="config-option-6">옵션 6</label>
-                        </div>
-
-                        <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-7" checked="">
-                            <label class="custom-control-label" for="config-option-7">옵션 7</label>
-                        </div>
-
-                        <!-- Topbar -->
-                        <h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">다른설정</h6>
-
-                        <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-8" checked="">
-                            <label class="custom-control-label" for="config-option-8">옵션 8</label>
-                        </div>
-
-                        <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-9" checked="">
-                            <label class="custom-control-label" for="config-option-9">옵션 9</label>
-                        </div>
-
-                        <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-10" checked="">
-                            <label class="custom-control-label" for="config-option-10">옵션 10</label>
-                        </div>
-
-                        <button class="btn btn-primary btn-block mt-4" id="resetBtn">설정 초기화
-                        </button>
+                    
                     </div>
 	               
                 </div>
