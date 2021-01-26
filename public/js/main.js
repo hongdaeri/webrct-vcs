@@ -473,22 +473,22 @@ const cameraOnOffSettingLabel = $("#cameraOnOffSettingLabel");
 function updateDeviceButtons() {
     for (let index in localStream.getVideoTracks()) {
         if(localStream.getVideoTracks()[index].enabled){
-            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon' data-placement='bottom' title='' data-original-title='비디오 중지'></i>";
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon' data-toggle='tooltip' data-placement='bottom' title='' data-original-title='비디오 중지'></i>";
             cameraOnOffSetting.attr("checked", true);
             cameraOnOffSettingLabel.html("비디오 켜짐");
         } else {
-            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off text-danger noti-icon' data-placement='bottom' title='' data-original-title='비디오 시작'></i>";
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off text-danger noti-icon' data-toggle='tooltip' data-placement='bottom' title='' data-original-title='비디오 시작'></i>";
             cameraOnOffSetting.attr("checked", false);
             cameraOnOffSettingLabel.html("비디오 꺼짐");
         }
     }
     for (let index in localStream.getAudioTracks()) {
         if(localStream.getAudioTracks()[index].enabled){
-            btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon data-toggle='tooltip' data-placement='bottom' title='' data-original-title='음소거'></i>";
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon' data-toggle='tooltip' data-placement='bottom' title='' data-original-title='음소거'></i>";
             micOnOffSetting.attr("checked", true);
             micOnOffSettingLabel.html("마이크 켜짐");
         } else {
-            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off text-danger noti-icon' data-placement='bottom' title='' data-original-title='음소거 해제'></i>";
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off text-danger noti-icon' data-toggle='tooltip' data-placement='bottom' title='' data-original-title='음소거 해제'></i>";
             micOnOffSetting.attr("checked", false);
             micOnOffSettingLabel.html("마이크 꺼짐");
         }
@@ -500,11 +500,11 @@ function toggleVid() {
     for (let index in localStream.getVideoTracks()) {
         localStream.getVideoTracks()[index].enabled = !localStream.getVideoTracks()[index].enabled
         if(localStream.getVideoTracks()[index].enabled){
-            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon' data-placement='bottom' title='' data-original-title='비디오 중지'></i>";
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon' data-toggle='tooltip' data-placement='bottom' title='' data-original-title='비디오 중지'></i>";
             cameraOnOffSetting.attr("checked", true);
             cameraOnOffSettingLabel.html("비디오 켜짐");
         } else {
-            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off text-danger noti-icon' data-placement='bottom' title='' data-original-title='비디오 시작'></i>";
+            btnCameraOnOffSetting.innerHTML = "<i class='fe-camera-off text-danger noti-icon' data-toggle='tooltip' data-placement='bottom' title='' data-original-title='비디오 시작'></i>";
             cameraOnOffSetting.attr("checked", false);
             cameraOnOffSettingLabel.html("비디오 꺼짐");
         }
@@ -517,12 +517,12 @@ function toggleMute() {
         localStream.getAudioTracks()[index].enabled = !localStream.getAudioTracks()[index].enabled
 
         if(localStream.getAudioTracks()[index].enabled){
-            btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon' data-placement='bottom' title='' data-original-title='음소거'></i>";
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic noti-icon' data-toggle='tooltip' data-placement='bottom' title='' data-original-title='음소거'></i>";
             micOnOffSetting.attr("checked", true);
             micOnOffSettingLabel.html("마이크 켜짐");
             
         } else {
-            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off text-danger noti-icon' data-placement='bottom' title='' data-original-title='음소거 해제'></i>";
+            btnMicOnOffSetting.innerHTML = "<i class='fe-mic-off text-danger noti-icon' data-toggle='tooltip' data-placement='bottom' title='' data-original-title='음소거 해제 '></i>";
             micOnOffSetting.attr("checked", false);
             micOnOffSettingLabel.html("마이크 꺼짐");
         }
