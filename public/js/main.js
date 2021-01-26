@@ -494,7 +494,7 @@ function updateDeviceButtons() {
             micOnOffSettingLabel.html("마이크 꺼짐");
         }
     }
-    $('[data-toggle="tooltip"]').tooltip('dispose');
+    $(".tooltip").remove();
     $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -512,7 +512,7 @@ function toggleVid() {
             cameraOnOffSettingLabel.html("비디오 꺼짐");
         }
     }
-    $('[data-toggle="tooltip"]').tooltip('dispose');
+    $(".tooltip").remove();
     $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -532,7 +532,7 @@ function toggleMute() {
             micOnOffSettingLabel.html("마이크 꺼짐");
         }
     }
-    $('[data-toggle="tooltip"]').tooltip('dispose');
+    $(".tooltip").remove();
     $('[data-toggle="tooltip"]').tooltip();
 }
 
