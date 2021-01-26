@@ -190,7 +190,7 @@
                             <!-- CAMERA ON/OFF -->
                             <li>
                                 <a id="btnCameraOnOffSetting" class="nav-link waves-effect waves-light" href="javascript:toggleVid();">
-                                    <i class="fe-camera noti-icon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="화면송출"></i>
+                                    <i class="fe-camera noti-icon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="비디오 중지"></i>
                                 </a>
                             </li>
                          
@@ -634,22 +634,18 @@
                         <select id="audioOutput" class="custom-select mb-2"></select>
                         
                         <h6 class="font-weight-medium font-14 mb-1  pb-1">비디오 출력 장치 선택</h6>
-                        <select id="videoSource" class="custom-select mb-2"></select>
-                        
-                       
+                        <select id="videoSource" class="custom-select mb-2"></select>                       
 
                         <h6 class="font-weight-medium font-14 mt-4 mb-1 pb-1">내 스트림</h6>
                         <div class="custom-control custom-switch mb-2">
-                            <input type="radio" class="custom-control-input" id="cameraOnOffSetting" onchange="toggleVid();">
+                            <input type="checkbox" class="custom-control-input" id="cameraOnOffSetting" checked onchange="toggleVid();">
                             <label class="custom-control-label" id="cameraOnOffSettingLabel" for="cameraOnOffSetting">비디오 켜짐</label>
                         </div>
 
                         <div class="custom-control custom-switch mb-1">
-                            <input type="radio" class="custom-control-input" id="micOnOffSetting" onchange="toggleMute();">
+                            <input type="checkbox" class="custom-control-input" id="micOnOffSetting" checked onchange="toggleMute();">
                             <label class="custom-control-label" id="micOnOffSettingLabel"  for="micOnOffSetting">마이크 켜짐</label>
-                        </div>
-
-                    
+                        </div>                    
                     </div>
 	               
                 </div>
