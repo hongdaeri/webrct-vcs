@@ -493,6 +493,7 @@ function updateDeviceButtons() {
             micOnOffSettingLabel.html("마이크 꺼짐");
         }
     }
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 // Enable/disable video
@@ -509,6 +510,7 @@ function toggleVid() {
             cameraOnOffSettingLabel.html("비디오 꺼짐");
         }
     }
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 //Enable/disable microphone
@@ -527,6 +529,7 @@ function toggleMute() {
             micOnOffSettingLabel.html("마이크 꺼짐");
         }
     }
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 
