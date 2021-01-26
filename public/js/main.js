@@ -471,6 +471,7 @@ const cameraOnOffSettingLabel = $("#cameraOnOffSettingLabel");
 
 // updating Device on/off buttons
 function updateDeviceButtons() {
+    
     for (let index in localStream.getVideoTracks()) {
         if(localStream.getVideoTracks()[index].enabled){
             btnCameraOnOffSetting.innerHTML = "<i class='fe-camera noti-icon' data-toggle='tooltip' data-placement='bottom' title='' data-original-title='비디오 중지'></i>";
@@ -493,6 +494,7 @@ function updateDeviceButtons() {
             micOnOffSettingLabel.html("마이크 꺼짐");
         }
     }
+    $('[data-toggle="tooltip"]').tooltip('dispose');
     $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -510,6 +512,7 @@ function toggleVid() {
             cameraOnOffSettingLabel.html("비디오 꺼짐");
         }
     }
+    $('[data-toggle="tooltip"]').tooltip('dispose');
     $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -529,6 +532,7 @@ function toggleMute() {
             micOnOffSettingLabel.html("마이크 꺼짐");
         }
     }
+    $('[data-toggle="tooltip"]').tooltip('dispose');
     $('[data-toggle="tooltip"]').tooltip();
 }
 
