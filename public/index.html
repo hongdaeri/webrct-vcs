@@ -259,8 +259,9 @@
 
                             <!-- SETTINGS -->
                             <li class="mr-3">
-								<a href="javascript:void(0);"
-								   class="nav-link right-bar-toggle waves-effect waves-light">
+                                <a  href="javascript:void(0);"
+                                    data-toggle="modal" data-target="#modal-configs"
+								    class="nav-link waves-effect waves-light">
 									<i class="fe-settings noti-icon" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="환경설정"></i>
 								</a>
                             </li>
@@ -614,127 +615,98 @@
     </div>
     <!-- END wrapper -->
 
+    <!-- 환경설정 모달  -->
+    <div id="modal-configs" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-meeting-invited-label" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">환경설정</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body ">
+                 
+            
 
-        <!-- config bar overlay-->
-	<div class="right-bar">
-		<div data-simplebar="init" class="h-100">
-			<div class="simplebar-wrapper" style="margin: 0px;">
-				<div class="simplebar-height-auto-observer-wrapper">
-					<div class="simplebar-height-auto-observer"></div>
-				</div>
-				<div class="simplebar-mask">
-					<div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-						<div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
-							<div class="simplebar-content" style="padding: 0px;">
+                    <div class="px-3 pb-3 pt-0">
+                        <h6 class="font-weight-medium font-14 mb-1 pb-1">오디오 입력 장치 선택</h6>
+                        <select id="audioSource" class="custom-select mb-2"></select>
 
-								<!-- Nav tabs -->
-								<ul class="nav nav-tabs nav-bordered nav-justified" role="tablist">
+                        <h6 class="font-weight-medium font-14 mb-1 pb-1">오디오 출력 장치 선택</h6>
+                        <select id="audioOutput" class="custom-select mb-2"></select>
+                        
+                        <h6 class="font-weight-medium font-14 mb-1  pb-1">비디오 출력 장치 선택</h6>
+                        <select id="videoSource" class="custom-select mb-2"></select>
+                        
 
-									<li class="nav-item">
-										<a class="nav-link py-2" data-toggle="tab" href="#invited-user-tab" role="tab">
-											<i class="mdi mdi-account d-block font-22 my-1"></i>
-										</a>
-									</li>
+                        <h6 class="font-weight-medium font-14 mb-2 pb-1">레이아웃</h6>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-1" checked="">
+                            <label class="custom-control-label" for="config-option-1">옵션 1</label>
+                        </div>
 
-									<li class="nav-item">
-										<a class="nav-link py-2 active" data-toggle="tab" href="#settings-tab" role="tab">
-											<i class="mdi mdi-cog-outline d-block font-22 my-1"></i>
-										</a>
-									</li>
-								</ul>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-2" checked="">
+                            <label class="custom-control-label" for="config-option-2">옵션 2</label>
+                        </div>
 
-								<!-- Tab panes -->
-								<div class="tab-content pt-0">
-									<div class="tab-pane active" id="settings-tab" role="tabpanel">
-										<h6 class="font-weight-medium px-3 m-0 py-2 font-13 text-uppercase bg-light">
-											<span class="d-block py-1">환경 설정</span>
-										</h6>
+                        <!-- Topbar -->
+                        <h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">비디오</h6>
 
-										<div class="p-3 pt-0">
-											<h6 class="font-weight-medium font-14 mb-2 pb-1">레이아웃</h6>
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-1" checked="">
-												<label class="custom-control-label" for="config-option-1">옵션 1</label>
-											</div>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-3" checked="">
+                            <label class="custom-control-label" for="config-option-3">옵션 3</label>
+                        </div>
 
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-2" checked="">
-												<label class="custom-control-label" for="config-option-2">옵션 2</label>
-											</div>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-4" checked="">
+                            <label class="custom-control-label" for="config-option-4">옵션 4</label>
+                        </div>
 
-											<!-- Topbar -->
-											<h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">비디오</h6>
-
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-3" checked="">
-												<label class="custom-control-label" for="config-option-3">옵션 3</label>
-											</div>
-
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-4" checked="">
-												<label class="custom-control-label" for="config-option-4">옵션 4</label>
-											</div>
-
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-5" checked="">
-												<label class="custom-control-label" for="config-option-5">옵션 5</label>
-											</div>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-5" checked="">
+                            <label class="custom-control-label" for="config-option-5">옵션 5</label>
+                        </div>
 
 
 
-											<h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">뭔설정</h6>
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-6" checked="">
-												<label class="custom-control-label" for="config-option-6">옵션 6</label>
-											</div>
+                        <h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">뭔설정</h6>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-6" checked="">
+                            <label class="custom-control-label" for="config-option-6">옵션 6</label>
+                        </div>
 
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-7" checked="">
-												<label class="custom-control-label" for="config-option-7">옵션 7</label>
-											</div>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-7" checked="">
+                            <label class="custom-control-label" for="config-option-7">옵션 7</label>
+                        </div>
 
-											<!-- Topbar -->
-											<h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">다른설정</h6>
+                        <!-- Topbar -->
+                        <h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">다른설정</h6>
 
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-8" checked="">
-												<label class="custom-control-label" for="config-option-8">옵션 8</label>
-											</div>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-8" checked="">
+                            <label class="custom-control-label" for="config-option-8">옵션 8</label>
+                        </div>
 
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-9" checked="">
-												<label class="custom-control-label" for="config-option-9">옵션 9</label>
-											</div>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-9" checked="">
+                            <label class="custom-control-label" for="config-option-9">옵션 9</label>
+                        </div>
 
-											<div class="custom-control custom-switch mb-1">
-												<input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-10" checked="">
-												<label class="custom-control-label" for="config-option-10">옵션 10</label>
-											</div>
+                        <div class="custom-control custom-switch mb-1">
+                            <input type="radio" class="custom-control-input" name="color-scheme-mode" value="1" id="config-option-10" checked="">
+                            <label class="custom-control-label" for="config-option-10">옵션 10</label>
+                        </div>
 
-											<button class="btn btn-primary btn-block mt-4" id="resetBtn">설정 초기화
-											</button>
-										</div>
+                        <button class="btn btn-primary btn-block mt-4" id="resetBtn">설정 초기화
+                        </button>
+                    </div>
+	               
+                </div>
+            </div>
+        </div>
+    </div>
 
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="simplebar-placeholder" style="width: auto; height: 1005px;"></div>
-			</div>
-			<div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-				<div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
-			</div>
-			<div class="simplebar-track simplebar-vertical" style="visibility: visible;">
-				<div class="simplebar-scrollbar" style="height: 886px; transform: translate3d(0px, 0px, 0px); display: block;"></div>
-			</div>
-		</div> <!-- end slimscroll-menu-->
-	</div>
-
-    <!-- config bar overlay-->
-    <div class="rightbar-overlay"></div>
     
     <!-- Vendor js -->
     <script src="./js/vendor.min.js"></script>
