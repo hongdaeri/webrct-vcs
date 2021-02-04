@@ -58,10 +58,10 @@ let constraints = {
     audio: true,
     video: {
         width: {
-            max: 300
+            max: 1280
         },
         height: {
-            max: 300
+            max: 720
         }
     }
 }
