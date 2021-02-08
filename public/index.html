@@ -771,25 +771,14 @@
         }
 
         function saveChatLog(chatData){
-            
-            let chatLog = "{";
-            chatLog += "'userId':'" + chatData.userId + "',";
-            chatLog += "'userName':'" + chatData.userName + "',";
-            chatLog += "'message':'" + chatData.message + "'";
-            chatLog += "}";
 
             let sendData = {
                 "meetingId" : myMeetingId,
-                "chatLog" : chatLog
+                "userId" : chatData.userId,
+                "userName" : chatData.userName,
+                "message" : chatData.message   
             }
-
             console.log(sendData);
-
-            
-        
-            return;
-            // https 문제로 일단 지금 안됨 
-            /*
             $.ajax({
                 url : "http://vcs.secuware.co.kr/meeting/appendChatLog.json",
                 type: 'POST',
@@ -797,19 +786,11 @@
                 data: $.param( sendData ),
                 success : function(data) {
                     console.log(data);
-
-                    if(data.result =="success"){
-                       
-                    } else {
-                        alert2(data.resultMsg);
-                        return;
-                    }
                 },
                 error : function(e) {
-                    alert2('일시적인 네트워크 오류입니다.<br>문제가 지속 될 시 관리자에게 문의하세요.');
+                    console.log('채팅로그 저장 실패');
                 }
-            });     
-            */     
+            });    
         }
     </script>
 </body>
