@@ -55,7 +55,6 @@ const configuration = {
  * UserMedia constraints
  */
 let constraints = {
-    audio: true,
     video: {
         width: {
             max: 1280
@@ -63,6 +62,11 @@ let constraints = {
         height: {
             max: 720
         }
+    },
+    audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        sampleRate: 44100
     }
 }
 
@@ -535,7 +539,6 @@ function toggleMute() {
     $(".tooltip").remove();
     $('[data-toggle="tooltip"]').tooltip();
 }
-
 
 
 /**
