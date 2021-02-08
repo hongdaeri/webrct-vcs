@@ -670,7 +670,6 @@
 
         let mySocket;
 
-
         let scroll_bottom_position = 100000;
         let currentViewScroll = 0;
         let chatScrollMaxVal = 0;
@@ -681,8 +680,6 @@
 
             getMyInfo();
 
-            
-            console.log("meeting mode : " + meetingMode);
             if(meetingMode != null && meetingMode == 'class'){                
                 $("#classMode").show();
                 $("#conferenceMode").remove();
@@ -726,7 +723,6 @@
 
             $("#chat_scroll").scroll(function () {
                 currentViewScroll = $(this).scrollTop();
-                console.log(currentViewScroll);
                 if(chatScrollMaxVal < currentViewScroll){
                     chatScrollMaxVal = currentViewScroll;
                 }
@@ -778,7 +774,7 @@
                 "userName" : chatData.userName,
                 "message" : chatData.message   
             }
-            console.log(sendData);
+            
             $.ajax({
                 url : "https://securtc.com/meeting/appendChatLog.json",
                 type: 'POST',

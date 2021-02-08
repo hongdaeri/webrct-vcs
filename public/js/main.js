@@ -78,8 +78,6 @@ constraints.video.facingMode = {
  * enabling the camera at startup
  */
 navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-    console.log('Received local stream');
-
     switch(meetingMode){
         case "class":
             if(myUserId == meetingHostId){
@@ -130,15 +128,11 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
  * initialize the socket connections
  */
 function init() {
-
-    console.log("on init");
-
     socket = io();   
 
     initUserSocket(socket.id);
 
     socket.on('chat message', function(chatData) {
-        console.log(chatData);
         var chatItem = "";                         
         if(chatData.userId == myUserId){
             chatItem += "<li class='clearfix odd'>";
@@ -164,20 +158,15 @@ function init() {
     });
 
     socket.on('initReceive', data => {
-        console.log('INIT RECEIVE')
         addPeer(data, false);
-        console.log(data);
         socket.emit('initSend', data)
     })
 
     socket.on('initSend', data => {
-        console.log('INIT SEND ');
-        console.log(data);
         addPeer(data, true)
     })
 
     socket.on('removePeer', socket_id => {
-        console.log('removing peer ' + socket_id)
         removePeer(socket_id)
     })
 
@@ -189,7 +178,6 @@ function init() {
     })
 
     socket.on('signal', data => {
-        console.log("SIGNAL");
         peers[data.socket_id].signal(data.signal)
     })   
 }
@@ -199,8 +187,6 @@ function init() {
  * initialize login user info on Socket
  */
 function initUserSocket(socket_id){
-    console.log("init user socket : ");
-
     let hostYn = false;
     if(meetingHostId == myUserId){
         hostYn = true;
@@ -222,7 +208,6 @@ function initUserSocket(socket_id){
  * @param {String} socket_id 
  */
 function removePeer(socket_id) {
-    console.log("removePeer");
     let videoEl = document.getElementById(socket_id)
     if (videoEl) {
 
@@ -254,7 +239,6 @@ function removePeer(socket_id) {
  *                  Set to false if the peer receives the connection. 
  */
 function addPeer(peer, am_initiator) {
-    console.log("add peer");
     peers[peer.id] = new SimplePeer({
         initiator: am_initiator,
         stream: localStream,
@@ -262,7 +246,6 @@ function addPeer(peer, am_initiator) {
     })
 
     peers[peer.id].on('signal', data => {
-        console.log("on signal");
         socket.emit('signal', {
             signal: data,
             socket_id: peer.id        
@@ -270,8 +253,6 @@ function addPeer(peer, am_initiator) {
     })
 
     peers[peer.id].on('stream', stream => {
-        console.log("on stream");
-
         switch(meetingMode){
             case "class":
                 if(peer.hostYn){
@@ -335,7 +316,6 @@ function addPeer(peer, am_initiator) {
  * @param {HTMLVideoElement} el video element to put in pip mode
  */
 function openPictureMode(el) {
-    console.log('opening pip')
     el.requestPictureInPicture()
 }
 
@@ -374,7 +354,6 @@ function switchMedia() {
         localStream = stream
         getMyVideo().srcObject = stream
 
-        console.log("ON SWITCH MEDIA");
         updateDeviceButtons();
     })
 }
@@ -383,7 +362,6 @@ function switchMedia() {
  * Enable screen share
  */
 function setScreen() {
-    console.log("set screen");
     navigator.mediaDevices.getDisplayMedia().then(stream => {
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {
