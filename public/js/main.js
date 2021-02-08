@@ -380,7 +380,7 @@ function switchMedia() {
  */
 function setScreen() {
     console.log("set screen");
-    navigator.mediaDevices.getDisplayMedia().then(stream => {
+    navigator.mediaDevices.getDisplayMedia({audio: true, video: true}).then(stream => {
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {
                 for (let index2 in stream.getTracks()) {
