@@ -12,6 +12,7 @@ function ScreenHandler() {
         height: 1080, // 최대 높이
         frameRate: 10, // 최대 프레임
       },
+      audio:true,
     };
     let localStream = null;
   
