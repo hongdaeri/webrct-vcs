@@ -124,7 +124,7 @@ function cameraOn(){
         init()
     
     //}).catch(e => alert(`getusermedia error ${e.name}`))
-    }).catch(e => console.log(e))
+    }).catch(e => alert(e))
 }
 
 /**
