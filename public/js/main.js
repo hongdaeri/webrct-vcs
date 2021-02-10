@@ -240,57 +240,31 @@ function removePeer(socket_id) {
  *                  Set to false if the peer receives the connection. 
  */
 function addPeer(peer, am_initiator) {
-    try {
-        peers[peer.id] = new SimplePeer({
-            initiator: am_initiator,
-            stream: localStream,
-            config: configuration
+    peers[peer.id] = new SimplePeer({
+        initiator: am_initiator,
+        stream: localStream,
+        config: configuration
+    })
+
+    peers[peer.id].on('signal', data => {
+        socket.emit('signal', {
+            signal: data,
+            socket_id: peer.id        
         })
-    
-        peers[peer.id].on('signal', data => {
-            socket.emit('signal', {
-                signal: data,
-                socket_id: peer.id        
-            })
-        })
-    
-        peers[peer.id].on('stream', stream => {
-            switch(meetingMode){
-                case "class":
-                    if(peer.hostYn){
-                        hostVideo.srcObject = stream
-                        hostVideoName.innerHTML = peer.userName +"(방장)";
-                    } else {
-                        let newPerson = document.createElement('div');
-                        newPerson.id = "person-" + peer.id;        
-                        newPerson.className = "person audience";
-                        members.appendChild(newPerson);
-            
-                        let newVid = document.createElement('video')
-                        newVid.srcObject = stream
-                        newVid.id = peer.id
-                        newVid.playsinline = false
-                        newVid.autoplay = true
-                        newVid.muted = false
-                        newVid.className = "vid"
-                        newVid.poster = "./images/novideo3.png"
-                        newVid.onclick = () => openPictureMode(newVid)
-                        newVid.ontouchstart = (e) => openPictureMode(newVid)
-                        newPerson.appendChild(newVid);
-            
-                        let newPersonName = document.createElement("div");
-                        newPersonName.className = "person-name";
-                        newPersonName.innerHTML = peer.userName;        
-                        newPerson.appendChild(newPersonName);
-                    }
-                    break;
-                case "normal":  
-                default:               
+    })
+
+    peers[peer.id].on('stream', stream => {
+        switch(meetingMode){
+            case "class":
+                if(peer.hostYn){
+                    hostVideo.srcObject = stream
+                    hostVideoName.innerHTML = peer.userName +"(방장)";
+                } else {
                     let newPerson = document.createElement('div');
-                    newPerson.id = "person-" + peer.id;
-                    newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
+                    newPerson.id = "person-" + peer.id;        
+                    newPerson.className = "person audience";
                     members.appendChild(newPerson);
-                    
+        
                     let newVid = document.createElement('video')
                     newVid.srcObject = stream
                     newVid.id = peer.id
@@ -302,18 +276,39 @@ function addPeer(peer, am_initiator) {
                     newVid.onclick = () => openPictureMode(newVid)
                     newVid.ontouchstart = (e) => openPictureMode(newVid)
                     newPerson.appendChild(newVid);
-    
+        
                     let newPersonName = document.createElement("div");
                     newPersonName.className = "person-name";
                     newPersonName.innerHTML = peer.userName;        
                     newPerson.appendChild(newPersonName);
-                    
-            }            
-        })
-    } catch(error){
-        console.log(error);
-    }
-   
+                }
+                break;
+            case "normal":  
+            default:               
+                let newPerson = document.createElement('div');
+                newPerson.id = "person-" + peer.id;
+                newPerson.className = "col-lg-3 col-md-4 col-sm-6 person";
+                members.appendChild(newPerson);
+                
+                let newVid = document.createElement('video')
+                newVid.srcObject = stream
+                newVid.id = peer.id
+                newVid.playsinline = false
+                newVid.autoplay = true
+                newVid.muted = false
+                newVid.className = "vid"
+                newVid.poster = "./images/novideo3.png"
+                newVid.onclick = () => openPictureMode(newVid)
+                newVid.ontouchstart = (e) => openPictureMode(newVid)
+                newPerson.appendChild(newVid);
+
+                let newPersonName = document.createElement("div");
+                newPersonName.className = "person-name";
+                newPersonName.innerHTML = peer.userName;        
+                newPerson.appendChild(newPersonName);
+                
+        }            
+    })
 }
 
 
