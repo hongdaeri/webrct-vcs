@@ -102,6 +102,7 @@ if (DetectRTC.browser.isSafari) {
 function handleSuccess(stream) {
   console.log('success', arguments);
   
+  let hostVideo = document.getElementById('hostVideo');
   switch(meetingMode){
     case "class":
         if(myUserId == meetingHostId){
@@ -146,23 +147,6 @@ localStream = stream;
 
 init()
 
-  // For IOS safari (https://github.com/webrtc/samples/issues/929)
-  /*
-  if (DetectRTC.browser.isSafari) {
-    video.setAttribute('playsinline', true);
-    video.setAttribute('controls', true);
-
-    setInterval(function() {
-      video.removeAttribute('controls');
-    }, 0);
-  }
-
-  // 비디오 테그에 stream 바인딩
-  $('video')[0].srcObject = stream;
-  // document.querySelector('video').srcObject = stream;
-
-  */
-  // do something...
 }
 
 /**
