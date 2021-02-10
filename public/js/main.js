@@ -100,16 +100,11 @@ if (DetectRTC.browser.isSafari) {
  * @param stream
  */
 function handleSuccess(stream) {  
-  const hostVideo = document.getElementById('hostVideo');
   console.log(meetingMode);
   switch(meetingMode){
     case "class":
-        if(myUserId == meetingHostId){
-            try{
-                hostVideo.srcObject = stream;
-            } catch(error){
-                hostVideo.src = URL.createObjectURL(stream);
-            } 
+        if(myUserId == meetingHostId){            
+            hostVideo.srcObject = stream;           
             hostVideoName.innerHTML = "나 (방장)";
         } else {
             let newPerson = document.createElement('div');
@@ -139,11 +134,7 @@ function handleSuccess(stream) {
         break;
     case "normal":  
     default:
-       try{
-            hostVideo.srcObject = stream;
-        } catch(error){
-            hostVideo.src = URL.createObjectURL(stream);
-        }      
+        hostVideo.srcObject = stream;               
         hostVideoName.innerHTML = "나";
         if(myUserId == meetingHostId){
             hostVideoName.innerHTML = "나 (방장)";
