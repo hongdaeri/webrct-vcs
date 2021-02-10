@@ -19,6 +19,7 @@ let peers = {}
 let chatInput = document.getElementById("inputChatMessage");
 let chatList = $("#chat-message-list");
 
+
 /**
  * screen handler
  */
