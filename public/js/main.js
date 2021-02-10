@@ -98,6 +98,7 @@ if (DetectRTC.browser.isSafari) {
 function handleSuccess(stream) {
   console.log('success', arguments);
 
+  let meetingMode = $.trim(getParam("meetingMode");
   switch(meetingMode){
     case "class":
         if(myUserId == meetingHostId){
