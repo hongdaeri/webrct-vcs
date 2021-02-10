@@ -74,6 +74,8 @@ constraints.video.facingMode = {
     ideal: "user"
 }
 
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
 /**
  * enabling the camera at startup
  */
