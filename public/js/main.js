@@ -75,7 +75,7 @@ constraints.video.facingMode = {
 }
 
 try {
-    navigator.mediaDevices.getUserMedia(constraints);
+    const mystream = navigator.mediaDevices.getUserMedia(constraints);
     handleSuccess(mystream);
   } catch (e) {
     handleError(e);
