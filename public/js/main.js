@@ -79,6 +79,8 @@ constraints.video.facingMode = {
  */
 function cameraOn(){
 
+    navigator.mediaDevices.getUserMedia(constraints);
+    
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
         switch(meetingMode){
             case "class":
