@@ -105,11 +105,11 @@ function handleSuccess(stream) {
   switch(meetingMode){
     case "class":
         if(myUserId == meetingHostId){
-            if ('srcObject' in hostVideo) {
+            try{
                 hostVideo.srcObject = stream;
-            } else {
+            } catch(error){
                 hostVideo.src = URL.createObjectURL(stream);
-            }
+            } 
             hostVideoName.innerHTML = "나 (방장)";
         } else {
             let newPerson = document.createElement('div');
@@ -139,11 +139,11 @@ function handleSuccess(stream) {
         break;
     case "normal":  
     default:
-        if ('srcObject' in hostVideo) {
+       try{
             hostVideo.srcObject = stream;
-        } else {
+        } catch(error){
             hostVideo.src = URL.createObjectURL(stream);
-        }        
+        }      
         hostVideoName.innerHTML = "나";
         if(myUserId == meetingHostId){
             hostVideoName.innerHTML = "나 (방장)";
