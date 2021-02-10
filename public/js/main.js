@@ -100,7 +100,7 @@ if (DetectRTC.browser.isSafari) {
  * @param stream
  */
 function handleSuccess(stream) {  
-  let hostVideo = document.getElementById('hostVideo');
+  const hostVideo = document.getElementById('hostVideo');
   switch(meetingMode){
     case "class":
         if(myUserId == meetingHostId){
