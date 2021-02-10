@@ -76,7 +76,12 @@ constraints.video.facingMode = {
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-navigator.mediaDevices.getUserMedia(constraints , getUserMediaSuccess, getUserMediaError);
+
+if (DetectRTC.browser.isSafari) {
+    navigator.mediaDevices.getUserMedia(constraints , getUserMediaSuccess, getUserMediaError);
+} else {
+    navigator.getUserMedia(constraints, getUserMediaSuccess, getUserMediaError);
+}
 
 /**
  * getUserMedia 성공
