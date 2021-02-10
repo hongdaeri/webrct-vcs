@@ -101,6 +101,7 @@ if (DetectRTC.browser.isSafari) {
  */
 function handleSuccess(stream) {  
   const hostVideo = document.getElementById('hostVideo');
+  console.log(meetingMode);
   switch(meetingMode){
     case "class":
         if(myUserId == meetingHostId){
@@ -160,6 +161,17 @@ init()
  * @param error
  */
 function handleError(error) {
+
+    if (error.name === 'ConstraintNotSatisfiedError') {
+        const v = constraints.video;
+        console.log(`The resolution ${v.width.exact}x${v.height.exact} px is not supported by your device.`);
+      } else if (error.name === 'PermissionDeniedError') {
+        console.log('Permissions have not been granted to use your camera and ' +
+          'microphone, you need to allow the page access to your devices in ' +
+          'order for the demo to work.');
+      }
+      console.log(`getUserMedia error: ${error.name}`, error);
+      
   console.log('error', arguments);
   alert('카메라와 마이크를 허용해주세요');
 }
