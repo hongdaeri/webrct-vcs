@@ -76,55 +76,91 @@ constraints.video.facingMode = {
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
+navigator.mediaDevices.getUserMedia(constraints , getUserMediaSuccess, getUserMediaError);
+
+/**
+ * getUserMedia 성공
+ * @param stream
+ */
+function getUserMediaSuccess(stream) {
+  console.log('success', arguments);
+
+  switch(meetingMode){
+    case "class":
+        if(myUserId == meetingHostId){
+            hostVideo.srcObject = stream;
+            hostVideoName.innerHTML = "나 (방장)";
+        } else {
+            let newPerson = document.createElement('div');
+            newPerson.id = "person-iam";
+    
+            newPerson.className = "person audience";
+            members.appendChild(newPerson);
+                
+            let newVid = document.createElement('video')
+            newVid.srcObject = stream
+            newVid.id = "localVideo"
+            newVid.playsinline = false
+            newVid.autoplay = true
+            newVid.muted = true
+            newVid.controls = true
+            newVid.className = "vid"
+            newVid.poster = "./images/novideo3.png"
+            newVid.onclick = () => openPictureMode(newVid)
+            newVid.ontouchstart = (e) => openPictureMode(newVid)
+            newPerson.appendChild(newVid);
+    
+            let newPersonName = document.createElement("div");
+            newPersonName.className = "person-name";
+            newPersonName.innerHTML = "나";
+            newPerson.appendChild(newPersonName);
+        }
+        break;
+    case "normal":  
+    default:
+        hostVideo.srcObject = stream;           
+        hostVideoName.innerHTML = "나";
+        if(myUserId == meetingHostId){
+            hostVideoName.innerHTML = "나 (방장)";
+        } 
+}
+
+localStream = stream; 
+
+init()
+
+  // For IOS safari (https://github.com/webrtc/samples/issues/929)
+  /*
+  if (DetectRTC.browser.isSafari) {
+    video.setAttribute('playsinline', true);
+    video.setAttribute('controls', true);
+
+    setInterval(function() {
+      video.removeAttribute('controls');
+    }, 0);
+  }
+
+  // 비디오 테그에 stream 바인딩
+  $('video')[0].srcObject = stream;
+  // document.querySelector('video').srcObject = stream;
+
+  */
+  // do something...
+}
+
+/**
+ * getUserMedia 실패
+ * @param error
+ */
+function getUserMediaError(error) {
+  console.log('error', arguments);
+  alert('카메라와 마이크를 허용해주세요');
+}
+
 /**
  * enabling the camera at startup
  */
-navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-    switch(meetingMode){
-        case "class":
-            if(myUserId == meetingHostId){
-                hostVideo.srcObject = stream;
-                hostVideoName.innerHTML = "나 (방장)";
-            } else {
-                let newPerson = document.createElement('div');
-                newPerson.id = "person-iam";
-        
-                newPerson.className = "person audience";
-                members.appendChild(newPerson);
-                    
-                let newVid = document.createElement('video')
-                newVid.srcObject = stream
-                newVid.id = "localVideo"
-                newVid.playsinline = false
-                newVid.autoplay = true
-                newVid.muted = true
-                newVid.controls = true
-                newVid.className = "vid"
-                newVid.poster = "./images/novideo3.png"
-                newVid.onclick = () => openPictureMode(newVid)
-                newVid.ontouchstart = (e) => openPictureMode(newVid)
-                newPerson.appendChild(newVid);
-        
-                let newPersonName = document.createElement("div");
-                newPersonName.className = "person-name";
-                newPersonName.innerHTML = "나";
-                newPerson.appendChild(newPersonName);
-            }
-            break;
-        case "normal":  
-        default:
-            hostVideo.srcObject = stream;           
-            hostVideoName.innerHTML = "나";
-            if(myUserId == meetingHostId){
-                hostVideoName.innerHTML = "나 (방장)";
-            } 
-    }
 
-    localStream = stream; 
-    init()
-
-//}).catch(e => alert(`getusermedia error ${e.name}`))
-}).catch(e => alert("카메라가 없습니다"))
 
 /**
  * initialize the socket connections
