@@ -74,21 +74,27 @@ constraints.video.facingMode = {
     ideal: "user"
 }
 
+try {
+    const mystream = await navigator.mediaDevices.getUserMedia(constraints);
+    handleSuccess(mystream);
+  } catch (e) {
+    handleError(e);
+  }
 
-
-if (DetectRTC.browser.isSafari) {
-    
-    await navigator.mediaDevices.getUserMedia(constraints , getUserMediaSuccess, getUserMediaError);
+/*
+if (DetectRTC.browser.isSafari) {    
+     navigator.mediaDevices.getUserMedia(constraints , handleSuccess, handleError);
 } else {
-    await navigator.mediaDevices.getUserMedia(constraints , getUserMediaSuccess, getUserMediaError);
+     navigator.mediaDevices.getUserMedia(constraints , handleSuccess, handleError);
     //navigator.getUserMedia(constraints, getUserMediaSuccess, getUserMediaError);
 }
+*/
 
 /**
  * getUserMedia 성공
  * @param stream
  */
-function getUserMediaSuccess(stream) {
+function handleSuccess(stream) {
   console.log('success', arguments);
 
   switch(meetingMode){
@@ -158,7 +164,7 @@ init()
  * getUserMedia 실패
  * @param error
  */
-function getUserMediaError(error) {
+function handleError(error) {
   console.log('error', arguments);
   alert('카메라와 마이크를 허용해주세요');
 }
