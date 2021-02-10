@@ -75,9 +75,11 @@ constraints.video.facingMode = {
     ideal: "user"
 }
 
+console.log(1, meetingMode);
 try {
     const mystream = navigator.mediaDevices.getUserMedia(constraints);
-    handleSuccess(mystream, meetingMode);
+    console.log(2, meetingMode);
+    handleSuccess(mystream);
   } catch (e) {
     handleError(e);
   }
@@ -95,9 +97,9 @@ if (DetectRTC.browser.isSafari) {
  * getUserMedia 성공
  * @param stream
  */
-function handleSuccess(stream, meetingMode) {
+function handleSuccess(stream) {
   console.log('success', arguments);
-
+  
   switch(meetingMode){
     case "class":
         if(myUserId == meetingHostId){
