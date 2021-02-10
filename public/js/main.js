@@ -74,6 +74,83 @@ constraints.video.facingMode = {
     ideal: "user"
 }
 
+function handleSuccess(stream) {  
+    const hostVideo = document.getElementById('hostVideo');
+    console.log(meetingMode);
+    switch(meetingMode){
+      case "class":
+          if(myUserId == meetingHostId){
+              try{
+                  hostVideo.srcObject = stream;
+              } catch(error){
+                  hostVideo.src = URL.createObjectURL(stream);
+              } 
+              hostVideoName.innerHTML = "나 (방장)";
+          } else {
+              let newPerson = document.createElement('div');
+              newPerson.id = "person-iam";
+      
+              newPerson.className = "person audience";
+              members.appendChild(newPerson);
+                  
+              let newVid = document.createElement('video')
+              newVid.srcObject = stream
+              newVid.id = "localVideo"
+              newVid.playsinline = false
+              newVid.autoplay = true
+              newVid.muted = true
+              newVid.controls = true
+              newVid.className = "vid"
+              newVid.poster = "./images/novideo3.png"
+              newVid.onclick = () => openPictureMode(newVid)
+              newVid.ontouchstart = (e) => openPictureMode(newVid)
+              newPerson.appendChild(newVid);
+      
+              let newPersonName = document.createElement("div");
+              newPersonName.className = "person-name";
+              newPersonName.innerHTML = "나";
+              newPerson.appendChild(newPersonName);
+          }
+          break;
+      case "normal":  
+      default:
+         try{
+              hostVideo.srcObject = stream;
+          } catch(error){
+              hostVideo.src = URL.createObjectURL(stream);
+          }      
+          hostVideoName.innerHTML = "나";
+          if(myUserId == meetingHostId){
+              hostVideoName.innerHTML = "나 (방장)";
+          } 
+  }
+  
+  localStream = stream; 
+  
+  init()
+  
+  }
+  
+  /**
+   * getUserMedia 실패
+   * @param error
+   */
+  function handleError(error) {
+  
+      if (error.name === 'ConstraintNotSatisfiedError') {
+          const v = constraints.video;
+          console.log(`The resolution ${v.width.exact}x${v.height.exact} px is not supported by your device.`);
+        } else if (error.name === 'PermissionDeniedError') {
+          console.log('Permissions have not been granted to use your camera and ' +
+            'microphone, you need to allow the page access to your devices in ' +
+            'order for the demo to work.');
+        }
+        console.log(`getUserMedia error: ${error.name}`, error);
+        
+    console.log('error', arguments);
+    alert('카메라와 마이크를 허용해주세요');
+  }
+  
 /**
  * enabling the camera at startup
  */
@@ -81,52 +158,62 @@ function cameraOn(){
 
     try {
 
-    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-        switch(meetingMode){
-            case "class":
-                if(myUserId == meetingHostId){
-                    hostVideo.srcObject = stream;
-                    hostVideoName.innerHTML = "나 (방장)";
-                } else {
-                    let newPerson = document.createElement('div');
-                    newPerson.id = "person-iam";
-            
-                    newPerson.className = "person audience";
-                    members.appendChild(newPerson);
-                        
-                    let newVid = document.createElement('video')
-                    newVid.srcObject = stream
-                    newVid.id = "localVideo"
-                    newVid.playsinline = false
-                    newVid.autoplay = true
-                    newVid.muted = true
-                    newVid.controls = true
-                    newVid.className = "vid"
-                    newVid.poster = "./images/novideo3.png"
-                    newVid.onclick = () => openPictureMode(newVid)
-                    newVid.ontouchstart = (e) => openPictureMode(newVid)
-                    newPerson.appendChild(newVid);
-            
-                    let newPersonName = document.createElement("div");
-                    newPersonName.className = "person-name";
-                    newPersonName.innerHTML = "나";
-                    newPerson.appendChild(newPersonName);
-                }
-                break;
-            case "normal":  
-            default:
-                hostVideo.srcObject = stream;           
-                hostVideoName.innerHTML = "나";
-                if(myUserId == meetingHostId){
-                    hostVideoName.innerHTML = "나 (방장)";
-                } 
-        }
+        try {
+            const mystream = navigator.mediaDevices.getUserMedia(constraints);
+            handleSuccess(mystream);
+          } catch (e) {
+            handleError(e);
+          }
     
-        localStream = stream; 
-        init()
-    
-    //}).catch(e => alert(`getusermedia error ${e.name}`))
-    }).catch(e => alert(e))
+        /*
+        navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+            switch(meetingMode){
+                case "class":
+                    if(myUserId == meetingHostId){
+                        hostVideo.srcObject = stream;
+                        hostVideoName.innerHTML = "나 (방장)";
+                    } else {
+                        let newPerson = document.createElement('div');
+                        newPerson.id = "person-iam";
+                
+                        newPerson.className = "person audience";
+                        members.appendChild(newPerson);
+                            
+                        let newVid = document.createElement('video')
+                        newVid.srcObject = stream
+                        newVid.id = "localVideo"
+                        newVid.playsinline = false
+                        newVid.autoplay = true
+                        newVid.muted = true
+                        newVid.controls = true
+                        newVid.className = "vid"
+                        newVid.poster = "./images/novideo3.png"
+                        newVid.onclick = () => openPictureMode(newVid)
+                        newVid.ontouchstart = (e) => openPictureMode(newVid)
+                        newPerson.appendChild(newVid);
+                
+                        let newPersonName = document.createElement("div");
+                        newPersonName.className = "person-name";
+                        newPersonName.innerHTML = "나";
+                        newPerson.appendChild(newPersonName);
+                    }
+                    break;
+                case "normal":  
+                default:
+                    hostVideo.srcObject = stream;           
+                    hostVideoName.innerHTML = "나";
+                    if(myUserId == meetingHostId){
+                        hostVideoName.innerHTML = "나 (방장)";
+                    } 
+            }
+        
+            localStream = stream; 
+            init()
+        
+        //}).catch(e => alert(`getusermedia error ${e.name}`))
+        }).catch(e => alert(e))
+
+        */
 
     } catch (error){
         alert(e);
