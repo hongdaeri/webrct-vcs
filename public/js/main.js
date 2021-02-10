@@ -81,6 +81,7 @@ function cameraOn(){
 
     const mystream = navigator.mediaDevices.getUserMedia(constraints);
 
+    /*
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
         switch(meetingMode){
             case "class":
@@ -127,6 +128,8 @@ function cameraOn(){
     
     //}).catch(e => alert(`getusermedia error ${e.name}`))
     }).catch(e => alert(e))
+
+    */
 }
 
 /**
