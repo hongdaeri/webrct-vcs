@@ -77,52 +77,55 @@ constraints.video.facingMode = {
 /**
  * enabling the camera at startup
  */
-navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-    switch(meetingMode){
-        case "class":
-            if(myUserId == meetingHostId){
-                hostVideo.srcObject = stream;
-                hostVideoName.innerHTML = "나 (방장)";
-            } else {
-                let newPerson = document.createElement('div');
-                newPerson.id = "person-iam";
-        
-                newPerson.className = "person audience";
-                members.appendChild(newPerson);
-                    
-                let newVid = document.createElement('video')
-                newVid.srcObject = stream
-                newVid.id = "localVideo"
-                newVid.playsinline = false
-                newVid.autoplay = true
-                newVid.muted = true
-                newVid.controls = true
-                newVid.className = "vid"
-                newVid.poster = "./images/novideo3.png"
-                newVid.onclick = () => openPictureMode(newVid)
-                newVid.ontouchstart = (e) => openPictureMode(newVid)
-                newPerson.appendChild(newVid);
-        
-                let newPersonName = document.createElement("div");
-                newPersonName.className = "person-name";
-                newPersonName.innerHTML = "나";
-                newPerson.appendChild(newPersonName);
-            }
-            break;
-        case "normal":  
-        default:
-            hostVideo.srcObject = stream;           
-            hostVideoName.innerHTML = "나";
-            if(myUserId == meetingHostId){
-                hostVideoName.innerHTML = "나 (방장)";
-            } 
-    }
+function cameraOn(){
 
-    localStream = stream; 
-    init()
-
-//}).catch(e => alert(`getusermedia error ${e.name}`))
-}).catch(e => alert("카메라가 없습니다"))
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        switch(meetingMode){
+            case "class":
+                if(myUserId == meetingHostId){
+                    hostVideo.srcObject = stream;
+                    hostVideoName.innerHTML = "나 (방장)";
+                } else {
+                    let newPerson = document.createElement('div');
+                    newPerson.id = "person-iam";
+            
+                    newPerson.className = "person audience";
+                    members.appendChild(newPerson);
+                        
+                    let newVid = document.createElement('video')
+                    newVid.srcObject = stream
+                    newVid.id = "localVideo"
+                    newVid.playsinline = false
+                    newVid.autoplay = true
+                    newVid.muted = true
+                    newVid.controls = true
+                    newVid.className = "vid"
+                    newVid.poster = "./images/novideo3.png"
+                    newVid.onclick = () => openPictureMode(newVid)
+                    newVid.ontouchstart = (e) => openPictureMode(newVid)
+                    newPerson.appendChild(newVid);
+            
+                    let newPersonName = document.createElement("div");
+                    newPersonName.className = "person-name";
+                    newPersonName.innerHTML = "나";
+                    newPerson.appendChild(newPersonName);
+                }
+                break;
+            case "normal":  
+            default:
+                hostVideo.srcObject = stream;           
+                hostVideoName.innerHTML = "나";
+                if(myUserId == meetingHostId){
+                    hostVideoName.innerHTML = "나 (방장)";
+                } 
+        }
+    
+        localStream = stream; 
+        init()
+    
+    //}).catch(e => alert(`getusermedia error ${e.name}`))
+    }).catch(e => alert("카메라가 없습니다"))
+}
 
 /**
  * initialize the socket connections
