@@ -709,6 +709,7 @@ function deviceHandleError(error) {
 
 // Device electe event
 function deviceSelected() {
+    console.log("까꿍");
     
     if (window.stream) {
         window.stream.getTracks().forEach(track => {
