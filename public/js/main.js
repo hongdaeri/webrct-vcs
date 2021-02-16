@@ -20,7 +20,6 @@ let chatInput = document.getElementById("inputChatMessage");
 let chatList = $("#chat-message-list");
 
 
-
 /**
  * screen handler
  */
@@ -708,6 +707,7 @@ function deviceHandleError(error) {
   
 // Device electe event
 function deviceSelected() {
+    console.log(meetingMode);
     if (window.stream) {
         window.stream.getTracks().forEach(track => {
         track.stop();
@@ -721,7 +721,7 @@ function deviceSelected() {
     };
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(deviceHandleError);
 
-    //getMyVideo().srcObject = gotStream
+    getMyVideo().srcObject = gotStream
 }
   
 audioInputSelect.onchange = deviceSelected;
