@@ -137,9 +137,9 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 function init() {
     socket = io();   
 
-    deviceSelected();
+    //deviceSelected();
 
-    //initUserSocket(socket.id);
+    initUserSocket(socket.id);
 
     socket.on('chat message', function(chatData) {
         var chatItem = "";                         
