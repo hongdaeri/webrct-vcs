@@ -4599,6 +4599,9 @@
                     }
                     _onConnectionStateChange() {
                         try{
+                            console.log(this._pc.connectionState);
+                            console.log( this.destroyed);
+                          
                             this.destroyed || "failed" === this._pc.connectionState && this.destroy(a("Connection failed.", "ERR_CONNECTION_FAILURE"))
                         }catch (error){
                             console.log(error);
@@ -4606,6 +4609,7 @@
                     }
                     _onIceStateChange() {
                         if (!this.destroyed) {
+                            console.log("_onIceStateChange");
                             var e = this._pc.iceConnectionState
                               , t = this._pc.iceGatheringState;
                             this._debug("iceStateChange (connection: %s) (gathering: %s)", e, t),
