@@ -4609,20 +4609,23 @@
                     }
                     _onIceStateChange() {
                         if (!this.destroyed) {
+                
+                            var e = this._pc.iceConnectionState
+                              , t = this._pc.iceGatheringState;
                             try{
 
+                                this._debug("iceStateChange (connection: %s) (gathering: %s)", e, t),
+                                this.emit("iceStateChange", e, t),
+                                ("connected" === e || "completed" === e) && (this._pcReady = !0,
+                                this._maybeReady()),
+                                "failed" === e && this.destroy(a("Ice connection failed.", "ERR_ICE_CONNECTION_FAILURE")),
+                                "closed" === e && this.destroy(a("Ice connection closed.", "ERR_ICE_CONNECTION_CLOSED"))
+                                
                             }catch(error){
                                 console.log("onicechanged");
                                 console.log(error);
                             }
-                            var e = this._pc.iceConnectionState
-                              , t = this._pc.iceGatheringState;
-                            this._debug("iceStateChange (connection: %s) (gathering: %s)", e, t),
-                            this.emit("iceStateChange", e, t),
-                            ("connected" === e || "completed" === e) && (this._pcReady = !0,
-                            this._maybeReady()),
-                            "failed" === e && this.destroy(a("Ice connection failed.", "ERR_ICE_CONNECTION_FAILURE")),
-                            "closed" === e && this.destroy(a("Ice connection closed.", "ERR_ICE_CONNECTION_CLOSED"))
+                          
                         }
                     }
                     getStats(e) {
