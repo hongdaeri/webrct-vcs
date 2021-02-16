@@ -4609,7 +4609,12 @@
                     }
                     _onIceStateChange() {
                         if (!this.destroyed) {
-                            console.log("_onIceStateChange");
+                            try{
+
+                            }catch(error){
+                                console.log("onicechanged");
+                                console.log(error);
+                            }
                             var e = this._pc.iceConnectionState
                               , t = this._pc.iceGatheringState;
                             this._debug("iceStateChange (connection: %s) (gathering: %s)", e, t),

@@ -45,9 +45,9 @@ const configuration = {
         // public turn server from https://gist.github.com/sagivo/3a4b2f2c7ac6e1b5267c2f1f59ac6c6b
         // set your own servers here
         {
-            url: 'turn:numb.viagenie.ca',
-            credential: 'muazkh',
-            username: 'webrtc@live.com'
+            url: 'turn:3.36.166.88',
+            credential: 'secuware',
+            username: 'secuware'
         }
         /*
         {
