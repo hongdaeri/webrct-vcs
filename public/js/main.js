@@ -138,7 +138,7 @@ function init() {
     socket = io();   
 
     deviceSelected();
-    
+
     initUserSocket(socket.id);
 
     socket.on('chat message', function(chatData) {
@@ -724,6 +724,8 @@ function deviceSelected() {
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(deviceHandleError);
 
     console.log(socket);
+    removePeer(socket.id);
+    addPeer(socket.id, true);
     //getMyVideo().srcObject = gotStream
 }
   
