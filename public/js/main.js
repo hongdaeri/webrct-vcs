@@ -725,7 +725,7 @@ function deviceSelected() {
 
     console.log(socket);
     removePeer(socket.id);
-    addPeer(socket, true);
+    //addPeer(socket, true);
     //getMyVideo().srcObject = gotStream
 }
   
