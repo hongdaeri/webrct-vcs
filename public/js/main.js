@@ -592,7 +592,7 @@ function startScreenShare() {
     });
 }
 
-
+console.log(meetingMode);
 /**
  * cam 송출
  */
@@ -705,7 +705,7 @@ function deviceHandleError(error) {
     console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
 }
   
-console.log(meetingMode);
+
 // Device electe event
 function deviceSelected() {
     
