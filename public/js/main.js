@@ -22,7 +22,7 @@ let chatList = $("#chat-message-list");
 /**
  * screen handler
  */
-const screenHandler = new ScreenHandler();
+//const screenHandler = new ScreenHandler();
 
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') {
@@ -63,12 +63,9 @@ const configuration = {
  */
 let constraints = {
     video: {
-        width: {
-            max: 1280
-        },
-        height: {
-            max: 720
-        }
+        width: 1980, // 최대 너비
+        height: 1080, // 최대 높이
+        frameRate: 10, // 최대 프레임
     },
     audio: {
         echoCancellation: true,
