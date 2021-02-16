@@ -131,7 +131,6 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 }).catch(e => console.log(e))
 
 
-console.log(meetingMode);
 /**
  * initialize the socket connections
  */
@@ -729,4 +728,4 @@ audioInputSelect.onchange = deviceSelected;
 audioOutputSelect.onchange = changeAudioDestination;
 videoSelect.onchange = deviceSelected;
   
-deviceSelected();
+
