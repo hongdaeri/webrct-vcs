@@ -83,6 +83,7 @@ constraints.video.facingMode = {
  */
 
 navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+
     switch(meetingMode){
         case "class":
             if(myUserId == meetingHostId){
@@ -127,7 +128,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     init()
 
 //}).catch(e => alert(`getusermedia error ${e.name}`))
-}).catch(e => alert("카메라가 없습니다"))
+}).catch(e => console.log(e))
 
 /**
  * initialize the socket connections
