@@ -450,7 +450,7 @@ function sendChat(){
         chatInput.value = '';
         saveChatLog(chatData);
     }
-};
+}
 
 
 
@@ -705,9 +705,10 @@ function deviceHandleError(error) {
     console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
 }
   
+console.log(meetingMode);
 // Device electe event
 function deviceSelected() {
-    console.log(meetingMode);
+    
     if (window.stream) {
         window.stream.getTracks().forEach(track => {
         track.stop();
