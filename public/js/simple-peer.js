@@ -4598,13 +4598,10 @@
                         )
                     }
                     _onConnectionStateChange() {
-                        try{
-                            console.log(this._pc.connectionState);
-                            console.log( this.destroyed);
-                          
+                        try{                                                  
                             this.destroyed || "failed" === this._pc.connectionState && this.destroy(a("Connection failed.", "ERR_CONNECTION_FAILURE"))
                         }catch (error){
-                            console.log(error);
+                            location.reload();
                         }
                     }
                     _onIceStateChange() {
@@ -4612,20 +4609,13 @@
                 
                             var e = this._pc.iceConnectionState
                               , t = this._pc.iceGatheringState;
-                            try{
-
-                                this._debug("iceStateChange (connection: %s) (gathering: %s)", e, t),
-                                this.emit("iceStateChange", e, t),
-                                ("connected" === e || "completed" === e) && (this._pcReady = !0,
-                                this._maybeReady()),
-                                "failed" === e && this.destroy(a("Ice connection failed.", "ERR_ICE_CONNECTION_FAILURE")),
-                                "closed" === e && this.destroy(a("Ice connection closed.", "ERR_ICE_CONNECTION_CLOSED"))
-                                
-                            }catch(error){
-                                console.log("onicechanged");
-                                console.log(error);
-                            }
-                          
+                              
+                            this._debug("iceStateChange (connection: %s) (gathering: %s)", e, t),
+                            this.emit("iceStateChange", e, t),
+                            ("connected" === e || "completed" === e) && (this._pcReady = !0,
+                            this._maybeReady()),
+                            "failed" === e && this.destroy(a("Ice connection failed.", "ERR_ICE_CONNECTION_FAILURE")),
+                            "closed" === e && this.destroy(a("Ice connection closed.", "ERR_ICE_CONNECTION_CLOSED"))
                         }
                     }
                     getStats(e) {
