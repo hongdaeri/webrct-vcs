@@ -721,8 +721,7 @@ function deviceSelected() {
     };
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(deviceHandleError);
 
-    console.log(getMyVideo());
-    console.log(gotStream);
+    console.log(socket);
     //getMyVideo().srcObject = gotStream
 }
   
