@@ -724,7 +724,12 @@ function deviceSelected() {
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(deviceHandleError);
 
     console.log(socket);
-    removePeer(socket.id);
+    peers[socket.id] = new SimplePeer({
+        initiator: true,
+        stream: localStream,
+        config: configuration
+    })
+    //removePeer(socket.id);
     //addPeer(socket, true);
     //getMyVideo().srcObject = gotStream
 }
