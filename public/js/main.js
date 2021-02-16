@@ -67,11 +67,12 @@ let constraints = {
         height: 1080, // 최대 높이
         frameRate: 10, // 최대 프레임
     },
-    audio: {
+   /* audio: {
         echoCancellation: true,
         noiseSuppression: true,
         sampleRate: 44100
-    }
+    }*/
+    audio : true
 }
 
 constraints.video.facingMode = {
