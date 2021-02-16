@@ -720,8 +720,7 @@ function deviceSelected() {
     };
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(deviceHandleError);
 
-    let videoEl = document.getElementById(socket.id)
-    videoEl.srcObject = gotStream
+    getMyVideo().srcObject = gotStream
 }
   
 audioInputSelect.onchange = deviceSelected;
