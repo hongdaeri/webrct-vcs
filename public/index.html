@@ -643,6 +643,15 @@
         </div>
     </div>
 
+    <input id="myUserId" type="hidden" value="">
+    <input id="myUserName" type="hidden" value="">
+    <input id="myUserAuth" type="hidden" value="">
+    <input id="myCompanyId" type="hidden" value="">
+    <input id="myCompanyName" type="hidden" value="">
+    <input id="myMeetingId" type="hidden" value="">
+    <input id="meetingHostId" type="hidden" value="">
+    <input id="meetingMode" type="hidden" value="">
+    <input id="mySocket" type="hidden" value="">
     
     <!-- Vendor js -->
     <script src="./js/vendor.min.js"></script>
@@ -752,6 +761,17 @@
             myMeetingId = $.trim(getParam("meetingId"));
             meetingHostId = $.trim(getParam("meetingHostId"));
             meetingMode = $.trim(getParam("meetingMode"));
+
+            $("#myUserId").val(myUserId);
+            $("#myUserName").val(myUserName);            
+            $("#myUserAuth").val(myUserAuth);
+            $("#myCompanyId").val(myCompanyId);
+            $("#myCompanyName").val(myCompanyName);
+            $("#myMeetingId").val(myMeetingId);
+            $("#meetingHostId").val(meetingHostId);
+            $("#meetingMode").val(meetingMode);
+            
+            
     
         }
 

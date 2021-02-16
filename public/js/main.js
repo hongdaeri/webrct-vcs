@@ -19,6 +19,16 @@ let peers = {}
 let chatInput = document.getElementById("inputChatMessage");
 let chatList = $("#chat-message-list");
 
+
+let myUserId = document.getElementById("myUserId");
+let myUserName = document.getElementById("myUserName");
+let myUserAuth = document.getElementById("myUserAuth");
+let myCompanyId = document.getElementById("myCompanyId");
+let myCompanyName = document.getElementById("myCompanyName");
+let myMeetingId = document.getElementById("myMeetingId");
+let meetingHostId = document.getElementById("meetingHostId");
+let meetingMode = document.getElementById("meetingMode");
+
 /**
  * screen handler
  */
@@ -82,8 +92,7 @@ constraints.video.facingMode = {
  * enabling the camera at startup
  */
 
-navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-
+navigator.mediaDevices.getUserMedia(constraints).then(stream => {    
     switch(meetingMode){
         case "class":
             if(myUserId == meetingHostId){
