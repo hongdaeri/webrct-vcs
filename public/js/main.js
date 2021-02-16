@@ -139,7 +139,7 @@ function init() {
 
     deviceSelected();
 
-    initUserSocket(socket.id);
+    //initUserSocket(socket.id);
 
     socket.on('chat message', function(chatData) {
         var chatItem = "";                         
