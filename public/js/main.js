@@ -40,7 +40,7 @@ if(location.href.substr(0,5) !== 'https') {
  */
 const configuration = {
     "iceServers": [
-        {url:'stun:stun.ourcodeworld.com:5349'},
+        {url:'stun:stun.etriage.kr:5349'},
         /*
         {url:'stun:stun.l.google.com:19302'},
         {url:'stun:stun1.l.google.com:19302'},
