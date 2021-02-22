@@ -4602,8 +4602,7 @@
                             this.destroyed || "failed" === this._pc.connectionState && this.destroy(a("Connection failed.", "ERR_CONNECTION_FAILURE"))
                         }catch (error){
                             console.log(error);
-                            console.log(this.destroyed );
-                            console.log(this._pc.connectionState);
+                            console.log( this.destroyed );
                         }
                     }
                     _onIceStateChange() {

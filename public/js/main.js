@@ -40,6 +40,8 @@ if(location.href.substr(0,5) !== 'https') {
  */
 const configuration = {
     "iceServers": [
+        {url:'stun:stun.ourcodeworld.com:5349'}
+        /*
         {url:'stun:stun.l.google.com:19302'},
         {url:'stun:stun1.l.google.com:19302'},
         {url:'stun:stun2.l.google.com:19302'},
@@ -58,9 +60,16 @@ const configuration = {
         {url:'stun:stun.voipbuster.com'},
         {url:'stun:stun.voipstunt.com'},
         {url:'stun:stun.voxgratia.org'},
-        {url:'stun:stun.xten.com'},
+        {url:'stun:stun.xten.com'},*/
         // public turn server from https://gist.github.com/sagivo/3a4b2f2c7ac6e1b5267c2f1f59ac6c6b
         // set your own servers here
+        {
+            url: 'turn:turn.etriage.kr',
+            credential: 'secuware',
+            username: 'secuware'
+        }
+        
+        /*,
         {
             url: 'turn:numb.viagenie.ca',
             credential: 'muazkh',
@@ -85,7 +94,7 @@ const configuration = {
             url: 'turn:turn.anyfirewall.com:443?transport=tcp',
             credential: 'webrtc',
             username: 'webrtc'
-        }
+        }*/
         
     ]
 }
