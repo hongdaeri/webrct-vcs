@@ -23,7 +23,7 @@ let chatList = $("#chat-message-list");
 /**
  * screen handler
  */
-//const screenHandler = new ScreenHandler();
+const screenHandler = new ScreenHandler();
 
 // redirect if not https
 if(location.href.substr(0,5) !== 'https') {
