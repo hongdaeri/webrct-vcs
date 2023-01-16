@@ -16,7 +16,7 @@ const options = {
     //cert: fs.readFileSync(path.join(__dirname,'..','ssl','cert.pem'), 'utf-8')
 }
 
-const port = 443//process.env.PORT || 443
+const port = process.env.PORT || 8080
 
 ////////////////////////////
 
