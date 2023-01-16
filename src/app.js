@@ -9,11 +9,11 @@ const https = require('https')
 
 // insert your own ssl certificate and keys
 const options = {
-    pfx: fs.readFileSync(path.join(__dirname,'..','ssl','pfx.pfx'), 'utf-8'),
-    passphrase: '65452',
-    minVersion: "TLSv1.2"
-    //key: fs.readFileSync(path.join(__dirname,'..','ssl','key.pem'), 'utf-8'),
-    //cert: fs.readFileSync(path.join(__dirname,'..','ssl','cert.pem'), 'utf-8')
+    //pfx: fs.readFileSync(path.join(__dirname,'..','ssl','pfx.pfx'), 'utf-8'),
+    //passphrase: '65452',
+    //minVersion: "TLSv1.2"
+    key: fs.readFileSync(path.join(__dirname,'..','ssl','key.pem'), 'utf-8'),
+    cert: fs.readFileSync(path.join(__dirname,'..','ssl','cert.pem'), 'utf-8')
 }
 
 const port = process.env.PORT || 8080
